@@ -64,7 +64,7 @@ public class WorldGeneration : MonoBehaviour
     {
         int randomIndex = Random.Range(0, _chunkPrefabs.Count);
 
-        Chunk chunk = null;
+        Chunk chunk = _chunkPool.Find(x => !x.gameObject.activeSelf && x.name == $"{_chunkPrefabs[randomIndex].name}(Clone)");
 
         if (!chunk)
         {

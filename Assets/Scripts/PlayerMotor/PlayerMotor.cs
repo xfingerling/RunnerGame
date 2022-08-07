@@ -13,13 +13,12 @@ public class PlayerMotor : MonoBehaviour
     public float gravity = 14f;
     public float terminalVelocity = 20f;
 
-    public CharacterController controller;
-
+    private CharacterController _controller;
     private BaseState _state;
 
     private void Start()
     {
-        controller = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterController>();
         _state = GetComponent<RunningState>();
         _state.Construct();
     }
@@ -27,6 +26,14 @@ public class PlayerMotor : MonoBehaviour
     private void Update()
     {
         UpdateMotor();
+    }
+
+    public void ApplyGravity()
+    {
+        verticalVelocity -= gravity * Time.deltaTime;
+
+        if (verticalVelocity < -terminalVelocity)
+            verticalVelocity = -terminalVelocity;
     }
 
     public void ChangeLane(int direction)
@@ -66,13 +73,13 @@ public class PlayerMotor : MonoBehaviour
 
     private void UpdateMotor()
     {
-        isGrounded = controller.isGrounded;
+        isGrounded = _controller.isGrounded;
 
         moveVector = _state.ProcessMotion();
 
         _state.Transition();
 
         //Move the player
-        controller.Move(moveVector * Time.deltaTime);
+        _controller.Move(moveVector * Time.deltaTime);
     }
 }

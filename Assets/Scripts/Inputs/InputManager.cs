@@ -54,7 +54,7 @@ public class InputManager : MonoBehaviour
 
     private void ResetInputs()
     {
-        _tap = _swipeDown = _swipeLeft = _swipeRight = _swipeRight = false;
+        _tap = _swipeDown = _swipeUp = _swipeLeft = _swipeRight = false;
     }
 
     private void SetupControl()

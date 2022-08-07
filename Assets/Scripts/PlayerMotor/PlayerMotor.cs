@@ -13,13 +13,16 @@ public class PlayerMotor : MonoBehaviour
     public float gravity = 14f;
     public float terminalVelocity = 20f;
     public CharacterController Controller => _controller;
+    public Animator Anim => _anim;
 
     private CharacterController _controller;
+    private Animator _anim;
     private BaseState _state;
 
     private void Start()
     {
         _controller = GetComponent<CharacterController>();
+        _anim = GetComponent<Animator>();
         _state = GetComponent<RunningState>();
         _state.Construct();
     }
@@ -78,7 +81,11 @@ public class PlayerMotor : MonoBehaviour
 
         moveVector = _state.ProcessMotion();
 
+        //Trying to change state
         _state.Transition();
+
+        _anim?.SetBool("IsGrounded", isGrounded);
+        _anim?.SetFloat("Speed", Mathf.Abs(moveVector.z));
 
         //Move the player
         _controller.Move(moveVector * Time.deltaTime);

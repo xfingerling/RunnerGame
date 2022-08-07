@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class FallingState : BaseState
 {
-    public override void Construct()
-    {
-
-    }
-
     public override Vector3 ProcessMotion()
     {
         motor.ApplyGravity();

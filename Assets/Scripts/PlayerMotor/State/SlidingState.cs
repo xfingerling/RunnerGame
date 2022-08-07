@@ -10,6 +10,8 @@ public class SlidingState : BaseState
 
     public override void Construct()
     {
+        motor.Anim?.ResetTrigger("Running");
+        motor.Anim?.SetTrigger("Slide");
         _slideStart = Time.time;
 
         _initialSize = motor.Controller.height;
@@ -23,6 +25,8 @@ public class SlidingState : BaseState
     {
         motor.Controller.height = _initialSize;
         motor.Controller.center = _initialCenter;
+
+        motor.Anim?.SetTrigger("Running");
     }
 
     public override Vector3 ProcessMotion()

@@ -12,6 +12,7 @@ public class PlayerMotor : MonoBehaviour
     public float baseSidewaySpeed = 10f;
     public float gravity = 14f;
     public float terminalVelocity = 20f;
+    public CharacterController Controller => _controller;
 
     private CharacterController _controller;
     private BaseState _state;

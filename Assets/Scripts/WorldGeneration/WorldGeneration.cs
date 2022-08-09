@@ -49,8 +49,8 @@ public class WorldGeneration : MonoBehaviour
 
         if (cameraZ >= lastChunk.transform.position.z + lastChunk.ChunkLength + _despawnDistance)
         {
-            SpawnNewChunk();
             DeleteLastChunk();
+            SpawnNewChunk();
         }
     }
 

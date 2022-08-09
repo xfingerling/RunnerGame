@@ -20,6 +20,7 @@ public class GameStateDeath : GameState
 
         GameManager.Instance.Motor.ResetPlayer();
         GameManager.Instance.WorldGeneration.ResetWorld();
+        GameManager.Instance.SceneryChunkGeneration.ResetWorld();
     }
 
     private void ResumeGame()

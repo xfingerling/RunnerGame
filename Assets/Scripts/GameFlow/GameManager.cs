@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
 
     [SerializeField] private PlayerMotor _motor;
+    [SerializeField] private GameObject[] _cameras;
 
     public PlayerMotor Motor => _motor;
 
@@ -28,5 +29,15 @@ public class GameManager : MonoBehaviour
         state.Construct();
         _state = state;
         state.Destruct();
+    }
+
+    public void ChangeCamera(GameCamera camera)
+    {
+        foreach (var go in _cameras)
+        {
+            go.SetActive(false);
+
+            _cameras[(int)camera].SetActive(true);
+        }
     }
 }

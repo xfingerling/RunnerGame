@@ -46,8 +46,7 @@ public class PlayerMotor : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        Debug.Log("Respawn");
-        //ChangeState(GetComponent<RespawnState>());
+        ChangeState(GetComponent<RespawnState>());
     }
 
     public void ApplyGravity()

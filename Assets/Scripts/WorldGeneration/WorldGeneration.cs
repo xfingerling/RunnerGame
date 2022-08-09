@@ -30,12 +30,6 @@ public class WorldGeneration : MonoBehaviour
             return;
         }
     }
-    #region TO DELETE $$
-    private void Update()
-    {
-        ScanPosition();
-    }
-    #endregion
 
     public void ResetWorld()
     {
@@ -48,7 +42,7 @@ public class WorldGeneration : MonoBehaviour
             SpawnNewChunk();
     }
 
-    private void ScanPosition()
+    public void ScanPosition()
     {
         float cameraZ = _cameraTransform.position.z;
         Chunk lastChunk = _activeChunks.Peek();

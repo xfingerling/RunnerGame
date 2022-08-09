@@ -2,7 +2,6 @@ public class GameStateDeath : GameState
 {
     public override void Construct()
     {
-        base.Construct();
         GameManager.Instance.Motor.PausePlayer();
     }
 
@@ -18,11 +17,14 @@ public class GameStateDeath : GameState
     private void ToMenu()
     {
         brain.ChangeState(GetComponent<GameStateInit>());
+
+        GameManager.Instance.Motor.ResetPlayer();
+        GameManager.Instance.WorldGeneration.ResetWorld();
     }
 
     private void ResumeGame()
     {
-        GameManager.Instance.Motor.RespawnPlayer();
         brain.ChangeState(GetComponent<GameStateGame>());
+        GameManager.Instance.Motor.RespawnPlayer();
     }
 }

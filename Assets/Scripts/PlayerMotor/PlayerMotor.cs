@@ -47,6 +47,7 @@ public class PlayerMotor : MonoBehaviour
     public void RespawnPlayer()
     {
         ChangeState(GetComponent<RespawnState>());
+        GameManager.Instance.ChangeCamera(GameCamera.Respawn);
     }
 
     public void ApplyGravity()
@@ -95,11 +96,21 @@ public class PlayerMotor : MonoBehaviour
     public void PausePlayer()
     {
         _isPaused = true;
+        _anim?.SetFloat("Speed", 0);
     }
 
     public void ResumePlayer()
     {
         _isPaused = false;
+    }
+
+    public void ResetPlayer()
+    {
+        currentLane = 0;
+        PausePlayer();
+        transform.position = Vector3.zero;
+        _anim?.SetTrigger("Idle");
+        ChangeState(GetComponent<RunningState>());
     }
 
     private void UpdateMotor()

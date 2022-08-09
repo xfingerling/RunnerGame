@@ -6,9 +6,13 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
 
     [SerializeField] private PlayerMotor _motor;
+    [SerializeField] private WorldGeneration _worldGeneration;
+    [SerializeField] private SceneryChunkGeneration _sceneryChunkGeneration;
     [SerializeField] private GameObject[] _cameras;
 
     public PlayerMotor Motor => _motor;
+    public WorldGeneration WorldGeneration => _worldGeneration;
+    public SceneryChunkGeneration SceneryChunkGeneration => _sceneryChunkGeneration;
 
     private GameState _state;
 

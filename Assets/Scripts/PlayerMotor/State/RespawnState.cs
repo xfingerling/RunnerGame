@@ -20,6 +20,11 @@ public class RespawnState : BaseState
         motor.Anim?.SetTrigger("Respawn");
     }
 
+    public override void Destruct()
+    {
+        GameManager.Instance.ChangeCamera(GameCamera.Game);
+    }
+
     public override Vector3 ProcessMotion()
     {
         motor.ApplyGravity();

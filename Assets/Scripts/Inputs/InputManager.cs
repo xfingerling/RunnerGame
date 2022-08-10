@@ -33,7 +33,7 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        DontDestroyOnLoad(gameObject);
+
         SetupControl();
     }
 

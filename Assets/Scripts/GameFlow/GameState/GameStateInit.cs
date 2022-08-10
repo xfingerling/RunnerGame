@@ -19,7 +19,6 @@ public class GameStateInit : GameState
 
     public override void Destruct()
     {
-        Debug.Log("Init destruct");
         _menuUI.SetActive(false);
     }
 

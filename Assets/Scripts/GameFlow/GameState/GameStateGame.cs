@@ -14,7 +14,7 @@ public class GameStateGame : GameState
 
         _fishCountText.text = "xTBD";
         _highscoreText.text = "TBD";
-        Debug.Log("game construct");
+
         _gameUI.SetActive(true);
     }
 

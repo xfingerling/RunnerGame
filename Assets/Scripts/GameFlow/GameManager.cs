@@ -30,9 +30,9 @@ public class GameManager : MonoBehaviour
 
     public void ChangeState(GameState state)
     {
-        state.Construct();
+        _state.Destruct();
         _state = state;
-        state.Destruct();
+        _state.Construct();
     }
 
     public void ChangeCamera(GameCamera camera)

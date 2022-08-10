@@ -26,6 +26,7 @@ public class Fish : MonoBehaviour
     private void PickupFish()
     {
         _anim?.SetTrigger("Pickup");
+        GameStats.Instance.CollectFish();
     }
 
     private void OnDisable()

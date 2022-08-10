@@ -762,7 +762,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204315704}
-  m_LocalRotation: {x: 0.46181035, y: -0.000000015261694, z: 0.000000007946086, w: 0.88697875}
+  m_LocalRotation: {x: 0.46181038, y: 0.000000015261694, z: -0.0000000079460865, w: 0.8869787}
   m_LocalPosition: {x: 0, y: 5, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2296,7 +2296,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: 0.46181035, y: -0.000000015261694, z: 0.000000007946086, w: 0.88697875}
+  m_LocalRotation: {x: 0.46181038, y: 0.000000015261694, z: -0.0000000079460865, w: 0.8869787}
   m_LocalPosition: {x: 0, y: 5, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4288,6 +4288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1671621374}
   - component: {fileID: 1671621375}
+  - component: {fileID: 1671621379}
   - component: {fileID: 1671621377}
   - component: {fileID: 1671621376}
   - component: {fileID: 1671621378}
@@ -4347,7 +4348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameUI: {fileID: 1407509314}
   _fishCountText: {fileID: 2074177775}
-  _highscoreText: {fileID: 1227532877}
+  _scoreText: {fileID: 0}
 --- !u!114 &1671621377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4381,6 +4382,20 @@ MonoBehaviour:
   _scoreText: {fileID: 868921598}
   _fishCountText: {fileID: 72088224}
   _completionCircle: {fileID: 1752640311}
+--- !u!114 &1671621379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671621373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82aeaac834d106642bf2cd2d37ae7b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointsPerFish: 10
+  _distanceModifire: 1.5
 --- !u!1 &1752640309
 GameObject:
   m_ObjectHideFlags: 0

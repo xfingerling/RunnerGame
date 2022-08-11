@@ -12,8 +12,8 @@ public class GameStateGame : GameState
         GameManager.Instance.Motor.ResumePlayer();
         GameManager.Instance.ChangeCamera(GameCamera.Game);
 
-        GameStats.Instance.OnCollectFishEvent += fishAmount => _fishCountText.text = fishAmount.ToString();
-        GameStats.Instance.OnScoreChangeEvent += score => _scoreText.text = score.ToString();
+        GameStats.Instance.OnCollectFishEvent += OnCollectFish;
+        GameStats.Instance.OnScoreChangeEvent += OnScoreChange;
 
         _gameUI.SetActive(true);
     }
@@ -21,11 +21,24 @@ public class GameStateGame : GameState
     public override void Destruct()
     {
         _gameUI.SetActive(false);
+
+        GameStats.Instance.OnCollectFishEvent -= OnCollectFish;
+        GameStats.Instance.OnScoreChangeEvent -= OnScoreChange;
     }
 
     public override void UpdateState()
     {
         GameManager.Instance.WorldGeneration.ScanPosition();
         GameManager.Instance.SceneryChunkGeneration.ScanPosition();
+    }
+
+    private void OnCollectFish(int fishAmount)
+    {
+        _fishCountText.text = fishAmount.ToString();
+    }
+
+    private void OnScoreChange(float score)
+    {
+        _scoreText.text = score.ToString();
     }
 }

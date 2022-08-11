@@ -12,6 +12,9 @@ public class GameStats : MonoBehaviour
     [SerializeField] private int _pointsPerFish = 10;
     [SerializeField] private float _distanceModifire = 1.5f;
 
+    public float score => _score;
+    public int fishCollectedThisSession => _fishCollectedThisSession;
+
     private float _score;
     private float _highscore;
     private int _totalFish;

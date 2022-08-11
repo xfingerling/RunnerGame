@@ -11,26 +11,28 @@ public class SaveManager : MonoBehaviour
     public event Action<SaveState> OnLoadEvent;
     public event Action<SaveState> OnSaveEvent;
 
+    public SaveState save;
+
     private const string SAVE_FILE_NAME = "data.ss";
 
-    private SaveState _save;
     private BinaryFormatter _formatter;
 
     private void Awake()
     {
+        _instance = this;
         _formatter = new BinaryFormatter();
 
         Load();
     }
 
-    private void Load()
+    public void Load()
     {
         try
         {
             FileStream file = new FileStream(Application.persistentDataPath + SAVE_FILE_NAME, FileMode.Open, FileAccess.Read);
-            _save = _formatter.Deserialize(file) as SaveState;
+            save = _formatter.Deserialize(file) as SaveState;
             file.Close();
-            OnLoadEvent?.Invoke(_save);
+            OnLoadEvent?.Invoke(save);
         }
         catch
         {
@@ -40,17 +42,17 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void Save()
+    public void Save()
     {
-        if (_save == null)
-            _save = new SaveState();
+        if (save == null)
+            save = new SaveState();
 
-        _save.LastSaveTime = DateTime.Now;
+        save.LastSaveTime = DateTime.Now;
 
         FileStream file = new FileStream(Application.persistentDataPath + SAVE_FILE_NAME, FileMode.OpenOrCreate, FileAccess.Write);
-        _formatter.Serialize(file, _save);
+        _formatter.Serialize(file, save);
         file.Close();
 
-        OnSaveEvent?.Invoke(_save);
+        OnSaveEvent?.Invoke(save);
     }
 }

@@ -11,8 +11,8 @@ public class GameStateInit : GameState
     {
         GameManager.Instance.ChangeCamera(GameCamera.Init);
 
-        _scoreText.text = $"Highscore: TBD";
-        _fishCountText.text = $"Fish: TBD";
+        _scoreText.text = $"Highscore: {SaveManager.Instance.save.Highscore.ToString("0000000")}";
+        _fishCountText.text = $"Fish: {SaveManager.Instance.save.Fish.ToString("0000")}";
 
         _menuUI.SetActive(true);
     }

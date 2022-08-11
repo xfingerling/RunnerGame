@@ -20,9 +20,15 @@ public class GameStateDeath : GameState
         _deathTime = Time.time;
         _completionCircle.gameObject.SetActive(true);
 
-        _highscoreText.text = "Highscore: TBD";
-        _scoreText.text = "TBD";
-        _fishCountText.text = "xTBD";
+        if (SaveManager.Instance.save.Highscore < (int)GameStats.Instance.score)
+            SaveManager.Instance.save.Highscore = (int)GameStats.Instance.score;
+
+        SaveManager.Instance.save.Fish += GameStats.Instance.fishCollectedThisSession;
+        SaveManager.Instance.Save();
+
+        _highscoreText.text = $"Highscore: {SaveManager.Instance.save.Highscore}";
+        _scoreText.text = GameStats.Instance.ScoreToText();
+        _fishCountText.text = $"Total fish: x{SaveManager.Instance.save.Fish}";
 
         _deathUI.SetActive(true);
     }

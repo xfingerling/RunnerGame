@@ -34,11 +34,11 @@ public class GameStateGame : GameState
 
     private void OnCollectFish(int fishAmount)
     {
-        _fishCountText.text = fishAmount.ToString();
+        _fishCountText.text = GameStats.Instance.FishToText();
     }
 
     private void OnScoreChange(float score)
     {
-        _scoreText.text = score.ToString();
+        _scoreText.text = GameStats.Instance.ScoreToText();
     }
 }

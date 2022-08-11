@@ -55,4 +55,14 @@ public class GameStats : MonoBehaviour
         OnCollectFishEvent?.Invoke(_fishCollectedThisSession);
         OnScoreChangeEvent?.Invoke(_score);
     }
+
+    public string ScoreToText()
+    {
+        return _score.ToString("0000000");
+    }
+
+    public string FishToText()
+    {
+        return _fishCollectedThisSession.ToString("0000");
+    }
 }

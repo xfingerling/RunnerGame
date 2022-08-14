@@ -40,15 +40,17 @@ public class GameStateShop : GameState
     {
         for (int i = 0; i < _hats.Length; i++)
         {
+            int index = i;
+
             GameObject go = Instantiate(_hatPrefab, _hatContainer) as GameObject;
             //Button
-            go.GetComponent<Button>().onClick.AddListener(() => OnHatClick(i));
+            go.GetComponent<Button>().onClick.AddListener(() => OnHatClick(index));
             //Icon
-            go.transform.GetChild(0).GetComponent<Image>().sprite = _hats[i].IconHat;
+            go.transform.GetChild(0).GetComponent<Image>().sprite = _hats[index].IconHat;
             //ItemName
-            go.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = _hats[i].ItemName;
+            go.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = _hats[index].ItemName;
             //Price
-            go.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = _hats[i].ItemPrice.ToString();
+            go.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = _hats[index].ItemPrice.ToString();
         }
     }
 

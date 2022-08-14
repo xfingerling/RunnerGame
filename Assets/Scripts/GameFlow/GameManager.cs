@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     private GameState _state;
 
-    private void Satrt()
+    private void Start()
     {
         _instance = this;
         _state = GetComponent<GameStateInit>();

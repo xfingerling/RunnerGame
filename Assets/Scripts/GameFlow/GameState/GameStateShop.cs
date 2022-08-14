@@ -6,13 +6,17 @@ public class GameStateShop : GameState
 {
     [SerializeField] private GameObject _shopUI;
     [SerializeField] private TextMeshProUGUI _totalFishText;
+    [SerializeField] private TextMeshProUGUI _currentHatText;
     [SerializeField] private GameObject _hatPrefab;
     [SerializeField] private Transform _hatContainer;
+    [SerializeField] private HatLogic _hatLogic;
 
     private Hat[] _hats;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _hats = Resources.LoadAll<Hat>("Hats");
         PopulateShop();
     }
@@ -56,6 +60,7 @@ public class GameStateShop : GameState
 
     private void OnHatClick(int i)
     {
-        Debug.Log("Hat was clicked" + i);
+        _currentHatText.text = _hats[i].ItemName;
+        _hatLogic.SelectHat(i);
     }
 }

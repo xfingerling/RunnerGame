@@ -1902,6 +1902,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557037361}
   m_CullTransparentMesh: 1
+--- !u!4 &564332276 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400004, guid: 095f379f461e4554c8999ccdc9f2e131,
+    type: 3}
+  m_PrefabInstance: {fileID: 1986063515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &676788394
 GameObject:
   m_ObjectHideFlags: 0
@@ -5073,9 +5079,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shopUI: {fileID: 1196353997}
   _totalFishText: {fileID: 39552772}
+  _currentHatText: {fileID: 1733184102}
   _hatPrefab: {fileID: 7467841297420462805, guid: 1d52e1e6a618a6548905e7d04f273880,
     type: 3}
   _hatContainer: {fileID: 1757109586}
+  _hatLogic: {fileID: 2105313955}
 --- !u!1 &1733184100
 GameObject:
   m_ObjectHideFlags: 0
@@ -6511,3 +6519,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _verticalDistance: 25
   _immunityTime: 0.5
+--- !u!114 &2105313955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105313944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f52b933d23d75d4db9d4a24e1a7cf23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hatContainer: {fileID: 564332276}

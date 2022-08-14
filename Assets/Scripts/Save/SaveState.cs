@@ -19,7 +19,5 @@ public class SaveState
         CurrentHatIndex = 0;
         UnlockedHatFlag = new byte[HAT_COUNT];
         UnlockedHatFlag[0] = 1;
-
-        UnlockedHatFlag[1] = 1;
     }
 }

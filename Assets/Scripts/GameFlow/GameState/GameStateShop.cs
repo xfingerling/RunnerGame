@@ -60,7 +60,10 @@ public class GameStateShop : GameState
 
     private void OnHatClick(int i)
     {
+        SaveManager.Instance.save.CurrentHatIndex = i;
         _currentHatText.text = _hats[i].ItemName;
         _hatLogic.SelectHat(i);
+
+        SaveManager.Instance.Save();
     }
 }

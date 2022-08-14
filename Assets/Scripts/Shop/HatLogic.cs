@@ -8,11 +8,11 @@ public class HatLogic : MonoBehaviour
     private Hat[] _hats;
     private List<GameObject> _hatModels = new List<GameObject>();
 
-    private void Awake()
+    private void Start()
     {
         _hats = Resources.LoadAll<Hat>("Hats");
         SpawnHats();
-        SelectHat(0);
+        SelectHat(SaveManager.Instance.save.CurrentHatIndex);
     }
 
     public void SelectHat(int index)

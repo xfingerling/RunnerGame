@@ -89,7 +89,7 @@ public class GameStateShop : GameState
             _saveData.UnlockedHatFlag[i] = 1;
             _saveData.CurrentHatIndex = i;
             _totalFishText.text = $"Fish: {_saveData.Fish.ToString("0000")}";
-            _hatContainer.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = "";
+            _hatContainer.GetChild(i).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "";
             _currentHatText.text = _hats[i].ItemName;
             _hatLogic.SelectHat(i);
 

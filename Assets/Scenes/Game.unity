@@ -4726,6 +4726,7 @@ MonoBehaviour:
   _scoreText: {fileID: 868921598}
   _fishCountText: {fileID: 72088224}
   _completionCircle: {fileID: 1752640311}
+  _reviveAdButton: {fileID: 1752640313}
 --- !u!114 &1671621379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4784,7 +4785,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameId: 4888387
-  _rewardedVideoPlacementId: Rewarded_Android
+  _androidAdUnitId: Rewarded_Android
+  _iOSAdUnitId: Rewarded_iOS
   _testMode: 1
 --- !u!1 &1733184100
 GameObject:
@@ -5042,19 +5044,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1752640311}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1671621378}
-        m_TargetAssemblyTypeName: GameStateDeath, Assembly-CSharp
-        m_MethodName: TryResumeGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1757109585
 GameObject:
   m_ObjectHideFlags: 0

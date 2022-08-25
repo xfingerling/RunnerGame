@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a0b11fc5c402a4290e5c05dd92f403, type: 3}
+  m_Name: TinfoilHat
+  m_EditorClassIdentifier: 
+  ItemName: Tinfoil Hat
+  ItemPrice: 15
+  IconHat: {fileID: 21300000, guid: ee204bf1599bad94c9b6639a00149e8f, type: 3}
+  Model: {fileID: 5338474206250801081, guid: 070e4354dfc72cd40945cd1cf815aa7b, type: 3}

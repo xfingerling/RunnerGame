@@ -10,10 +10,14 @@ public class GameStateShop : GameState
     [SerializeField] private GameObject _hatPrefab;
     [SerializeField] private Transform _hatContainer;
     [SerializeField] private HatLogic _hatLogic;
+    [SerializeField] private Image _completionCircle;
+    [SerializeField] private TextMeshProUGUI _completionText;
 
     private Hat[] _hats;
     private SaveState _saveData;
     private bool _isInit = false;
+    private int _hatCount;
+    private int _unlockedHatCount;
 
     private void Awake()
     {
@@ -35,6 +39,8 @@ public class GameStateShop : GameState
 
             _isInit = true;
         }
+
+        ResetCompletionCircle();
     }
 
     public override void Destruct()
@@ -68,7 +74,11 @@ public class GameStateShop : GameState
             if (_saveData.UnlockedHatFlag[i] == 0)
                 go.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = _hats[index].ItemPrice.ToString();
             else
+            {
                 go.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "";
+                _unlockedHatCount++;
+            }
+
         }
     }
 
@@ -94,9 +104,21 @@ public class GameStateShop : GameState
             _hatLogic.SelectHat(i);
 
             SaveManager.Instance.Save();
+            _unlockedHatCount++;
+            ResetCompletionCircle();
         }
         //Dont have it , cant buy it
         else
             Debug.Log("Not enough fish");
+    }
+
+    private void ResetCompletionCircle()
+    {
+        int hatCount = _hats.Length - 1;
+        int currentlyUnlockedCount = _unlockedHatCount - 1;
+
+
+        _completionCircle.fillAmount = (float)currentlyUnlockedCount / (float)hatCount;
+        _completionText.text = $"{currentlyUnlockedCount} / {hatCount}";
     }
 }

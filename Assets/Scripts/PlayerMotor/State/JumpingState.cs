@@ -25,6 +25,12 @@ public class JumpingState : BaseState
 
     public override void Transition()
     {
+        if (InputManager.Instance.SwipeLeft)
+            motor.ChangeLane(-1);
+
+        if (InputManager.Instance.SwipeRight)
+            motor.ChangeLane(1);
+
         if (motor.verticalVelocity < 0)
             motor.ChangeState(GetComponent<FallingState>());
     }

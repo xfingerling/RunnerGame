@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class RespawnState : BaseState
+public class RespawnState : IBaseState
 {
     [SerializeField] private float _verticalDistance = 25f;
     [SerializeField] private float _immunityTime = 1f;
 
     private float _startTime;
 
-    public override void Construct()
+    public void Construct(PlayerMotor motor)
     {
         _startTime = Time.time;
 
@@ -20,12 +20,12 @@ public class RespawnState : BaseState
         motor.Anim?.SetTrigger("Respawn");
     }
 
-    public override void Destruct()
+    public void Destruct(PlayerMotor motor)
     {
         GameManager.Instance.ChangeCamera(GameCamera.Game);
     }
 
-    public override Vector3 ProcessMotion()
+    public void ProcessMotion(PlayerMotor motor)
     {
         motor.ApplyGravity();
 
@@ -35,13 +35,13 @@ public class RespawnState : BaseState
         m.y = motor.verticalVelocity;
         m.z = motor.baseRunSpeed;
 
-        return m;
+        motor.moveVector = m;
     }
 
-    public override void Transition()
+    public void Transition(PlayerMotor motor)
     {
         if (motor.isGrounded && (Time.time - _startTime) > _immunityTime)
-            motor.ChangeState(GetComponent<RunningState>());
+            motor.ChangeState(new RunningState());
 
         if (InputManager.Instance.SwipeLeft)
             motor.ChangeLane(-1);

@@ -1,16 +1,21 @@
 using UnityEngine;
 
-public class JumpingState : BaseState
+public class JumpingState : IBaseState
 {
     [SerializeField] private float _jumpForce = 7f;
 
-    public override void Construct()
+    public void Construct(PlayerMotor motor)
     {
         motor.Anim?.SetTrigger("Jump");
         motor.verticalVelocity = _jumpForce;
     }
 
-    public override Vector3 ProcessMotion()
+    public void Destruct(PlayerMotor motor)
+    {
+
+    }
+
+    public void ProcessMotion(PlayerMotor motor)
     {
         motor.ApplyGravity();
 
@@ -20,10 +25,10 @@ public class JumpingState : BaseState
         m.y = motor.verticalVelocity;
         m.z = motor.baseRunSpeed;
 
-        return m;
+        motor.moveVector = m;
     }
 
-    public override void Transition()
+    public void Transition(PlayerMotor motor)
     {
         if (InputManager.Instance.SwipeLeft)
             motor.ChangeLane(-1);
@@ -32,6 +37,6 @@ public class JumpingState : BaseState
             motor.ChangeLane(1);
 
         if (motor.verticalVelocity < 0)
-            motor.ChangeState(GetComponent<FallingState>());
+            motor.ChangeState(new FallingState());
     }
 }

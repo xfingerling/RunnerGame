@@ -1,12 +1,18 @@
 using UnityEngine;
 
-public class FallingState : BaseState
+public class FallingState : IBaseState
 {
-    public override void Construct()
+    public void Construct(PlayerMotor motor)
     {
         motor.Anim?.SetTrigger("Fall");
     }
-    public override Vector3 ProcessMotion()
+
+    public void Destruct(PlayerMotor motor)
+    {
+
+    }
+
+    public void ProcessMotion(PlayerMotor motor)
     {
         motor.ApplyGravity();
 
@@ -16,10 +22,10 @@ public class FallingState : BaseState
         m.y = motor.verticalVelocity;
         m.z = motor.baseRunSpeed;
 
-        return m;
+        motor.moveVector = m;
     }
 
-    public override void Transition()
+    public void Transition(PlayerMotor motor)
     {
         if (InputManager.Instance.SwipeLeft)
             motor.ChangeLane(-1);
@@ -28,6 +34,6 @@ public class FallingState : BaseState
             motor.ChangeLane(1);
 
         if (motor.isGrounded)
-            motor.ChangeState(GetComponent<RunningState>());
+            motor.ChangeState(new RunningState());
     }
 }

@@ -17,15 +17,15 @@ public class PlayerMotor : MonoBehaviour
 
     private CharacterController _controller;
     private Animator _anim;
-    private BaseState _state;
+    private IBaseState _state;
     private bool _isPaused;
 
     private void Start()
     {
         _controller = GetComponent<CharacterController>();
         _anim = GetComponent<Animator>();
-        _state = GetComponent<RunningState>();
-        _state.Construct();
+        _state = new RunningState();
+        _state.Construct(this);
 
         _isPaused = true;
     }
@@ -41,12 +41,12 @@ public class PlayerMotor : MonoBehaviour
         string hitLayerMask = LayerMask.LayerToName(hit.gameObject.layer);
 
         if (hitLayerMask == "Death")
-            ChangeState(GetComponent<DeathState>());
+            ChangeState(new DeathState());
     }
 
     public void RespawnPlayer()
     {
-        ChangeState(GetComponent<RespawnState>());
+        ChangeState(new RespawnState());
         GameManager.Instance.ChangeCamera(GameCamera.Respawn);
     }
 
@@ -63,11 +63,11 @@ public class PlayerMotor : MonoBehaviour
         currentLane = Mathf.Clamp(currentLane + direction, -1, 1);
     }
 
-    public void ChangeState(BaseState state)
+    public void ChangeState(IBaseState state)
     {
-        _state.Destruct();
+        _state.Destruct(this);
         _state = state;
-        _state.Construct();
+        _state.Construct(this);
     }
 
     public float SnapToLane()
@@ -110,17 +110,17 @@ public class PlayerMotor : MonoBehaviour
         PausePlayer();
         transform.position = Vector3.zero;
         _anim?.SetTrigger("Idle");
-        ChangeState(GetComponent<RunningState>());
+        ChangeState(new RunningState());
     }
 
     private void UpdateMotor()
     {
         isGrounded = _controller.isGrounded;
 
-        moveVector = _state.ProcessMotion();
+        _state.ProcessMotion(this);
 
         //Trying to change state
-        _state.Transition();
+        _state.Transition(this);
 
         _anim?.SetBool("IsGrounded", isGrounded);
         _anim?.SetFloat("Speed", Mathf.Abs(moveVector.z));

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Tinfoil Hat
   ItemPrice: 15
-  IconHat: {fileID: 21300000, guid: ee204bf1599bad94c9b6639a00149e8f, type: 3}
-  Model: {fileID: 5338474206250801081, guid: 070e4354dfc72cd40945cd1cf815aa7b, type: 3}
+  IconHat: {fileID: 21300000, guid: daa2bd6737e123a4da91aa3396cad9d0, type: 3}
+  Model: {fileID: 3726618909677751009, guid: 4c6b5d5911c891a40a6f7e4cd89801be, type: 3}

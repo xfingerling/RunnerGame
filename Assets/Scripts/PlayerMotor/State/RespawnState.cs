@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class RespawnState : IBaseState
 {
-    [SerializeField] private float _verticalDistance = 25f;
-    [SerializeField] private float _immunityTime = 1f;
-
     private float _startTime;
 
     public void Construct(PlayerMotor motor)
@@ -12,7 +9,7 @@ public class RespawnState : IBaseState
         _startTime = Time.time;
 
         motor.Controller.enabled = false;
-        motor.transform.position = new Vector3(0, _verticalDistance, motor.transform.position.z);
+        motor.transform.position = new Vector3(0, motor.VerticalDistance, motor.transform.position.z);
         motor.Controller.enabled = true;
 
         motor.verticalVelocity = 0;
@@ -33,14 +30,14 @@ public class RespawnState : IBaseState
 
         m.x = motor.SnapToLane();
         m.y = motor.verticalVelocity;
-        m.z = motor.baseRunSpeed;
+        m.z = motor.BaseRunSpeed;
 
         motor.moveVector = m;
     }
 
     public void Transition(PlayerMotor motor)
     {
-        if (motor.isGrounded && (Time.time - _startTime) > _immunityTime)
+        if (motor.isGrounded && (Time.time - _startTime) > motor.ImmunityTime)
             motor.ChangeState(new RunningState());
 
         if (InputManager.Instance.SwipeLeft)

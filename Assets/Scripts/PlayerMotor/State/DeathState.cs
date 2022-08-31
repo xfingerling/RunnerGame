@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class DeathState : IBaseState
 {
-    [SerializeField] private Vector3 _knockbackForce = new Vector3(0, 4, -3);
-
     private Vector3 _currentKnockback;
 
     public void Construct(PlayerMotor motor)
     {
         motor.Anim?.SetTrigger("Death");
-        _currentKnockback = _knockbackForce;
+        _currentKnockback = motor.KnockbackForce;
     }
 
     public void Destruct(PlayerMotor motor)
@@ -21,7 +19,7 @@ public class DeathState : IBaseState
     {
         Vector3 m = _currentKnockback;
 
-        _currentKnockback = new Vector3(0, _currentKnockback.y -= motor.gravity * Time.deltaTime, _currentKnockback.z += 2f * Time.deltaTime);
+        _currentKnockback = new Vector3(0, _currentKnockback.y -= motor.Gravity * Time.deltaTime, _currentKnockback.z += 2f * Time.deltaTime);
 
         if (_currentKnockback.z > 0)
         {

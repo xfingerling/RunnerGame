@@ -19,7 +19,7 @@ public class RunningState : IBaseState
 
         m.x = motor.SnapToLane();
         m.y = -1f;
-        m.z = motor.baseRunSpeed;
+        m.z = motor.BaseRunSpeed;
 
         motor.moveVector = m;
     }

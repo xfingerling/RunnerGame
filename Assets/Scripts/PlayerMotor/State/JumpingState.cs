@@ -2,12 +2,10 @@ using UnityEngine;
 
 public class JumpingState : IBaseState
 {
-    [SerializeField] private float _jumpForce = 7f;
-
     public void Construct(PlayerMotor motor)
     {
         motor.Anim?.SetTrigger("Jump");
-        motor.verticalVelocity = _jumpForce;
+        motor.verticalVelocity = motor.JumpForce;
     }
 
     public void Destruct(PlayerMotor motor)
@@ -23,7 +21,7 @@ public class JumpingState : IBaseState
 
         m.x = motor.SnapToLane();
         m.y = motor.verticalVelocity;
-        m.z = motor.baseRunSpeed;
+        m.z = motor.BaseRunSpeed;
 
         motor.moveVector = m;
     }

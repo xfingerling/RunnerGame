@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class SlidingState : IBaseState
 {
-    public float slideDuration = 1f;
-
     private Vector3 _initialCenter;
     private float _initialSize;
     private float _slideStart;
@@ -35,7 +33,7 @@ public class SlidingState : IBaseState
 
         m.x = motor.SnapToLane();
         m.y = -1f;
-        m.z = motor.baseRunSpeed;
+        m.z = motor.BaseRunSpeed;
 
         motor.moveVector = m;
     }
@@ -54,7 +52,7 @@ public class SlidingState : IBaseState
         if (InputManager.Instance.SwipeUp)
             motor.ChangeState(new JumpingState());
 
-        if (Time.time - _slideStart > slideDuration)
+        if (Time.time - _slideStart > motor.SlideDuration)
             motor.ChangeState(new RunningState());
     }
 }

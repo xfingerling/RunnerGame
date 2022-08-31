@@ -20,7 +20,7 @@ public class FallingState : IBaseState
 
         m.x = motor.SnapToLane();
         m.y = motor.verticalVelocity;
-        m.z = motor.baseRunSpeed;
+        m.z = motor.BaseRunSpeed;
 
         motor.moveVector = m;
     }

@@ -124,13 +124,7 @@ GameObject:
   - component: {fileID: 935079738654399419}
   - component: {fileID: 935079738470524792}
   - component: {fileID: 935079738470524797}
-  - component: {fileID: 935079738470524798}
   - component: {fileID: 935079738470524799}
-  - component: {fileID: 935079738470524794}
-  - component: {fileID: 935079738470524795}
-  - component: {fileID: 935079738470524740}
-  - component: {fileID: 935079738470524741}
-  - component: {fileID: 935079738470524742}
   - component: {fileID: 935079738470524743}
   m_Layer: 0
   m_Name: Penguin
@@ -195,18 +189,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &935079738470524798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935079738654754715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e21e3b45ef664740b85ade13fc9a0a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &935079738470524799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,80 +201,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1a09a086b08d44c880b64bf46e550a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveVector: {x: 0, y: 0, z: 0}
-  verticalVelocity: 0
-  isGrounded: 0
-  currentLane: 0
-  distanceInBetweenLanes: 3
-  baseRunSpeed: 5
-  baseSidewaySpeed: 10
-  gravity: 14
-  terminalVelocity: 20
---- !u!114 &935079738470524794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935079738654754715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2de302c744ffe0d40a9ed48fb310eb79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &935079738470524795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935079738654754715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a031f9ae07b66664f850b6677d4ab943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _distanceInBetweenLanes: 3
+  _baseRunSpeed: 5
+  _baseSidewaySpeed: 10
+  _gravity: 14
+  _terminalVelocity: 20
+  _slideDuration: 1
   _jumpForce: 7
---- !u!114 &935079738470524740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935079738654754715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2de9ad5215d7820439f48d08fae4b42d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slideDuration: 1
---- !u!114 &935079738470524741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935079738654754715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c90c78a295852ca4c92fb76ba6437693, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _knockbackForce: {x: 0, y: 4, z: -3}
---- !u!114 &935079738470524742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935079738654754715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c155071d483bd92429f4a873be94cc45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   _verticalDistance: 25
-  _immunityTime: 0.5
+  _immunityTime: 1
 --- !u!114 &935079738470524743
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,16 +2,33 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
-    [HideInInspector] public Vector3 moveVector;
-    [HideInInspector] public float verticalVelocity;
-    [HideInInspector] public bool isGrounded;
-    [HideInInspector] public int currentLane;
+    [SerializeField] private float _distanceInBetweenLanes = 3f;
+    [SerializeField] private float _baseSidewaySpeed = 10f;
+    [SerializeField] private float _gravity = 14f;
+    [SerializeField] private float _terminalVelocity = 20f;
+    [Header("Run")]
+    [SerializeField] private float _baseRunSpeed = 5f;
+    [Header("Slide")]
+    [SerializeField] private float _slideDuration = 1f;
+    [Header("Jump")]
+    [SerializeField] private float _jumpForce = 7f;
+    [Header("Respawn")]
+    [SerializeField] private float _verticalDistance = 25f;
+    [SerializeField] private float _immunityTime = 1f;
+    [Header("Death")]
+    [SerializeField] private Vector3 _knockbackForce = new Vector3(0, 4, -3);
 
-    public float distanceInBetweenLanes = 3f;
-    public float baseRunSpeed = 5f;
-    public float baseSidewaySpeed = 10f;
-    public float gravity = 14f;
-    public float terminalVelocity = 20f;
+    public float BaseRunSpeed => _baseRunSpeed;
+    public float Gravity => _gravity;
+    public float SlideDuration => _slideDuration;
+    public float JumpForce => _jumpForce;
+    public float VerticalDistance => _verticalDistance;
+    public float ImmunityTime => _immunityTime;
+    public Vector3 KnockbackForce => _knockbackForce;
+    public Vector3 moveVector { get; set; }
+    public float verticalVelocity { get; set; }
+    public bool isGrounded { get; set; }
+    public int currentLane { get; set; }
     public CharacterController Controller => _controller;
     public Animator Anim => _anim;
 
@@ -52,10 +69,10 @@ public class PlayerMotor : MonoBehaviour
 
     public void ApplyGravity()
     {
-        verticalVelocity -= gravity * Time.deltaTime;
+        verticalVelocity -= _gravity * Time.deltaTime;
 
-        if (verticalVelocity < -terminalVelocity)
-            verticalVelocity = -terminalVelocity;
+        if (verticalVelocity < -_terminalVelocity)
+            verticalVelocity = -_terminalVelocity;
     }
 
     public void ChangeLane(int direction)
@@ -74,11 +91,11 @@ public class PlayerMotor : MonoBehaviour
     {
         float r = 0f;
 
-        if (transform.position.x != (currentLane * distanceInBetweenLanes))
+        if (transform.position.x != (currentLane * _distanceInBetweenLanes))
         {
-            float deltaToDesiredPosition = (currentLane * distanceInBetweenLanes) - transform.position.x;
+            float deltaToDesiredPosition = (currentLane * _distanceInBetweenLanes) - transform.position.x;
             r = (deltaToDesiredPosition > 0) ? 1 : -1;
-            r *= baseSidewaySpeed;
+            r *= _baseSidewaySpeed;
 
             float actualDistance = r * Time.deltaTime;
 

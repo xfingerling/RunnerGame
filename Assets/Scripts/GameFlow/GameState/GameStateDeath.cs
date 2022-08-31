@@ -30,7 +30,7 @@ public class GameStateDeath : GameState, IUnityAdsLoadListener, IUnityAdsShowLis
 
         _highscoreText.text = $"Highscore: {SaveManager.Instance.save.Highscore}";
         _scoreText.text = GameStats.Instance.ScoreToText();
-        _fishCountText.text = $"Total fish: x{SaveManager.Instance.save.Fish}";
+        _fishCountText.text = $"x{SaveManager.Instance.save.Fish}";
     }
 
     public override void Destruct()

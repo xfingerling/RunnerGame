@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4079367566427323487}
   - component: {fileID: 7784721382534959193}
   m_Layer: 0
-  m_Name: FishCollectable
+  m_Name: CoinCollectable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7035627850706830278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8981186, y: -0.7829025, z: 0.4336844}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -64,8 +64,8 @@ GameObject:
   - component: {fileID: 7801473955779472154}
   - component: {fileID: 7801473955776572218}
   - component: {fileID: 7801473955777702394}
-  - component: {fileID: 2156781582647635166}
   - component: {fileID: 6281085379404611416}
+  - component: {fileID: 6261060392023850638}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Fish
@@ -81,7 +81,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7801473955779704634}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -95,7 +95,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7801473955779704634}
-  m_Mesh: {fileID: 4300000, guid: 05ed16ff754ec3248a4d75ff8919aede, type: 3}
+  m_Mesh: {fileID: 4300000, guid: ae911e9a613f8bc419e9126b91cf94ed, type: 3}
 --- !u!23 &7801473955777702394
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -116,7 +116,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b8190276393d59c4aae950b490d95830, type: 2}
+  - {fileID: 2100000, guid: cec060d8cac23754083c05d1f906fe3b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -138,19 +138,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2156781582647635166
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7801473955779704634}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.3916853
-  m_Center: {x: 0, y: 0.27043098, z: -0.052169986}
 --- !u!114 &6281085379404611416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +150,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836cea2b050c896498a301822f4b2ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &6261060392023850638
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7801473955779704634}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8217804, y: 0.8428488, z: 0.15623376}
+  m_Center: {x: -0.02134729, y: 0.42018282, z: -0.00000020861631}

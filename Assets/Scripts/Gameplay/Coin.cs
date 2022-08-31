@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Fish : MonoBehaviour
+public class Coin : MonoBehaviour
 {
     private Animator _anim;
     private Chunk _chunk;

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 03_TinfoilHat
   m_EditorClassIdentifier: 
   ItemName: Tinfoil Hat
-  ItemPrice: 15
+  ItemPrice: 1
   IconHat: {fileID: 21300000, guid: daa2bd6737e123a4da91aa3396cad9d0, type: 3}
   Model: {fileID: 3726618909677751009, guid: 4c6b5d5911c891a40a6f7e4cd89801be, type: 3}

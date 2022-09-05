@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 06_SuperMarioHat
   m_EditorClassIdentifier: 
   ItemName: Super Mario Hat
-  ItemPrice: 1
+  ItemPrice: 5
   IconHat: {fileID: 21300000, guid: 35c2698ee47c4f640bd7ada9e54cb131, type: 3}
   Model: {fileID: 730145268589656555, guid: 3c86a8a63f74ade42a2a22910a405a8c, type: 3}

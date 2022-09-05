@@ -144,8 +144,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Chicken hat
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6d925ec84022295478b2c9be8644c9bf, type: 2}
-  m_sharedMaterial: {fileID: 1821422671590424227, guid: 6d925ec84022295478b2c9be8644c9bf,
+  m_fontAsset: {fileID: 11400000, guid: c10154e05ffbe044da211228940d87ba, type: 2}
+  m_sharedMaterial: {fileID: 9110509765449570926, guid: c10154e05ffbe044da211228940d87ba,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -280,8 +280,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6d925ec84022295478b2c9be8644c9bf, type: 2}
-  m_sharedMaterial: {fileID: 1821422671590424227, guid: 6d925ec84022295478b2c9be8644c9bf,
+  m_fontAsset: {fileID: 11400000, guid: c10154e05ffbe044da211228940d87ba, type: 2}
+  m_sharedMaterial: {fileID: 9110509765449570926, guid: c10154e05ffbe044da211228940d87ba,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

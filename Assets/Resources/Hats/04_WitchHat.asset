@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 04_WitchHat
   m_EditorClassIdentifier: 
   ItemName: Witch Hat
-  ItemPrice: 1
+  ItemPrice: 10
   IconHat: {fileID: 21300000, guid: ed71faf6bd45b744baae5e3df958c623, type: 3}
   Model: {fileID: 9107026660149201066, guid: 6576cfef3934a6b4abe90f97abf14692, type: 3}

@@ -11,8 +11,8 @@ public class GameStateInit : GameState
     {
         GameManager.Instance.ChangeCamera(GameCamera.Init);
 
-        _scoreText.text = $"Highscore: {SaveManager.Instance.save.Highscore.ToString("0000000")}";
-        _coinCountText.text = $"Coin: {SaveManager.Instance.save.Coin.ToString("0000")}";
+        _scoreText.text = $"{SaveManager.Instance.save.Highscore.ToString("000000")}";
+        _coinCountText.text = $"{SaveManager.Instance.save.Coin.ToString("0000")}";
 
         _menuUI.SetActive(true);
     }

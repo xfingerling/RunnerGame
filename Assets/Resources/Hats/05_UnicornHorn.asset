@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 05_UnicornHorn
   m_EditorClassIdentifier: 
   ItemName: Unicorn Horn
-  ItemPrice: 1
+  ItemPrice: 5
   IconHat: {fileID: 21300000, guid: ad3dae4592fc8654c98469f5e31fdb03, type: 3}
   Model: {fileID: 8424185991688035535, guid: 1d19f42a44457c34ea6feaff3d53464a, type: 3}

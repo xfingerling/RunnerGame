@@ -28,7 +28,7 @@ public class GameStateDeath : GameState, IUnityAdsLoadListener, IUnityAdsShowLis
         SaveManager.Instance.save.Coin += GameStats.Instance.coinCollectedThisSession;
         SaveManager.Instance.Save();
 
-        _highscoreText.text = $"Highscore: {SaveManager.Instance.save.Highscore}";
+        _highscoreText.text = $"{SaveManager.Instance.save.Highscore}";
         _scoreText.text = GameStats.Instance.ScoreToText();
         _coinCountText.text = $"x{SaveManager.Instance.save.Coin}";
     }

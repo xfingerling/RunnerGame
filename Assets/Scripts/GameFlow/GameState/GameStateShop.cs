@@ -30,7 +30,7 @@ public class GameStateShop : GameState
         _hats = Resources.LoadAll<Hat>("Hats");
         _shopUI.SetActive(true);
 
-        _totalCoinText.text = $"Coin: {_saveData.Coin.ToString("0000")}";
+        _totalCoinText.text = $"{_saveData.Coin.ToString("0000")}";
 
         if (!_isInit)
         {
@@ -98,7 +98,7 @@ public class GameStateShop : GameState
             _saveData.Coin -= _hats[i].ItemPrice;
             _saveData.UnlockedHatFlag[i] = 1;
             _saveData.CurrentHatIndex = i;
-            _totalCoinText.text = $"Coin: {_saveData.Coin.ToString("0000")}";
+            _totalCoinText.text = $"{_saveData.Coin.ToString("0000")}";
             _hatContainer.GetChild(i).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "";
             _currentHatText.text = _hats[i].ItemName;
             _hatLogic.SelectHat(i);

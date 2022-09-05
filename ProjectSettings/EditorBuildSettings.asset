@@ -9,5 +9,9 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: a8b78b75ac9f23848a29c8f3e7b59de9,
+      type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 156685b84701edb448db873c3a14e6a4,
+      type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 58f817b33667ed14681a12ed0546a4c0,
       type: 2}

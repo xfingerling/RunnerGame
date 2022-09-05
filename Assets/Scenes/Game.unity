@@ -8938,7 +8938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuUI: {fileID: 1022736026}
-  _scoreText: {fileID: 1610077298}
+  _scoreText: {fileID: 165162234}
   _coinCountText: {fileID: 1455328211}
 --- !u!114 &1671621378
 MonoBehaviour:

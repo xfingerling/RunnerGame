@@ -13,7 +13,7 @@ public class SaveManager : MonoBehaviour
 
     public SaveState save;
 
-    private const string SAVE_FILE_NAME = "Data.ss";
+    private const string SAVE_FILE_NAME = "BananaCatSaveData.ss";
 
     private BinaryFormatter _formatter;
 

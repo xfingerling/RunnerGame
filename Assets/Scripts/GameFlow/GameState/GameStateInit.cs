@@ -5,14 +5,14 @@ public class GameStateInit : GameState
 {
     [SerializeField] private GameObject _menuUI;
     [SerializeField] private TextMeshProUGUI _scoreText;
-    [SerializeField] private TextMeshProUGUI _fishCountText;
+    [SerializeField] private TextMeshProUGUI _coinCountText;
 
     public override void Construct()
     {
         GameManager.Instance.ChangeCamera(GameCamera.Init);
 
         _scoreText.text = $"Highscore: {SaveManager.Instance.save.Highscore.ToString("0000000")}";
-        _fishCountText.text = $"Fish: {SaveManager.Instance.save.Fish.ToString("0000")}";
+        _coinCountText.text = $"Coin: {SaveManager.Instance.save.Coin.ToString("0000")}";
 
         _menuUI.SetActive(true);
     }

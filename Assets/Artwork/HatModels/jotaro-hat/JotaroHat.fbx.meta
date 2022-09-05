@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dcc9c42914bafa0448ba19aa9ad0f0e2
+guid: dbc80ab66c609824993fa8ecd98f882b
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Horn
-    second: {fileID: 2100000, guid: 9da7553dd566bea4eaf063262b2f36a8, type: 2}
+      name: Jotaro_C__Users_Loris_Desktop_Jotaro_K1
+    second: {fileID: 2100000, guid: 91d9d7e12e9335143a04215000b095a7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

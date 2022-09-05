@@ -3,7 +3,22 @@ guid: 9996f5b581c56224a96507c1312e88ae
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eye
+    second: {fileID: 2100000, guid: 233996598bc17534c9a1383d972428c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyesrim
+    second: {fileID: 2100000, guid: edc31e6fcb5a80348a9fccd9baa53fd0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hatbase
+    second: {fileID: 2100000, guid: a983ee5c90eb8c14e8c55c5fc015118f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -2901,19 +2901,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.50784147
+      value: 0.5088584
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.021685908
+      value: 0.010485795
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.86039346
+      value: -0.86060375
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.036740795
+      value: 0.01773404
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2925,7 +2925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 4.284
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4774,7 +4774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7ccf11698b17b1e4db5c000241e27c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7
+      value: -0.78300005
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7ccf11698b17b1e4db5c000241e27c42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6148,7 +6148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 75dfe6db0316fbb41b176e7a49b91409, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7
+      value: -0.78300005
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 75dfe6db0316fbb41b176e7a49b91409, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6572,7 +6572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3351c943534208943a48f96a564c6f58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7
+      value: -0.783
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3351c943534208943a48f96a564c6f58, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7707,7 +7707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 398722e3957c85b49b99f9dabebac625, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7
+      value: -0.78300005
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 398722e3957c85b49b99f9dabebac625, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8020,7 +8020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameUI: {fileID: 1407509314}
-  _fishCountText: {fileID: 2074177775}
+  _coinCountText: {fileID: 2074177775}
   _scoreText: {fileID: 1227532877}
 --- !u!114 &1671621377
 MonoBehaviour:
@@ -8036,7 +8036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _menuUI: {fileID: 1022736026}
   _scoreText: {fileID: 1475777209}
-  _fishCountText: {fileID: 557037363}
+  _coinCountText: {fileID: 557037363}
 --- !u!114 &1671621378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8053,7 +8053,7 @@ MonoBehaviour:
   _deathUI: {fileID: 1026169059}
   _highscoreText: {fileID: 1247070025}
   _scoreText: {fileID: 868921598}
-  _fishCountText: {fileID: 72088224}
+  _coinCountText: {fileID: 72088224}
   _completionCircle: {fileID: 1752640311}
   _reviveAdButton: {fileID: 1752640313}
 --- !u!114 &1671621379
@@ -8068,7 +8068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82aeaac834d106642bf2cd2d37ae7b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointsPerFish: 10
+  _pointsPerCoin: 10
   _distanceModifire: 1.5
 --- !u!114 &1671621380
 MonoBehaviour:
@@ -8095,7 +8095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shopUI: {fileID: 1196353997}
-  _totalFishText: {fileID: 39552772}
+  _totalCoinText: {fileID: 39552772}
   _currentHatText: {fileID: 1733184102}
   _hatPrefab: {fileID: 7467841297420462805, guid: 1d52e1e6a618a6548905e7d04f273880,
     type: 3}
@@ -14665,23 +14665,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99128497
+      value: 0.99209166
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.025115758
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.124635346
+      value: 0.12551507
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.034487166
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 2.361
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -14689,7 +14689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 4.284
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 4fd218a78ed94884fa17034a24717c3d, type: 3}
       propertyPath: m_Materials.Array.data[0]

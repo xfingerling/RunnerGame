@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class GameStateShop : GameState
 {
     [SerializeField] private GameObject _shopUI;
-    [SerializeField] private TextMeshProUGUI _totalFishText;
+    [SerializeField] private TextMeshProUGUI _totalCoinText;
     [SerializeField] private TextMeshProUGUI _currentHatText;
     [SerializeField] private GameObject _hatPrefab;
     [SerializeField] private Transform _hatContainer;
@@ -30,7 +30,7 @@ public class GameStateShop : GameState
         _hats = Resources.LoadAll<Hat>("Hats");
         _shopUI.SetActive(true);
 
-        _totalFishText.text = $"Fish: {_saveData.Fish.ToString("0000")}";
+        _totalCoinText.text = $"Coin: {_saveData.Coin.ToString("0000")}";
 
         if (!_isInit)
         {
@@ -93,12 +93,12 @@ public class GameStateShop : GameState
             SaveManager.Instance.Save();
         }
         //If we dont have it, can buy it?
-        else if (_hats[i].ItemPrice <= SaveManager.Instance.save.Fish)
+        else if (_hats[i].ItemPrice <= SaveManager.Instance.save.Coin)
         {
-            _saveData.Fish -= _hats[i].ItemPrice;
+            _saveData.Coin -= _hats[i].ItemPrice;
             _saveData.UnlockedHatFlag[i] = 1;
             _saveData.CurrentHatIndex = i;
-            _totalFishText.text = $"Fish: {_saveData.Fish.ToString("0000")}";
+            _totalCoinText.text = $"Coin: {_saveData.Coin.ToString("0000")}";
             _hatContainer.GetChild(i).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "";
             _currentHatText.text = _hats[i].ItemName;
             _hatLogic.SelectHat(i);
@@ -109,7 +109,7 @@ public class GameStateShop : GameState
         }
         //Dont have it , cant buy it
         else
-            Debug.Log("Not enough fish");
+            Debug.Log("Not enough coin");
     }
 
     private void ResetCompletionCircle()

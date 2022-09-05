@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dcc9c42914bafa0448ba19aa9ad0f0e2
+guid: 99dd573bddfd4e8408cfdf173b5daf50
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
@@ -7,8 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Horn
-    second: {fileID: 2100000, guid: 9da7553dd566bea4eaf063262b2f36a8, type: 2}
+      name: 01 - Default
+    second: {fileID: 2100000, guid: 3f938dfd084595740b4641c89b192a92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: f2dffc15d97bded4ca8d8d2dcb2fd8b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 03 - Default
+    second: {fileID: 2100000, guid: 328a3d5093bfb344eb0a8025146abe51, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

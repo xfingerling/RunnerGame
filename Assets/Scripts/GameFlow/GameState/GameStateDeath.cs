@@ -9,7 +9,7 @@ public class GameStateDeath : GameState, IUnityAdsLoadListener, IUnityAdsShowLis
     [SerializeField] private GameObject _deathUI;
     [SerializeField] private TextMeshProUGUI _highscoreText;
     [SerializeField] private TextMeshProUGUI _scoreText;
-    [SerializeField] private TextMeshProUGUI _fishCountText;
+    [SerializeField] private TextMeshProUGUI _coinCountText;
     [SerializeField] private Image _completionCircle;
     [SerializeField] private Button _reviveAdButton;
 
@@ -25,12 +25,12 @@ public class GameStateDeath : GameState, IUnityAdsLoadListener, IUnityAdsShowLis
         if (SaveManager.Instance.save.Highscore < (int)GameStats.Instance.score)
             SaveManager.Instance.save.Highscore = (int)GameStats.Instance.score;
 
-        SaveManager.Instance.save.Fish += GameStats.Instance.fishCollectedThisSession;
+        SaveManager.Instance.save.Coin += GameStats.Instance.coinCollectedThisSession;
         SaveManager.Instance.Save();
 
         _highscoreText.text = $"Highscore: {SaveManager.Instance.save.Highscore}";
         _scoreText.text = GameStats.Instance.ScoreToText();
-        _fishCountText.text = $"x{SaveManager.Instance.save.Fish}";
+        _coinCountText.text = $"x{SaveManager.Instance.save.Coin}";
     }
 
     public override void Destruct()

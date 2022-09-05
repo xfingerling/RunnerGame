@@ -15919,6 +15919,11 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 543450653255991548}
+    - target: {fileID: 8860506778619518253, guid: 30c8417feda74094aa751bb4adc8cc99,
+        type: 3}
+      propertyPath: offsetSpeed
+      value: 0.37
+      objectReference: {fileID: 0}
     - target: {fileID: 8860506778619518255, guid: 30c8417feda74094aa751bb4adc8cc99,
         type: 3}
       propertyPath: m_RootOrder
@@ -15927,12 +15932,17 @@ PrefabInstance:
     - target: {fileID: 8860506778619518255, guid: 30c8417feda74094aa751bb4adc8cc99,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8860506778619518255, guid: 30c8417feda74094aa751bb4adc8cc99,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8860506778619518255, guid: 30c8417feda74094aa751bb4adc8cc99,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8860506778619518255, guid: 30c8417feda74094aa751bb4adc8cc99,
         type: 3}

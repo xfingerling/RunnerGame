@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SlidingState : IBaseState
+public class PlayerStateSliding : IPlayerState
 {
     private Vector3 _initialCenter;
     private float _initialSize;
@@ -47,12 +47,12 @@ public class SlidingState : IBaseState
             motor.ChangeLane(1);
 
         if (!motor.isGrounded)
-            motor.ChangeState(PlayerState.Fall);
+            motor.SetStateFall();
 
         if (InputManager.Instance.SwipeUp)
-            motor.ChangeState(PlayerState.Jump);
+            motor.SetStateJump();
 
         if (Time.time - _slideStart > motor.SlideDuration)
-            motor.ChangeState(PlayerState.Run);
+            motor.SetStateRun();
     }
 }

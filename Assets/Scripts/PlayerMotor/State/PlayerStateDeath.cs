@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DeathState : IBaseState
+public class PlayerStateDeath : IPlayerState
 {
     private Vector3 _currentKnockback;
 

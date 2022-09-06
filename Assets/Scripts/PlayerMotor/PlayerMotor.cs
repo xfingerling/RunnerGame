@@ -1,15 +1,6 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum PlayerState
-{
-    Run,
-    Jump,
-    Fall,
-    Slide,
-    Respawn,
-    Death
-}
 
 public class PlayerMotor : MonoBehaviour
 {
@@ -45,21 +36,17 @@ public class PlayerMotor : MonoBehaviour
 
     private CharacterController _controller;
     private Animator _anim;
-    private IBaseState _state;
-    private Dictionary<PlayerState, IBaseState> _states;
+    private IPlayerState _currentState;
+    private Dictionary<Type, IPlayerState> _statesMap;
     private bool _isPaused;
-
-    private void Awake()
-    {
-        SetupPlayerState();
-    }
 
     private void Start()
     {
         _controller = GetComponent<CharacterController>();
         _anim = GetComponent<Animator>();
 
-        ChangeState(PlayerState.Run);
+        InitPlayerState();
+        SetStateByDefault();
 
         _isPaused = true;
     }
@@ -75,12 +62,12 @@ public class PlayerMotor : MonoBehaviour
         string hitLayerMask = LayerMask.LayerToName(hit.gameObject.layer);
 
         if (hitLayerMask == "Death")
-            ChangeState(PlayerState.Death);
+            SetStateDeath();
     }
 
     public void RespawnPlayer()
     {
-        ChangeState(PlayerState.Respawn);
+        SetStateRespawn();
         GameManager.Instance.ChangeCamera(GameCamera.Respawn);
     }
 
@@ -95,15 +82,6 @@ public class PlayerMotor : MonoBehaviour
     public void ChangeLane(int direction)
     {
         currentLane = Mathf.Clamp(currentLane + direction, -1, 1);
-    }
-
-    public void ChangeState(PlayerState playerState)
-    {
-        if (_state != null)
-            _state.Destruct(this);
-
-        _state = _states[playerState];
-        _state.Construct(this);
     }
 
     public float SnapToLane()
@@ -146,17 +124,51 @@ public class PlayerMotor : MonoBehaviour
         PausePlayer();
         transform.position = Vector3.zero;
         _anim?.SetTrigger("Idle");
-        ChangeState(PlayerState.Run);
+        SetStateRun();
+    }
+
+    public void SetStateRun()
+    {
+        var state = GetPlayerState<PlayerStateRunning>();
+        SetState(state);
+    }
+    public void SetStateJump()
+    {
+        var state = GetPlayerState<PlayerStateJumping>();
+        SetState(state);
+    }
+    public void SetStateFall()
+    {
+        var state = GetPlayerState<PlayerStateFalling>();
+        SetState(state);
+    }
+    public void SetStateRespawn()
+    {
+        var state = GetPlayerState<PlayerStateRespawn>();
+        SetState(state);
+    }
+    public void SetStateDeath()
+    {
+        var state = GetPlayerState<PlayerStateDeath>();
+        SetState(state);
+    }
+    public void SetStateSlide()
+    {
+        var state = GetPlayerState<PlayerStateSliding>();
+        SetState(state);
     }
 
     private void UpdateMotor()
     {
         isGrounded = _controller.isGrounded;
 
-        _state.ProcessMotion(this);
+        if (_currentState != null)
+        {
+            _currentState.ProcessMotion(this);
 
-        //Trying to change state
-        _state.Transition(this);
+            //Trying to change state
+            _currentState.Transition(this);
+        }
 
         _anim?.SetBool("IsGrounded", isGrounded);
         _anim?.SetFloat("Speed", Mathf.Abs(moveVector.z));
@@ -165,16 +177,36 @@ public class PlayerMotor : MonoBehaviour
         _controller.Move(moveVector * Time.deltaTime);
     }
 
-    private void SetupPlayerState()
+    private void InitPlayerState()
     {
-        _states = new Dictionary<PlayerState, IBaseState>();
+        _statesMap = new Dictionary<Type, IPlayerState>();
 
-        _states.Add(PlayerState.Run, new RunningState());
-        _states.Add(PlayerState.Jump, new JumpingState());
-        _states.Add(PlayerState.Fall, new FallingState());
-        _states.Add(PlayerState.Respawn, new RespawnState());
-        _states.Add(PlayerState.Death, new DeathState());
-        _states.Add(PlayerState.Slide, new SlidingState());
+        _statesMap[typeof(PlayerStateRunning)] = new PlayerStateRunning();
+        _statesMap[typeof(PlayerStateFalling)] = new PlayerStateFalling();
+        _statesMap[typeof(PlayerStateJumping)] = new PlayerStateJumping();
+        _statesMap[typeof(PlayerStateRespawn)] = new PlayerStateRespawn();
+        _statesMap[typeof(PlayerStateDeath)] = new PlayerStateDeath();
+        _statesMap[typeof(PlayerStateSliding)] = new PlayerStateSliding();
+    }
+
+    private void SetState(IPlayerState newState)
+    {
+        if (_currentState != null)
+            _currentState.Destruct(this);
+
+        _currentState = newState;
+        _currentState.Construct(this);
+    }
+
+    private void SetStateByDefault()
+    {
+        SetStateRun();
+    }
+
+    private IPlayerState GetPlayerState<T>() where T : IPlayerState
+    {
+        var type = typeof(T);
+        return _statesMap[type];
     }
 }
 

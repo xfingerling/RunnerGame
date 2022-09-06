@@ -1,4 +1,4 @@
-public interface IBaseState
+public interface IPlayerState
 {
     public void Construct(PlayerMotor motor);
     public void Destruct(PlayerMotor motor);

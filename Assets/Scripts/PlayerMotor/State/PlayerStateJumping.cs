@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class RunningState : IBaseState
+public class PlayerStateJumping : IPlayerState
 {
     public void Construct(PlayerMotor motor)
     {
-        motor.transform.rotation = Quaternion.identity;
-        motor.verticalVelocity = 0;
+        motor.Anim?.SetTrigger("Jump");
+        motor.verticalVelocity = motor.JumpForce;
     }
 
     public void Destruct(PlayerMotor motor)
@@ -15,10 +15,12 @@ public class RunningState : IBaseState
 
     public void ProcessMotion(PlayerMotor motor)
     {
+        motor.ApplyGravity();
+
         Vector3 m = Vector3.zero;
 
         m.x = motor.SnapToLane();
-        m.y = -1f;
+        m.y = motor.verticalVelocity;
         m.z = motor.BaseRunSpeed;
 
         motor.moveVector = m;
@@ -32,13 +34,7 @@ public class RunningState : IBaseState
         if (InputManager.Instance.SwipeRight)
             motor.ChangeLane(1);
 
-        if (InputManager.Instance.SwipeUp && motor.isGrounded)
-            motor.ChangeState(PlayerState.Jump);
-
-        if (InputManager.Instance.SwipeDown && motor.isGrounded)
-            motor.ChangeState(PlayerState.Slide);
-
-        if (!motor.isGrounded)
-            motor.ChangeState(PlayerState.Fall);
+        if (motor.verticalVelocity < 0)
+            motor.SetStateFall();
     }
 }

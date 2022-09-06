@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FallingState : IBaseState
+public class PlayerStateFalling : IPlayerState
 {
     public void Construct(PlayerMotor motor)
     {
@@ -34,6 +34,6 @@ public class FallingState : IBaseState
             motor.ChangeLane(1);
 
         if (motor.isGrounded)
-            motor.ChangeState(PlayerState.Run);
+            motor.SetStateRun();
     }
 }

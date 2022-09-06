@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RespawnState : IBaseState
+public class PlayerStateRespawn : IPlayerState
 {
     private float _startTime;
 
@@ -38,7 +38,7 @@ public class RespawnState : IBaseState
     public void Transition(PlayerMotor motor)
     {
         if (motor.isGrounded && (Time.time - _startTime) > motor.ImmunityTime)
-            motor.ChangeState(PlayerState.Run);
+            motor.SetStateRun();
 
         if (InputManager.Instance.SwipeLeft)
             motor.ChangeLane(-1);

@@ -9,7 +9,7 @@ public class GameStats : MonoBehaviour
     public event Action<int> OnCollectCoinEvent;
     public event Action<float> OnScoreChangeEvent;
 
-    [SerializeField] private int _pointsPerCoin = 10;
+    [SerializeField] private int _scorePerCoin = 10;
     [SerializeField] private float _distanceModifire = 1.5f;
 
     public float score => _score;
@@ -31,7 +31,7 @@ public class GameStats : MonoBehaviour
     private void Update()
     {
         float score = GameManager.Instance.Motor.transform.position.z * _distanceModifire;
-        score += _coinCollectedThisSession * _pointsPerCoin;
+        score += _coinCollectedThisSession * _scorePerCoin;
 
         if (score > _score)
         {

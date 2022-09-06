@@ -47,12 +47,12 @@ public class SlidingState : IBaseState
             motor.ChangeLane(1);
 
         if (!motor.isGrounded)
-            motor.ChangeState(new FallingState());
+            motor.ChangeState(PlayerState.Fall);
 
         if (InputManager.Instance.SwipeUp)
-            motor.ChangeState(new JumpingState());
+            motor.ChangeState(PlayerState.Jump);
 
         if (Time.time - _slideStart > motor.SlideDuration)
-            motor.ChangeState(new RunningState());
+            motor.ChangeState(PlayerState.Run);
     }
 }

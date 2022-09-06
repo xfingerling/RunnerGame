@@ -35,6 +35,6 @@ public class JumpingState : IBaseState
             motor.ChangeLane(1);
 
         if (motor.verticalVelocity < 0)
-            motor.ChangeState(new FallingState());
+            motor.ChangeState(PlayerState.Fall);
     }
 }

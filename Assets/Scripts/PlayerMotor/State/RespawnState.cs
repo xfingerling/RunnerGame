@@ -38,7 +38,7 @@ public class RespawnState : IBaseState
     public void Transition(PlayerMotor motor)
     {
         if (motor.isGrounded && (Time.time - _startTime) > motor.ImmunityTime)
-            motor.ChangeState(new RunningState());
+            motor.ChangeState(PlayerState.Run);
 
         if (InputManager.Instance.SwipeLeft)
             motor.ChangeLane(-1);

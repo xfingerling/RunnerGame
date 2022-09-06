@@ -33,12 +33,12 @@ public class RunningState : IBaseState
             motor.ChangeLane(1);
 
         if (InputManager.Instance.SwipeUp && motor.isGrounded)
-            motor.ChangeState(new JumpingState());
+            motor.ChangeState(PlayerState.Jump);
 
         if (InputManager.Instance.SwipeDown && motor.isGrounded)
-            motor.ChangeState(new SlidingState());
+            motor.ChangeState(PlayerState.Slide);
 
         if (!motor.isGrounded)
-            motor.ChangeState(new FallingState());
+            motor.ChangeState(PlayerState.Fall);
     }
 }

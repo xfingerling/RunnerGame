@@ -1,4 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
+
+public enum PlayerState
+{
+    Run,
+    Jump,
+    Fall,
+    Slide,
+    Respawn,
+    Death
+}
 
 public class PlayerMotor : MonoBehaviour
 {
@@ -35,14 +46,20 @@ public class PlayerMotor : MonoBehaviour
     private CharacterController _controller;
     private Animator _anim;
     private IBaseState _state;
+    private Dictionary<PlayerState, IBaseState> _states;
     private bool _isPaused;
+
+    private void Awake()
+    {
+        SetupPlayerState();
+    }
 
     private void Start()
     {
         _controller = GetComponent<CharacterController>();
         _anim = GetComponent<Animator>();
-        _state = new RunningState();
-        _state.Construct(this);
+
+        ChangeState(PlayerState.Run);
 
         _isPaused = true;
     }
@@ -58,12 +75,12 @@ public class PlayerMotor : MonoBehaviour
         string hitLayerMask = LayerMask.LayerToName(hit.gameObject.layer);
 
         if (hitLayerMask == "Death")
-            ChangeState(new DeathState());
+            ChangeState(PlayerState.Death);
     }
 
     public void RespawnPlayer()
     {
-        ChangeState(new RespawnState());
+        ChangeState(PlayerState.Respawn);
         GameManager.Instance.ChangeCamera(GameCamera.Respawn);
     }
 
@@ -80,10 +97,12 @@ public class PlayerMotor : MonoBehaviour
         currentLane = Mathf.Clamp(currentLane + direction, -1, 1);
     }
 
-    public void ChangeState(IBaseState state)
+    public void ChangeState(PlayerState playerState)
     {
-        _state.Destruct(this);
-        _state = state;
+        if (_state != null)
+            _state.Destruct(this);
+
+        _state = _states[playerState];
         _state.Construct(this);
     }
 
@@ -127,7 +146,7 @@ public class PlayerMotor : MonoBehaviour
         PausePlayer();
         transform.position = Vector3.zero;
         _anim?.SetTrigger("Idle");
-        ChangeState(new RunningState());
+        ChangeState(PlayerState.Run);
     }
 
     private void UpdateMotor()
@@ -145,4 +164,18 @@ public class PlayerMotor : MonoBehaviour
         //Move the player
         _controller.Move(moveVector * Time.deltaTime);
     }
+
+    private void SetupPlayerState()
+    {
+        _states = new Dictionary<PlayerState, IBaseState>();
+
+        _states.Add(PlayerState.Run, new RunningState());
+        _states.Add(PlayerState.Jump, new JumpingState());
+        _states.Add(PlayerState.Fall, new FallingState());
+        _states.Add(PlayerState.Respawn, new RespawnState());
+        _states.Add(PlayerState.Death, new DeathState());
+        _states.Add(PlayerState.Slide, new SlidingState());
+    }
 }
+
+

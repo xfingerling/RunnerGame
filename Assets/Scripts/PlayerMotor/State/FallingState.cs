@@ -34,6 +34,6 @@ public class FallingState : IBaseState
             motor.ChangeLane(1);
 
         if (motor.isGrounded)
-            motor.ChangeState(new RunningState());
+            motor.ChangeState(PlayerState.Run);
     }
 }

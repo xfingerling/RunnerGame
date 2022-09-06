@@ -181,12 +181,12 @@ public class PlayerMotor : MonoBehaviour
     {
         _statesMap = new Dictionary<Type, IPlayerState>();
 
-        _statesMap[typeof(PlayerStateRunning)] = new PlayerStateRunning();
-        _statesMap[typeof(PlayerStateFalling)] = new PlayerStateFalling();
-        _statesMap[typeof(PlayerStateJumping)] = new PlayerStateJumping();
-        _statesMap[typeof(PlayerStateRespawn)] = new PlayerStateRespawn();
-        _statesMap[typeof(PlayerStateDeath)] = new PlayerStateDeath();
-        _statesMap[typeof(PlayerStateSliding)] = new PlayerStateSliding();
+        CreateState<PlayerStateRunning>();
+        CreateState<PlayerStateFalling>();
+        CreateState<PlayerStateJumping>();
+        CreateState<PlayerStateRespawn>();
+        CreateState<PlayerStateDeath>();
+        CreateState<PlayerStateSliding>();
     }
 
     private void SetState(IPlayerState newState)
@@ -207,6 +207,13 @@ public class PlayerMotor : MonoBehaviour
     {
         var type = typeof(T);
         return _statesMap[type];
+    }
+
+    private void CreateState<T>() where T : IPlayerState, new()
+    {
+        var state = new T();
+        var type = typeof(T);
+        _statesMap[type] = state;
     }
 }
 

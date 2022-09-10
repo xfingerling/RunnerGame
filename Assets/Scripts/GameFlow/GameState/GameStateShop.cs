@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameStateShop : GameState
+public class GameStateShop : IGameState
 {
     [SerializeField] private GameObject _shopUI;
     [SerializeField] private TextMeshProUGUI _totalCoinText;
@@ -14,27 +14,25 @@ public class GameStateShop : GameState
     [SerializeField] private TextMeshProUGUI _completionText;
 
     private Hat[] _hats;
-    private SaveState _saveData;
     private bool _isInit = false;
     private int _hatCount;
     private int _unlockedHatCount;
+    private GameFlow _gameManager;
 
-    private void Awake()
+    public void Construct(GameFlow gameManager)
     {
-        _saveData = SaveManager.Instance.save;
-    }
+        if (_gameManager == null)
+            _gameManager = gameManager;
 
-    public override void Construct()
-    {
-        GameManager.Instance.ChangeCamera(GameCamera.Shop);
+        gameManager.ChangeCamera(GameCamera.Shop);
         _hats = Resources.LoadAll<Hat>("Hats");
         _shopUI.SetActive(true);
 
-        _totalCoinText.text = $"{_saveData.Coin.ToString("0000")}";
+        _totalCoinText.text = $"{SaveManager.Instance.save.Coin.ToString("0000")}";
 
         if (!_isInit)
         {
-            _currentHatText.text = _hats[_saveData.CurrentHatIndex].ItemName;
+            _currentHatText.text = _hats[SaveManager.Instance.save.CurrentHatIndex].ItemName;
             PopulateShop();
 
             _isInit = true;
@@ -43,14 +41,14 @@ public class GameStateShop : GameState
         ResetCompletionCircle();
     }
 
-    public override void Destruct()
+    public void Destruct(GameFlow gameManager)
     {
         _shopUI.SetActive(false);
     }
 
     public void OnHomeClick()
     {
-        brain.ChangeState(GetComponent<GameStateInit>());
+        _gameManager.SetStateInit();
     }
 
     private void PopulateShop()
@@ -59,7 +57,7 @@ public class GameStateShop : GameState
         {
             int index = i;
 
-            GameObject go = Instantiate(_hatPrefab, _hatContainer) as GameObject;
+            GameObject go = Object.Instantiate(_hatPrefab, _hatContainer) as GameObject;
 
             //Button
             go.GetComponent<Button>().onClick.AddListener(() => OnHatClick(index));
@@ -71,22 +69,21 @@ public class GameStateShop : GameState
             go.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = _hats[index].ItemName;
 
             //Price
-            if (_saveData.UnlockedHatFlag[i] == 0)
+            if (SaveManager.Instance.save.UnlockedHatFlag[i] == 0)
                 go.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = _hats[index].ItemPrice.ToString();
             else
             {
                 go.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "";
                 _unlockedHatCount++;
             }
-
         }
     }
 
     private void OnHatClick(int i)
     {
-        if (_saveData.UnlockedHatFlag[i] == 1)
+        if (SaveManager.Instance.save.UnlockedHatFlag[i] == 1)
         {
-            _saveData.CurrentHatIndex = i;
+            SaveManager.Instance.save.CurrentHatIndex = i;
             _currentHatText.text = _hats[i].ItemName;
             _hatLogic.SelectHat(i);
 
@@ -95,10 +92,10 @@ public class GameStateShop : GameState
         //If we dont have it, can buy it?
         else if (_hats[i].ItemPrice <= SaveManager.Instance.save.Coin)
         {
-            _saveData.Coin -= _hats[i].ItemPrice;
-            _saveData.UnlockedHatFlag[i] = 1;
-            _saveData.CurrentHatIndex = i;
-            _totalCoinText.text = $"{_saveData.Coin.ToString("0000")}";
+            SaveManager.Instance.save.Coin -= _hats[i].ItemPrice;
+            SaveManager.Instance.save.UnlockedHatFlag[i] = 1;
+            SaveManager.Instance.save.CurrentHatIndex = i;
+            _totalCoinText.text = $"{SaveManager.Instance.save.Coin.ToString("0000")}";
             _hatContainer.GetChild(i).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "";
             _currentHatText.text = _hats[i].ItemName;
             _hatLogic.SelectHat(i);
@@ -120,5 +117,9 @@ public class GameStateShop : GameState
 
         _completionCircle.fillAmount = (float)currentlyUnlockedCount / (float)hatCount;
         _completionText.text = $"{currentlyUnlockedCount} / {hatCount}";
+    }
+
+    public void UpdateState(GameFlow gameManager)
+    {
     }
 }

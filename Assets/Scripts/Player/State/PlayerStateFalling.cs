@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class PlayerStateFalling : IPlayerState
 {
-    public void Construct(PlayerMotor motor)
+    public void Construct(Player motor)
     {
         motor.Anim?.SetTrigger("Fall");
     }
 
-    public void Destruct(PlayerMotor motor)
+    public void Destruct(Player motor)
     {
 
     }
 
-    public void ProcessMotion(PlayerMotor motor)
+    public void ProcessMotion(Player motor)
     {
         motor.ApplyGravity();
 
@@ -25,12 +25,12 @@ public class PlayerStateFalling : IPlayerState
         motor.moveVector = m;
     }
 
-    public void Transition(PlayerMotor motor)
+    public void Transition(Player motor)
     {
-        if (InputManager.Instance.SwipeLeft)
+        if (InputManager.instance.SwipeLeft)
             motor.ChangeLane(-1);
 
-        if (InputManager.Instance.SwipeRight)
+        if (InputManager.instance.SwipeRight)
             motor.ChangeLane(1);
 
         if (motor.isGrounded)

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 
-public class GameStateDeath : GameState, IUnityAdsLoadListener, IUnityAdsShowListener
+public class GameStateDeath : IGameState, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     [SerializeField] private float _timeToDesition = 2.5f;
     [SerializeField] private GameObject _deathUI;
@@ -14,40 +14,44 @@ public class GameStateDeath : GameState, IUnityAdsLoadListener, IUnityAdsShowLis
     [SerializeField] private Button _reviveAdButton;
 
     private float _deathTime;
+    private GameFlow _gameManager;
 
-    public override void Construct()
+    public void Construct(GameFlow gameManager)
     {
-        GameManager.Instance.Motor.PausePlayer();
+        //if (gameManager == null)
+        //    _gameManager = gameManager;
 
-        _deathTime = Time.time;
-        _deathUI.SetActive(true);
+        //gameManager.Motor.PausePlayer();
 
-        if (SaveManager.Instance.save.Highscore < (int)GameStats.Instance.score)
-            SaveManager.Instance.save.Highscore = (int)GameStats.Instance.score;
+        //_deathTime = Time.time;
+        //_deathUI.SetActive(true);
 
-        SaveManager.Instance.save.Coin += GameStats.Instance.coinCollectedThisSession;
-        SaveManager.Instance.Save();
+        //if (SaveManager.Instance.save.Highscore < (int)GameStats.Instance.score)
+        //    SaveManager.Instance.save.Highscore = (int)GameStats.Instance.score;
 
-        _highscoreText.text = $"{SaveManager.Instance.save.Highscore}";
-        _scoreText.text = GameStats.Instance.ScoreToText();
-        _coinCountText.text = $"x{SaveManager.Instance.save.Coin}";
+        //SaveManager.Instance.save.Coin += GameStats.Instance.coinCollectedThisSession;
+        //SaveManager.Instance.Save();
+
+        //_highscoreText.text = $"{SaveManager.Instance.save.Highscore}";
+        //_scoreText.text = GameStats.Instance.ScoreToText();
+        //_coinCountText.text = $"x{SaveManager.Instance.save.Coin}";
     }
 
-    public override void Destruct()
+    public void Destruct(GameFlow gameManager)
     {
-        _deathUI.SetActive(false);
+        //_deathUI.SetActive(false);
     }
 
-    public override void UpdateState()
+    public void UpdateState(GameFlow gameManager)
     {
-        float ratio = (Time.time - _deathTime) / _timeToDesition;
-        _completionCircle.color = Color.Lerp(Color.green, Color.red, ratio);
-        _completionCircle.fillAmount = 1 - ratio;
+        //float ratio = (Time.time - _deathTime) / _timeToDesition;
+        //_completionCircle.color = Color.Lerp(Color.green, Color.red, ratio);
+        //_completionCircle.fillAmount = 1 - ratio;
 
-        if (ratio > 1)
-        {
-            _completionCircle.gameObject.SetActive(false);
-        }
+        //if (ratio > 1)
+        //{
+        //    _completionCircle.gameObject.SetActive(false);
+        //}
     }
 
     public void EnableRevive()
@@ -58,17 +62,17 @@ public class GameStateDeath : GameState, IUnityAdsLoadListener, IUnityAdsShowLis
 
     public void ToMenu()
     {
-        brain.ChangeState(GetComponent<GameStateInit>());
+        //_gameManager.SetStateInit();
 
-        GameManager.Instance.Motor.ResetPlayer();
-        GameManager.Instance.WorldGeneration.ResetWorld();
-        GameManager.Instance.SceneryChunkGeneration.ResetWorld();
+        //_gameManager.Motor.ResetPlayer();
+        //_gameManager.WorldGeneration.ResetWorld();
+        //_gameManager.SceneryChunkGeneration.ResetWorld();
     }
 
     public void ResumeGame()
     {
-        brain.ChangeState(GetComponent<GameStateGame>());
-        GameManager.Instance.Motor.RespawnPlayer();
+        //_gameManager.SetStateGame();
+        //_gameManager.Motor.RespawnPlayer();
     }
     private void ShowAd()
     {

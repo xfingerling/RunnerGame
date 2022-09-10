@@ -6,4 +6,9 @@ public class MainApp : MonoBehaviour
     {
         Game.Run();
     }
+
+    private void LateUpdate()
+    {
+        InputManager.instance.ResetInputs();
+    }
 }

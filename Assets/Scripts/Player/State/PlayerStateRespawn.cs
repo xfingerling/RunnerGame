@@ -4,7 +4,7 @@ public class PlayerStateRespawn : IPlayerState
 {
     private float _startTime;
 
-    public void Construct(PlayerMotor motor)
+    public void Construct(Player motor)
     {
         _startTime = Time.time;
 
@@ -17,12 +17,12 @@ public class PlayerStateRespawn : IPlayerState
         motor.Anim?.SetTrigger("Respawn");
     }
 
-    public void Destruct(PlayerMotor motor)
+    public void Destruct(Player motor)
     {
-        GameManager.Instance.ChangeCamera(GameCamera.Game);
+        //GameFlow.Instance.ChangeCamera(GameCamera.Game);
     }
 
-    public void ProcessMotion(PlayerMotor motor)
+    public void ProcessMotion(Player motor)
     {
         motor.ApplyGravity();
 
@@ -35,15 +35,15 @@ public class PlayerStateRespawn : IPlayerState
         motor.moveVector = m;
     }
 
-    public void Transition(PlayerMotor motor)
+    public void Transition(Player motor)
     {
         if (motor.isGrounded && (Time.time - _startTime) > motor.ImmunityTime)
             motor.SetStateRun();
 
-        if (InputManager.Instance.SwipeLeft)
+        if (InputManager.instance.SwipeLeft)
             motor.ChangeLane(-1);
 
-        if (InputManager.Instance.SwipeRight)
+        if (InputManager.instance.SwipeRight)
             motor.ChangeLane(1);
     }
 }

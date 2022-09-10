@@ -1,10 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+public class InputManager
 {
-    private static InputManager instance;
-    public static InputManager Instance { get { return instance; } }
+    public static InputManager instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = new InputManager();
+            return _instance;
+        }
+    }
+    private static InputManager _instance;
 
     [SerializeField] private float sqrSwipeDeadzone = 50f;
 
@@ -30,29 +38,12 @@ public class InputManager : MonoBehaviour
     private bool _swipeDown;
     #endregion
 
-    private void Awake()
+    public InputManager()
     {
-        instance = this;
-
         SetupControl();
     }
 
-    private void LateUpdate()
-    {
-        ResetInputs();
-    }
-
-    public void OnEnable()
-    {
-        _actionScheme.Enable();
-    }
-
-    public void OnDisable()
-    {
-        _actionScheme.Disable();
-    }
-
-    private void ResetInputs()
+    public void ResetInputs()
     {
         _tap = _swipeDown = _swipeUp = _swipeLeft = _swipeRight = false;
     }
@@ -65,6 +56,8 @@ public class InputManager : MonoBehaviour
         _actionScheme.Gameplay.TouchPosition.performed += context => OnPosition(context);
         _actionScheme.Gameplay.StartDrag.performed += context => OnStartDrag(context);
         _actionScheme.Gameplay.EndDrag.performed += context => OnEndDrag(context);
+
+        _actionScheme.Enable();
     }
 
     private void OnEndDrag(InputAction.CallbackContext context)

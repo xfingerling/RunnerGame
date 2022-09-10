@@ -4,18 +4,18 @@ public class PlayerStateDeath : IPlayerState
 {
     private Vector3 _currentKnockback;
 
-    public void Construct(PlayerMotor motor)
+    public void Construct(Player motor)
     {
         motor.Anim?.SetTrigger("Death");
         _currentKnockback = motor.KnockbackForce;
     }
 
-    public void Destruct(PlayerMotor motor)
+    public void Destruct(Player motor)
     {
 
     }
 
-    public void ProcessMotion(PlayerMotor motor)
+    public void ProcessMotion(Player motor)
     {
         Vector3 m = _currentKnockback;
 
@@ -24,13 +24,13 @@ public class PlayerStateDeath : IPlayerState
         if (_currentKnockback.z > 0)
         {
             _currentKnockback.z = 0;
-            GameManager.Instance.ChangeState(GameManager.Instance.GetComponent<GameStateDeath>());
+            //GameFlow.Instance.SetStateDeath();
         }
 
         motor.moveVector = m;
     }
 
-    public void Transition(PlayerMotor motor)
+    public void Transition(Player motor)
     {
 
     }

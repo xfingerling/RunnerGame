@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class PlayerStateRunning : IPlayerState
 {
-    public void Construct(PlayerMotor motor)
+    public void Construct(Player motor)
     {
         motor.transform.rotation = Quaternion.identity;
         motor.verticalVelocity = 0;
     }
 
-    public void Destruct(PlayerMotor motor)
+    public void Destruct(Player motor)
     {
 
     }
 
-    public void ProcessMotion(PlayerMotor motor)
+    public void ProcessMotion(Player motor)
     {
         Vector3 m = Vector3.zero;
 
@@ -24,18 +24,18 @@ public class PlayerStateRunning : IPlayerState
         motor.moveVector = m;
     }
 
-    public void Transition(PlayerMotor motor)
+    public void Transition(Player motor)
     {
-        if (InputManager.Instance.SwipeLeft)
+        if (InputManager.instance.SwipeLeft)
             motor.ChangeLane(-1);
 
-        if (InputManager.Instance.SwipeRight)
+        if (InputManager.instance.SwipeRight)
             motor.ChangeLane(1);
 
-        if (InputManager.Instance.SwipeUp && motor.isGrounded)
+        if (InputManager.instance.SwipeUp && motor.isGrounded)
             motor.SetStateJump();
 
-        if (InputManager.Instance.SwipeDown && motor.isGrounded)
+        if (InputManager.instance.SwipeDown && motor.isGrounded)
             motor.SetStateSlide();
 
         if (!motor.isGrounded)

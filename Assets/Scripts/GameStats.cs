@@ -30,18 +30,18 @@ public class GameStats : MonoBehaviour
 
     private void Update()
     {
-        float score = GameManager.Instance.Motor.transform.position.z * _distanceModifire;
-        score += _coinCollectedThisSession * _scorePerCoin;
+        //float score = GameFlow.Instance.Motor.transform.position.z * _distanceModifire;
+        //score += _coinCollectedThisSession * _scorePerCoin;
 
-        if (score > _score)
-        {
-            _score = score;
-            if (Time.time - _lastScoreUpdate > _scoreUpdateDelta)
-            {
-                _lastScoreUpdate = Time.time;
-                OnScoreChangeEvent?.Invoke(_score);
-            }
-        }
+        //if (score > _score)
+        //{
+        //    _score = score;
+        //    if (Time.time - _lastScoreUpdate > _scoreUpdateDelta)
+        //    {
+        //        _lastScoreUpdate = Time.time;
+        //        OnScoreChangeEvent?.Invoke(_score);
+        //    }
+        //}
     }
 
     public void CollectCoin()

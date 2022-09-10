@@ -1,4 +1,4 @@
-public class SceneryChunkGeneration : WorldGeneration
+public class SceneryChunkGeneration : LevelGeneration
 {
 
 }

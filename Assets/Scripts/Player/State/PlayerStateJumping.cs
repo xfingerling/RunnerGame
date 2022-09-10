@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class PlayerStateJumping : IPlayerState
 {
-    public void Construct(PlayerMotor motor)
+    public void Construct(Player motor)
     {
         motor.Anim?.SetTrigger("Jump");
         motor.verticalVelocity = motor.JumpForce;
     }
 
-    public void Destruct(PlayerMotor motor)
+    public void Destruct(Player motor)
     {
 
     }
 
-    public void ProcessMotion(PlayerMotor motor)
+    public void ProcessMotion(Player motor)
     {
         motor.ApplyGravity();
 
@@ -26,12 +26,12 @@ public class PlayerStateJumping : IPlayerState
         motor.moveVector = m;
     }
 
-    public void Transition(PlayerMotor motor)
+    public void Transition(Player motor)
     {
-        if (InputManager.Instance.SwipeLeft)
+        if (InputManager.instance.SwipeLeft)
             motor.ChangeLane(-1);
 
-        if (InputManager.Instance.SwipeRight)
+        if (InputManager.instance.SwipeRight)
             motor.ChangeLane(1);
 
         if (motor.verticalVelocity < 0)

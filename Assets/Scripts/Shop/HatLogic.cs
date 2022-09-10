@@ -12,7 +12,8 @@ public class HatLogic : MonoBehaviour
     {
         _hats = Resources.LoadAll<Hat>("Hats");
         SpawnHats();
-        SelectHat(SaveManager.Instance.save.CurrentHatIndex);
+        //SelectHat(SaveManager.Instance.save.CurrentHatIndex);
+        SelectHat(1);
     }
 
     public void SelectHat(int index)

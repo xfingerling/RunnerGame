@@ -6,7 +6,7 @@ public class PlayerStateSliding : IPlayerState
     private float _initialSize;
     private float _slideStart;
 
-    public void Construct(PlayerMotor motor)
+    public void Construct(Player motor)
     {
         motor.Anim?.ResetTrigger("Running");
         motor.Anim?.SetTrigger("Slide");
@@ -19,7 +19,7 @@ public class PlayerStateSliding : IPlayerState
         motor.Controller.center = _initialCenter * 0.5f;
     }
 
-    public void Destruct(PlayerMotor motor)
+    public void Destruct(Player motor)
     {
         motor.Controller.height = _initialSize;
         motor.Controller.center = _initialCenter;
@@ -27,7 +27,7 @@ public class PlayerStateSliding : IPlayerState
         motor.Anim?.SetTrigger("Running");
     }
 
-    public void ProcessMotion(PlayerMotor motor)
+    public void ProcessMotion(Player motor)
     {
         Vector3 m = Vector3.zero;
 
@@ -38,18 +38,18 @@ public class PlayerStateSliding : IPlayerState
         motor.moveVector = m;
     }
 
-    public void Transition(PlayerMotor motor)
+    public void Transition(Player motor)
     {
-        if (InputManager.Instance.SwipeLeft)
+        if (InputManager.instance.SwipeLeft)
             motor.ChangeLane(-1);
 
-        if (InputManager.Instance.SwipeRight)
+        if (InputManager.instance.SwipeRight)
             motor.ChangeLane(1);
 
         if (!motor.isGrounded)
             motor.SetStateFall();
 
-        if (InputManager.Instance.SwipeUp)
+        if (InputManager.instance.SwipeUp)
             motor.SetStateJump();
 
         if (Time.time - _slideStart > motor.SlideDuration)

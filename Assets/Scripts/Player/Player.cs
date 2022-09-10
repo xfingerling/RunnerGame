@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMotor : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] private float _distanceInBetweenLanes = 3f;
     [SerializeField] private float _baseSidewaySpeed = 10f;
@@ -48,7 +48,7 @@ public class PlayerMotor : MonoBehaviour
         InitPlayerState();
         SetStateByDefault();
 
-        _isPaused = true;
+        _isPaused = false;
     }
 
     private void Update()
@@ -68,7 +68,7 @@ public class PlayerMotor : MonoBehaviour
     public void RespawnPlayer()
     {
         SetStateRespawn();
-        GameManager.Instance.ChangeCamera(GameCamera.Respawn);
+        //GameFlow.Instance.ChangeCamera(GameCamera.Respawn);
     }
 
     public void ApplyGravity()
@@ -157,6 +157,11 @@ public class PlayerMotor : MonoBehaviour
         var state = GetPlayerState<PlayerStateSliding>();
         SetState(state);
     }
+    public void SetStateIdle()
+    {
+        var state = GetPlayerState<PlayerStateIdle>();
+        SetState(state);
+    }
 
     private void UpdateMotor()
     {
@@ -181,6 +186,7 @@ public class PlayerMotor : MonoBehaviour
     {
         _statesMap = new Dictionary<Type, IPlayerState>();
 
+        CreateState<PlayerStateIdle>();
         CreateState<PlayerStateRunning>();
         CreateState<PlayerStateFalling>();
         CreateState<PlayerStateJumping>();
@@ -200,7 +206,7 @@ public class PlayerMotor : MonoBehaviour
 
     private void SetStateByDefault()
     {
-        SetStateRun();
+        SetStateIdle();
     }
 
     private IPlayerState GetPlayerState<T>() where T : IPlayerState

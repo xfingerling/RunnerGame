@@ -1,7 +1,7 @@
 public interface IPlayerState
 {
-    public void Construct(PlayerMotor motor);
-    public void Destruct(PlayerMotor motor);
-    public void Transition(PlayerMotor motor);
-    public void ProcessMotion(PlayerMotor motor);
+    public void Construct(Player motor);
+    public void Destruct(Player motor);
+    public void Transition(Player motor);
+    public void ProcessMotion(Player motor);
 }

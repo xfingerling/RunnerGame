@@ -1,36 +1,45 @@
 using TMPro;
 using UnityEngine;
 
-public class GameStateInit : GameState
+public class GameStateInit : IGameState
 {
     [SerializeField] private GameObject _menuUI;
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private TextMeshProUGUI _coinCountText;
 
-    public override void Construct()
+    private GameFlow _gameManager;
+    public void Construct(GameFlow gameManager)
     {
-        GameManager.Instance.ChangeCamera(GameCamera.Init);
+        if (gameManager == null)
+            _gameManager = gameManager;
 
-        _scoreText.text = $"{SaveManager.Instance.save.Highscore.ToString("000000")}";
-        _coinCountText.text = $"{SaveManager.Instance.save.Coin.ToString("0000")}";
+        //gameManager.ChangeCamera(GameCamera.Init);
 
-        _menuUI.SetActive(true);
+        //_scoreText.text = $"{SaveManager.Instance.save.Highscore.ToString("000000")}";
+        //_coinCountText.text = $"{SaveManager.Instance.save.Coin.ToString("0000")}";
+
+        //_menuUI.SetActive(true);
     }
 
-    public override void Destruct()
+    public void Destruct(GameFlow gameManager)
     {
-        _menuUI.SetActive(false);
+        //_menuUI.SetActive(false);
     }
 
     public void OnPlayClick()
     {
-        brain.ChangeState(GetComponent<GameStateGame>());
-        GameStats.Instance.ResetSession();
-        GetComponent<GameStateDeath>().EnableRevive();
+        //_gameManager.SetStateGame();
+        //GameStats.Instance.ResetSession();
+        //GetComponent<GameStateDeath>().EnableRevive();
     }
 
     public void OnShopClick()
     {
-        brain.ChangeState(GetComponent<GameStateShop>());
+        _gameManager.SetStateShop();
+    }
+
+    public void UpdateState(GameFlow gameManager)
+    {
+
     }
 }

@@ -1,35 +1,42 @@
 using TMPro;
 using UnityEngine;
 
-public class GameStateGame : GameState
+public class GameStateGame : IGameState
 {
     [SerializeField] private GameObject _gameUI;
     [SerializeField] private TextMeshProUGUI _coinCountText;
     [SerializeField] private TextMeshProUGUI _scoreText;
 
-    public override void Construct()
+    private WorldInteractor _worldInteractor;
+
+    public void Construct(GameFlow gameManager)
     {
-        GameManager.Instance.Motor.ResumePlayer();
-        GameManager.Instance.ChangeCamera(GameCamera.Game);
+        if (_worldInteractor == null)
+            Game.OnGameInitializedEvent += OnGameInitialized;
 
-        GameStats.Instance.OnCollectCoinEvent += OnCollectCoin;
-        GameStats.Instance.OnScoreChangeEvent += OnScoreChange;
+        //gameManager.ChangeCamera(GameCamera.Game);
 
-        _gameUI.SetActive(true);
+        //GameStats.Instance.OnCollectCoinEvent += OnCollectCoin;
+        //GameStats.Instance.OnScoreChangeEvent += OnScoreChange;
+
+        //_gameUI.SetActive(true);
     }
 
-    public override void Destruct()
-    {
-        _gameUI.SetActive(false);
 
-        GameStats.Instance.OnCollectCoinEvent -= OnCollectCoin;
-        GameStats.Instance.OnScoreChangeEvent -= OnScoreChange;
+
+    public void Destruct(GameFlow gameManager)
+    {
+        //_gameUI.SetActive(false);
+
+        //GameStats.Instance.OnCollectCoinEvent -= OnCollectCoin;
+        //GameStats.Instance.OnScoreChangeEvent -= OnScoreChange;
     }
 
-    public override void UpdateState()
+    public void UpdateState(GameFlow gameManager)
     {
-        GameManager.Instance.WorldGeneration.ScanPosition();
-        GameManager.Instance.SceneryChunkGeneration.ScanPosition();
+        if (_worldInteractor == null)
+            return;
+        _worldInteractor.UpdateLevel();
     }
 
     private void OnCollectCoin(int coinAmount)
@@ -40,5 +47,12 @@ public class GameStateGame : GameState
     private void OnScoreChange(float score)
     {
         _scoreText.text = GameStats.Instance.ScoreToText();
+    }
+
+    private void OnGameInitialized()
+    {
+        Game.OnGameInitializedEvent -= OnGameInitialized;
+
+        _worldInteractor = Game.GetInteractor<WorldInteractor>();
     }
 }

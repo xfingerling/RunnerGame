@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1701437808294593193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1701437808294593199}
+  - component: {fileID: 326528557561000377}
+  - component: {fileID: 6194899541209400435}
+  m_Layer: 0
+  m_Name: LevelGeneration
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1701437808294593199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701437808294593193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &326528557561000377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701437808294593193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5128296b45711f949ac83126c4f10800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firstChunkSpawnPosition: 15
+  _chunkOnScreen: 7
+  _despawnDistance: 5
+  _chunkPrefabs:
+  - {fileID: 9208815492185136064, guid: ef5b2b64b7d897d4baa9231bbad6a582, type: 3}
+  - {fileID: 3231705676926778186, guid: 27e5c10a43922404887a560732b59c0b, type: 3}
+  - {fileID: 3231705676926778186, guid: 55acfeeccc45a104297abaf33ef5d25b, type: 3}
+  - {fileID: 9208815492185136064, guid: 32c34eaa435c18b47adc6aa251e0da15, type: 3}
+--- !u!114 &6194899541209400435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701437808294593193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23c6f66f8bf2d041bb43e879854e0ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firstChunkSpawnPosition: 10
+  _chunkOnScreen: 14
+  _despawnDistance: 5
+  _chunkPrefabs:
+  - {fileID: 5589767372034680012, guid: 84c0d2e0dd6563246a7199fffdc7873e, type: 3}
+  - {fileID: 717416195802023887, guid: e7958d999d2cd934791bcb6c7054810d, type: 3}

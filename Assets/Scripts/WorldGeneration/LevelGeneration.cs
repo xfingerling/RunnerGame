@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldGeneration : MonoBehaviour
+public abstract class LevelGeneration : MonoBehaviour
 {
     [SerializeField] private int _firstChunkSpawnPosition = 20;
     [SerializeField] private int _chunkOnScreen = 5;
@@ -11,24 +11,24 @@ public class WorldGeneration : MonoBehaviour
     private float _chunkSpawnZ;
     private Queue<Chunk> _activeChunks;
     private List<Chunk> _chunkPool;
-    private Transform _cameraTransform;
+    private Transform _player;
 
     private void Awake()
     {
+        Game.OnGameInitializedEvent += OnGameInitialized;
+
         _activeChunks = new Queue<Chunk>();
         _chunkPool = new List<Chunk>();
-        _cameraTransform = Camera.main.transform;
 
         ResetWorld();
     }
 
-    private void Start()
+    private void OnGameInitialized()
     {
-        if (_chunkPrefabs.Count == 0)
-        {
-            Debug.Log("No chunk prefab found on the world generator, please assing some chunks!");
-            return;
-        }
+        Game.OnGameInitializedEvent -= OnGameInitialized;
+
+        var playerInteractor = Game.GetInteractor<PlayerInteractor>();
+        _player = playerInteractor.player.transform;
     }
 
     public void ResetWorld()
@@ -42,12 +42,12 @@ public class WorldGeneration : MonoBehaviour
             SpawnNewChunk();
     }
 
-    public void ScanPosition()
+    public void UpdateLevel()
     {
-        float cameraZ = _cameraTransform.position.z;
+        float playerZ = _player.position.z;
         Chunk lastChunk = _activeChunks.Peek();
 
-        if (cameraZ >= lastChunk.transform.position.z + lastChunk.ChunkLength + _despawnDistance)
+        if (playerZ >= lastChunk.transform.position.z + lastChunk.ChunkLength + _despawnDistance)
         {
             DeleteLastChunk();
             SpawnNewChunk();

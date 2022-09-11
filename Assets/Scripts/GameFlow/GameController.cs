@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameFlow : MonoBehaviour
+public class GameController : MonoBehaviour
 {
     private IGameState _currentState;
     private Dictionary<Type, IGameState> _statesMap;
@@ -18,16 +18,7 @@ public class GameFlow : MonoBehaviour
         _currentState.UpdateState(this);
     }
 
-    public void ChangeCamera(GameCamera camera)
-    {
-        //foreach (var go in _cameras)
-        //{
-        //    go.SetActive(false);
-
-        //    _cameras[(int)camera].SetActive(true);
-        //}
-    }
-
+    #region STATE
     public void SetStateInit()
     {
         var state = GetGameState<GameStateInit>();
@@ -70,7 +61,7 @@ public class GameFlow : MonoBehaviour
 
     private void SetStateByDefault()
     {
-        SetStateGame();
+        SetStateInit();
     }
 
     private IGameState GetGameState<T>() where T : IGameState
@@ -85,4 +76,5 @@ public class GameFlow : MonoBehaviour
         var type = typeof(T);
         _statesMap[type] = state;
     }
+    #endregion
 }

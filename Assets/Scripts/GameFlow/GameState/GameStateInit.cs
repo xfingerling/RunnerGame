@@ -7,8 +7,8 @@ public class GameStateInit : IGameState
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private TextMeshProUGUI _coinCountText;
 
-    private GameFlow _gameManager;
-    public void Construct(GameFlow gameManager)
+    private GameController _gameManager;
+    public void Construct(GameController gameManager)
     {
         if (gameManager == null)
             _gameManager = gameManager;
@@ -21,7 +21,7 @@ public class GameStateInit : IGameState
         //_menuUI.SetActive(true);
     }
 
-    public void Destruct(GameFlow gameManager)
+    public void Destruct(GameController gameManager)
     {
         //_menuUI.SetActive(false);
     }
@@ -38,7 +38,7 @@ public class GameStateInit : IGameState
         _gameManager.SetStateShop();
     }
 
-    public void UpdateState(GameFlow gameManager)
+    public void UpdateState(GameController gameManager)
     {
 
     }

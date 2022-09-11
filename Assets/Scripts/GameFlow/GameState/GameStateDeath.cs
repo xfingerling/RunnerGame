@@ -14,9 +14,9 @@ public class GameStateDeath : IGameState, IUnityAdsLoadListener, IUnityAdsShowLi
     [SerializeField] private Button _reviveAdButton;
 
     private float _deathTime;
-    private GameFlow _gameManager;
+    private GameController _gameManager;
 
-    public void Construct(GameFlow gameManager)
+    public void Construct(GameController gameManager)
     {
         //if (gameManager == null)
         //    _gameManager = gameManager;
@@ -37,12 +37,12 @@ public class GameStateDeath : IGameState, IUnityAdsLoadListener, IUnityAdsShowLi
         //_coinCountText.text = $"x{SaveManager.Instance.save.Coin}";
     }
 
-    public void Destruct(GameFlow gameManager)
+    public void Destruct(GameController gameManager)
     {
         //_deathUI.SetActive(false);
     }
 
-    public void UpdateState(GameFlow gameManager)
+    public void UpdateState(GameController gameManager)
     {
         //float ratio = (Time.time - _deathTime) / _timeToDesition;
         //_completionCircle.color = Color.Lerp(Color.green, Color.red, ratio);

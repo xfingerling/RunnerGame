@@ -1,6 +1,6 @@
 public interface IGameState
 {
-    public void Construct(GameFlow gameManager);
-    public void Destruct(GameFlow gameManager);
-    public void UpdateState(GameFlow gameManager);
+    public void Construct(GameController gameManager);
+    public void Destruct(GameController gameManager);
+    public void UpdateState(GameController gameManager);
 }

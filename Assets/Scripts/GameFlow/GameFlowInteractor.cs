@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class GameFlowInteractor : Interactor
 {
-    public GameFlow gameFlow { get; private set; }
+    public GameController gameFlow { get; private set; }
 
     public override void Initialize()
     {
         base.Initialize();
 
-        GameFlow gameFlowPrefab = Resources.Load<GameFlow>("GameFlow");
+        GameController gameFlowPrefab = Resources.Load<GameController>("GameFlow");
         gameFlow = Object.Instantiate(gameFlowPrefab);
     }
 }

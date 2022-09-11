@@ -17,14 +17,14 @@ public class GameStateShop : IGameState
     private bool _isInit = false;
     private int _hatCount;
     private int _unlockedHatCount;
-    private GameFlow _gameManager;
+    private GameController _gameManager;
 
-    public void Construct(GameFlow gameManager)
+    public void Construct(GameController gameManager)
     {
         if (_gameManager == null)
             _gameManager = gameManager;
 
-        gameManager.ChangeCamera(GameCamera.Shop);
+        //gameManager.ChangeCamera(GameCamera.Shop);
         _hats = Resources.LoadAll<Hat>("Hats");
         _shopUI.SetActive(true);
 
@@ -41,7 +41,7 @@ public class GameStateShop : IGameState
         ResetCompletionCircle();
     }
 
-    public void Destruct(GameFlow gameManager)
+    public void Destruct(GameController gameManager)
     {
         _shopUI.SetActive(false);
     }
@@ -119,7 +119,7 @@ public class GameStateShop : IGameState
         _completionText.text = $"{currentlyUnlockedCount} / {hatCount}";
     }
 
-    public void UpdateState(GameFlow gameManager)
+    public void UpdateState(GameController gameManager)
     {
     }
 }

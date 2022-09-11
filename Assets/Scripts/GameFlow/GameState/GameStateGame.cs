@@ -9,7 +9,7 @@ public class GameStateGame : IGameState
 
     private WorldInteractor _worldInteractor;
 
-    public void Construct(GameFlow gameManager)
+    public void Construct(GameController gameManager)
     {
         if (_worldInteractor == null)
             Game.OnGameInitializedEvent += OnGameInitialized;
@@ -24,7 +24,7 @@ public class GameStateGame : IGameState
 
 
 
-    public void Destruct(GameFlow gameManager)
+    public void Destruct(GameController gameManager)
     {
         //_gameUI.SetActive(false);
 
@@ -32,7 +32,7 @@ public class GameStateGame : IGameState
         //GameStats.Instance.OnScoreChangeEvent -= OnScoreChange;
     }
 
-    public void UpdateState(GameFlow gameManager)
+    public void UpdateState(GameController gameManager)
     {
         if (_worldInteractor == null)
             return;

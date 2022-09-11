@@ -15,6 +15,7 @@ public class SceneConfigGame : SceneConfig
         CreateInteractor<PlayerInteractor>(interactorsMap);
         CreateInteractor<WorldInteractor>(interactorsMap);
         CreateInteractor<CameraInteractor>(interactorsMap);
+        CreateInteractor<UIControllerInteractor>(interactorsMap);
 
         return interactorsMap;
     }

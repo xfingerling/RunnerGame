@@ -1,17 +1,12 @@
-using TMPro;
-using UnityEngine;
-
-public class GameStateInit : IGameState
+public class GameStateInit : GameStateBase
 {
-    [SerializeField] private GameObject _menuUI;
-    [SerializeField] private TextMeshProUGUI _scoreText;
-    [SerializeField] private TextMeshProUGUI _coinCountText;
-
-    private GameController _gameManager;
-    public void Construct(GameController gameManager)
+    public override void Construct()
     {
-        if (gameManager == null)
-            _gameManager = gameManager;
+        base.Construct();
+
+        player.SetStateIdle();
+        cameraInteractor.SetCameraInit();
+        UIController.Show<UIMainMenu>();
 
         //gameManager.ChangeCamera(GameCamera.Init);
 
@@ -21,7 +16,7 @@ public class GameStateInit : IGameState
         //_menuUI.SetActive(true);
     }
 
-    public void Destruct(GameController gameManager)
+    public override void Destruct()
     {
         //_menuUI.SetActive(false);
     }
@@ -35,10 +30,10 @@ public class GameStateInit : IGameState
 
     public void OnShopClick()
     {
-        _gameManager.SetStateShop();
+        //_gameManager.SetStateShop();
     }
 
-    public void UpdateState(GameController gameManager)
+    public override void UpdateState()
     {
 
     }

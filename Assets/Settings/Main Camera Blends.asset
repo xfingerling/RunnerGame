@@ -25,7 +25,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - m_From: Camera_Game
-    m_To: Camera_Respawn
+    m_To: Camera_Game
     m_Blend:
       m_Style: 0
       m_Time: 2

@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private IGameState _currentState;
-    private Dictionary<Type, IGameState> _statesMap;
+    private GameStateBase _currentState;
+    private Dictionary<Type, GameStateBase> _statesMap;
 
     private void Start()
     {
+        Game.OnGameInitializedEvent += OnGameInitialized;
         InitGameState();
+    }
+
+    private void OnGameInitialized()
+    {
         SetStateByDefault();
     }
 
     private void Update()
     {
-        _currentState.UpdateState(this);
+        _currentState?.UpdateState();
     }
 
     #region STATE
@@ -42,7 +47,7 @@ public class GameController : MonoBehaviour
 
     private void InitGameState()
     {
-        _statesMap = new Dictionary<Type, IGameState>();
+        _statesMap = new Dictionary<Type, GameStateBase>();
 
         CreateState<GameStateInit>();
         CreateState<GameStateGame>();
@@ -50,13 +55,13 @@ public class GameController : MonoBehaviour
         CreateState<GameStateShop>();
     }
 
-    private void SetState(IGameState newState)
+    private void SetState(GameStateBase newState)
     {
         if (_currentState != null)
-            _currentState.Destruct(this);
+            _currentState.Destruct();
 
         _currentState = newState;
-        _currentState.Construct(this);
+        _currentState.Construct();
     }
 
     private void SetStateByDefault()
@@ -64,13 +69,13 @@ public class GameController : MonoBehaviour
         SetStateInit();
     }
 
-    private IGameState GetGameState<T>() where T : IGameState
+    private GameStateBase GetGameState<T>() where T : GameStateBase
     {
         var type = typeof(T);
         return _statesMap[type];
     }
 
-    private void CreateState<T>() where T : IGameState, new()
+    private void CreateState<T>() where T : GameStateBase, new()
     {
         var state = new T();
         var type = typeof(T);

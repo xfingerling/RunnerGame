@@ -28,7 +28,6 @@ public class CameraInteractor : Interactor
         _cameras.Add(GameCamera.Shop, cameraShop);
 
         ActivateCameras();
-        SetCameraInit();
     }
 
     public void SetCameraGame()

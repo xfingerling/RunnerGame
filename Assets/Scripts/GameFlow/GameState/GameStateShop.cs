@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameStateShop : IGameState
+public class GameStateShop : GameStateBase
 {
     [SerializeField] private GameObject _shopUI;
     [SerializeField] private TextMeshProUGUI _totalCoinText;
@@ -19,11 +19,8 @@ public class GameStateShop : IGameState
     private int _unlockedHatCount;
     private GameController _gameManager;
 
-    public void Construct(GameController gameManager)
+    public override void Construct()
     {
-        if (_gameManager == null)
-            _gameManager = gameManager;
-
         //gameManager.ChangeCamera(GameCamera.Shop);
         _hats = Resources.LoadAll<Hat>("Hats");
         _shopUI.SetActive(true);
@@ -41,7 +38,7 @@ public class GameStateShop : IGameState
         ResetCompletionCircle();
     }
 
-    public void Destruct(GameController gameManager)
+    public override void Destruct()
     {
         _shopUI.SetActive(false);
     }
@@ -119,7 +116,7 @@ public class GameStateShop : IGameState
         _completionText.text = $"{currentlyUnlockedCount} / {hatCount}";
     }
 
-    public void UpdateState(GameController gameManager)
+    public override void UpdateState()
     {
     }
 }

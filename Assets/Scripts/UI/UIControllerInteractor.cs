@@ -19,7 +19,6 @@ public class UIControllerInteractor : Interactor
         _uiInterface = Object.Instantiate(uiInterfacePrefab);
 
         InitViews();
-        ShowDefaultView();
     }
 
     public T GetView<T>() where T : View
@@ -89,11 +88,5 @@ public class UIControllerInteractor : Interactor
             go.Initialize();
             go.Hide();
         }
-    }
-
-    private void ShowDefaultView()
-    {
-        if (_stratingView == null)
-            Show<UIMainMenu>();
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 
-public class GameStateDeath : IGameState, IUnityAdsLoadListener, IUnityAdsShowListener
+public class GameStateDeath : GameStateBase, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     [SerializeField] private float _timeToDesition = 2.5f;
     [SerializeField] private GameObject _deathUI;
@@ -16,10 +16,9 @@ public class GameStateDeath : IGameState, IUnityAdsLoadListener, IUnityAdsShowLi
     private float _deathTime;
     private GameController _gameManager;
 
-    public void Construct(GameController gameManager)
+    public override void Construct()
     {
-        //if (gameManager == null)
-        //    _gameManager = gameManager;
+        UIController.Show<UIDeath>();
 
         //gameManager.Motor.PausePlayer();
 
@@ -37,12 +36,12 @@ public class GameStateDeath : IGameState, IUnityAdsLoadListener, IUnityAdsShowLi
         //_coinCountText.text = $"x{SaveManager.Instance.save.Coin}";
     }
 
-    public void Destruct(GameController gameManager)
+    public override void Destruct()
     {
         //_deathUI.SetActive(false);
     }
 
-    public void UpdateState(GameController gameManager)
+    public override void UpdateState()
     {
         //float ratio = (Time.time - _deathTime) / _timeToDesition;
         //_completionCircle.color = Color.Lerp(Color.green, Color.red, ratio);

@@ -1,30 +1,28 @@
 using TMPro;
 using UnityEngine;
 
-public class GameStateGame : IGameState
+public class GameStateGame : GameStateBase
 {
     [SerializeField] private GameObject _gameUI;
     [SerializeField] private TextMeshProUGUI _coinCountText;
     [SerializeField] private TextMeshProUGUI _scoreText;
 
-    private WorldInteractor _worldInteractor;
-
-    public void Construct(GameController gameManager)
+    public override void Construct()
     {
-        if (_worldInteractor == null)
-            Game.OnGameInitializedEvent += OnGameInitialized;
+        base.Construct();
 
-        //gameManager.ChangeCamera(GameCamera.Game);
+        cameraInteractor.SetCameraGame();
+        UIController.Show<UIGameHUD>();
+        player.SetStateRun();
+
 
         //GameStats.Instance.OnCollectCoinEvent += OnCollectCoin;
         //GameStats.Instance.OnScoreChangeEvent += OnScoreChange;
-
-        //_gameUI.SetActive(true);
     }
 
 
 
-    public void Destruct(GameController gameManager)
+    public override void Destruct()
     {
         //_gameUI.SetActive(false);
 
@@ -32,11 +30,9 @@ public class GameStateGame : IGameState
         //GameStats.Instance.OnScoreChangeEvent -= OnScoreChange;
     }
 
-    public void UpdateState(GameController gameManager)
+    public override void UpdateState()
     {
-        if (_worldInteractor == null)
-            return;
-        _worldInteractor.UpdateLevel();
+        worldInteractor?.UpdateLevel();
     }
 
     private void OnCollectCoin(int coinAmount)
@@ -47,12 +43,5 @@ public class GameStateGame : IGameState
     private void OnScoreChange(float score)
     {
         _scoreText.text = GameStats.Instance.ScoreToText();
-    }
-
-    private void OnGameInitialized()
-    {
-        Game.OnGameInitializedEvent -= OnGameInitialized;
-
-        _worldInteractor = Game.GetInteractor<WorldInteractor>();
     }
 }

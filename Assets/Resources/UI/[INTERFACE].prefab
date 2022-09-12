@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7265434298529770030}
   - component: {fileID: 5680573510991202912}
+  - component: {fileID: 5189853796556814518}
   m_Layer: 5
   m_Name: UILayerFX
   m_TagString: Untagged
@@ -58,6 +59,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 500
   m_TargetDisplay: 0
+--- !u!114 &5189853796556814518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180302507178751578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &3081522129154809110
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6935750210519815025}
   - component: {fileID: 2981955853030781941}
+  - component: {fileID: 557230685088167699}
   m_Layer: 5
   m_Name: UILayerHUD
   m_TagString: Untagged
@@ -221,10 +240,27 @@ Canvas:
   m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &557230685088167699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5049927107867978379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &7967846903431042952
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2264943065921116194}
   - component: {fileID: 6488725428966818185}
+  - component: {fileID: 3560265812271414261}
   m_Layer: 5
   m_Name: UILayerPopup
   m_TagString: Untagged
@@ -279,10 +316,27 @@ Canvas:
   m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 1000
   m_TargetDisplay: 0
+--- !u!114 &3560265812271414261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7967846903431042952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &8167278703572877410
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +396,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -438,4 +492,3 @@ MonoBehaviour:
   _uiLayerPopup: {fileID: 6488725428966818185}
   _uiLayerFXOverPopup: {fileID: 0}
   _uiLayerLoadingScreen: {fileID: 0}
-  _canvas: {fileID: 8167278703572877414}

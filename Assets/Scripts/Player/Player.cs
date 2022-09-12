@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public event Action OnPlayerDeathEvent;
+
     [SerializeField] private float _distanceInBetweenLanes = 3f;
     [SerializeField] private float _baseSidewaySpeed = 10f;
     [SerializeField] private float _gravity = 14f;
@@ -38,7 +40,6 @@ public class Player : MonoBehaviour
     private Animator _anim;
     private IPlayerState _currentState;
     private Dictionary<Type, IPlayerState> _statesMap;
-    private bool _isPaused;
 
     private void Start()
     {
@@ -47,14 +48,11 @@ public class Player : MonoBehaviour
 
         InitPlayerState();
         SetStateByDefault();
-
-        _isPaused = false;
     }
 
     private void Update()
     {
-        if (!_isPaused)
-            UpdateMotor();
+        UpdateMotor();
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -62,7 +60,11 @@ public class Player : MonoBehaviour
         string hitLayerMask = LayerMask.LayerToName(hit.gameObject.layer);
 
         if (hitLayerMask == "Death")
+        {
             SetStateDeath();
+            OnPlayerDeathEvent?.Invoke();
+        }
+
     }
 
     public void RespawnPlayer()
@@ -109,13 +111,13 @@ public class Player : MonoBehaviour
 
     public void PausePlayer()
     {
-        _isPaused = true;
-        _anim?.SetFloat("Speed", 0);
+        //_isPaused = true;
+        //_anim?.SetFloat("Speed", 0);
     }
 
     public void ResumePlayer()
     {
-        _isPaused = false;
+        //_isPaused = false;
     }
 
     public void ResetPlayer()
@@ -126,6 +128,27 @@ public class Player : MonoBehaviour
         _anim?.SetTrigger("Idle");
         SetStateRun();
     }
+
+    private void UpdateMotor()
+    {
+        isGrounded = _controller.isGrounded;
+
+        if (_currentState != null)
+        {
+            _currentState.ProcessMotion(this);
+
+            //Trying to change state
+            _currentState.Transition(this);
+        }
+
+        _anim?.SetBool("IsGrounded", isGrounded);
+        _anim?.SetFloat("Speed", Mathf.Abs(moveVector.z));
+
+        //Move the player
+        _controller.Move(moveVector * Time.deltaTime);
+    }
+
+    #region STATE
 
     public void SetStateRun()
     {
@@ -161,25 +184,6 @@ public class Player : MonoBehaviour
     {
         var state = GetPlayerState<PlayerStateIdle>();
         SetState(state);
-    }
-
-    private void UpdateMotor()
-    {
-        isGrounded = _controller.isGrounded;
-
-        if (_currentState != null)
-        {
-            _currentState.ProcessMotion(this);
-
-            //Trying to change state
-            _currentState.Transition(this);
-        }
-
-        _anim?.SetBool("IsGrounded", isGrounded);
-        _anim?.SetFloat("Speed", Mathf.Abs(moveVector.z));
-
-        //Move the player
-        _controller.Move(moveVector * Time.deltaTime);
     }
 
     private void InitPlayerState()
@@ -221,6 +225,8 @@ public class Player : MonoBehaviour
         var type = typeof(T);
         _statesMap[type] = state;
     }
+
+    #endregion
 }
 
 

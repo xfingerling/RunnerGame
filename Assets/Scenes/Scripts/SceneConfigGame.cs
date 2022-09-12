@@ -11,7 +11,7 @@ public class SceneConfigGame : SceneConfig
     {
         var interactorsMap = new Dictionary<Type, Interactor>();
 
-        CreateInteractor<GameFlowInteractor>(interactorsMap);
+        CreateInteractor<GameControllerInteractor>(interactorsMap);
         CreateInteractor<PlayerInteractor>(interactorsMap);
         CreateInteractor<WorldInteractor>(interactorsMap);
         CreateInteractor<CameraInteractor>(interactorsMap);

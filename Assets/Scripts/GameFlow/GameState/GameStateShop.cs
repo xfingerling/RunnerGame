@@ -21,31 +21,29 @@ public class GameStateShop : GameStateBase
 
     public override void Construct()
     {
-        //gameManager.ChangeCamera(GameCamera.Shop);
-        _hats = Resources.LoadAll<Hat>("Hats");
-        _shopUI.SetActive(true);
+        base.Construct();
 
-        _totalCoinText.text = $"{SaveManager.Instance.save.Coin.ToString("0000")}";
+        cameraInteractor.SetCameraShop();
+        UIController.Show<UIShop>();
+        //_hats = Resources.LoadAll<Hat>("Hats");
+        //_shopUI.SetActive(true);
 
-        if (!_isInit)
-        {
-            _currentHatText.text = _hats[SaveManager.Instance.save.CurrentHatIndex].ItemName;
-            PopulateShop();
+        //_totalCoinText.text = $"{SaveManager.Instance.save.Coin.ToString("0000")}";
 
-            _isInit = true;
-        }
+        //if (!_isInit)
+        //{
+        //    _currentHatText.text = _hats[SaveManager.Instance.save.CurrentHatIndex].ItemName;
+        //    PopulateShop();
 
-        ResetCompletionCircle();
+        //    _isInit = true;
+        //}
+
+        //ResetCompletionCircle();
     }
 
     public override void Destruct()
     {
-        _shopUI.SetActive(false);
-    }
-
-    public void OnHomeClick()
-    {
-        _gameManager.SetStateInit();
+        //_shopUI.SetActive(false);
     }
 
     private void PopulateShop()

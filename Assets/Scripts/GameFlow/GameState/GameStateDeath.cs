@@ -20,25 +20,15 @@ public class GameStateDeath : GameStateBase, IUnityAdsLoadListener, IUnityAdsSho
     {
         UIController.Show<UIDeath>();
 
-        //gameManager.Motor.PausePlayer();
-
         //_deathTime = Time.time;
-        //_deathUI.SetActive(true);
-
-        //if (SaveManager.Instance.save.Highscore < (int)GameStats.Instance.score)
-        //    SaveManager.Instance.save.Highscore = (int)GameStats.Instance.score;
 
         //SaveManager.Instance.save.Coin += GameStats.Instance.coinCollectedThisSession;
         //SaveManager.Instance.Save();
-
-        //_highscoreText.text = $"{SaveManager.Instance.save.Highscore}";
-        //_scoreText.text = GameStats.Instance.ScoreToText();
-        //_coinCountText.text = $"x{SaveManager.Instance.save.Coin}";
     }
 
     public override void Destruct()
     {
-        //_deathUI.SetActive(false);
+
     }
 
     public override void UpdateState()
@@ -59,20 +49,12 @@ public class GameStateDeath : GameStateBase, IUnityAdsLoadListener, IUnityAdsSho
         Advertisement.Load(AdManager.Instance.AdUnityId, this);
     }
 
-    public void ToMenu()
-    {
-        //_gameManager.SetStateInit();
-
-        //_gameManager.Motor.ResetPlayer();
-        //_gameManager.WorldGeneration.ResetWorld();
-        //_gameManager.SceneryChunkGeneration.ResetWorld();
-    }
-
     public void ResumeGame()
     {
         //_gameManager.SetStateGame();
         //_gameManager.Motor.RespawnPlayer();
     }
+
     private void ShowAd()
     {
         AdManager.Instance.ShowRewardedAd(this);

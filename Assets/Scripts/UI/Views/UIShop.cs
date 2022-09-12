@@ -12,6 +12,11 @@ public class UIShop : View
 
     public override void Initialize()
     {
-        _menuButton.onClick.AddListener(() => UIController.Show<UIMainMenu>());
+        _menuButton.onClick.AddListener(OnClickMenuButton);
+    }
+
+    private void OnClickMenuButton()
+    {
+        gameController.SetStateInit();
     }
 }

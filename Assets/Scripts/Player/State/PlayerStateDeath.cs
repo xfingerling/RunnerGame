@@ -24,7 +24,7 @@ public class PlayerStateDeath : IPlayerState
         if (_currentKnockback.z > 0)
         {
             _currentKnockback.z = 0;
-            //GameFlow.Instance.SetStateDeath();
+            motor.PausePlayer();
         }
 
         motor.moveVector = m;

@@ -13,15 +13,6 @@ public abstract class GameStateBase
         worldInteractor = Game.GetInteractor<WorldInteractor>();
         gameController = gameControllerInteractor.gameController;
         player = playerInteractor.player;
-
-        player.OnPlayerDeathEvent += OnPlayerDeath;
-    }
-
-    private void OnPlayerDeath()
-    {
-        player.OnPlayerDeathEvent -= OnPlayerDeath;
-
-        gameController.SetStateDeath();
     }
 
     public abstract void Destruct();

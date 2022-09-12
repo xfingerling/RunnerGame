@@ -4,6 +4,7 @@ public class PlayerStateRunning : IPlayerState
 {
     public void Construct(Player motor)
     {
+        motor.ResumePlayer();
         motor.transform.rotation = Quaternion.identity;
         motor.verticalVelocity = 0;
     }

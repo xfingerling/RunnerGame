@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     private GameStateBase _currentState;
     private Dictionary<Type, GameStateBase> _statesMap;
+    private Player _player;
 
     private void Start()
     {
@@ -15,7 +16,18 @@ public class GameController : MonoBehaviour
 
     private void OnGameInitialized()
     {
+        Game.OnGameInitializedEvent -= OnGameInitialized;
+
+        var playerInteractor = Game.GetInteractor<PlayerInteractor>();
+        _player = playerInteractor.player;
+        _player.OnPlayerDeathEvent += OnPlayerDeath;
+
         SetStateByDefault();
+    }
+
+    private void OnPlayerDeath()
+    {
+        SetStateDeath();
     }
 
     private void Update()

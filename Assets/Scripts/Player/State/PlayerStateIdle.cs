@@ -2,7 +2,7 @@ public class PlayerStateIdle : IPlayerState
 {
     public void Construct(Player motor)
     {
-        motor.Anim.SetTrigger("Idle");
+        motor.ResetPlayer();
     }
 
     public void Destruct(Player motor)

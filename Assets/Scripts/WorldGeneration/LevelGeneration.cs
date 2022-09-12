@@ -19,8 +19,6 @@ public abstract class LevelGeneration : MonoBehaviour
 
         _activeChunks = new Queue<Chunk>();
         _chunkPool = new List<Chunk>();
-
-        ResetWorld();
     }
 
     private void OnGameInitialized()
@@ -29,6 +27,8 @@ public abstract class LevelGeneration : MonoBehaviour
 
         var playerInteractor = Game.GetInteractor<PlayerInteractor>();
         _player = playerInteractor.player.transform;
+
+        ResetWorld();
     }
 
     public void ResetWorld()

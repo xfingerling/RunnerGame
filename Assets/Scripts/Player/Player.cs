@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     public CharacterController Controller => _controller;
     public Animator Anim => _anim;
 
+    private bool _pause = true;
     private CharacterController _controller;
     private Animator _anim;
     private IPlayerState _currentState;
@@ -47,12 +48,12 @@ public class Player : MonoBehaviour
         _anim = GetComponent<Animator>();
 
         InitPlayerState();
-        SetStateByDefault();
     }
 
     private void Update()
     {
-        UpdateMotor();
+        if (!_pause)
+            UpdateMotor();
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -70,7 +71,6 @@ public class Player : MonoBehaviour
     public void RespawnPlayer()
     {
         SetStateRespawn();
-        //GameFlow.Instance.ChangeCamera(GameCamera.Respawn);
     }
 
     public void ApplyGravity()
@@ -109,24 +109,23 @@ public class Player : MonoBehaviour
         return r;
     }
 
+    public void ResetPlayer()
+    {
+        _pause = true;
+        currentLane = 0;
+        transform.position = Vector3.zero;
+        _anim?.SetTrigger("Idle");
+        _anim?.SetFloat("Speed", 0);
+    }
+
     public void PausePlayer()
     {
-        //_isPaused = true;
-        //_anim?.SetFloat("Speed", 0);
+        _pause = true;
     }
 
     public void ResumePlayer()
     {
-        //_isPaused = false;
-    }
-
-    public void ResetPlayer()
-    {
-        currentLane = 0;
-        PausePlayer();
-        transform.position = Vector3.zero;
-        _anim?.SetTrigger("Idle");
-        SetStateRun();
+        _pause = false;
     }
 
     private void UpdateMotor()
@@ -146,6 +145,7 @@ public class Player : MonoBehaviour
 
         //Move the player
         _controller.Move(moveVector * Time.deltaTime);
+        Debug.Log(moveVector);
     }
 
     #region STATE

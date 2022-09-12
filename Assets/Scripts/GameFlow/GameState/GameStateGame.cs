@@ -1,12 +1,5 @@
-using TMPro;
-using UnityEngine;
-
 public class GameStateGame : GameStateBase
 {
-    [SerializeField] private GameObject _gameUI;
-    [SerializeField] private TextMeshProUGUI _coinCountText;
-    [SerializeField] private TextMeshProUGUI _scoreText;
-
     public override void Construct()
     {
         base.Construct();
@@ -24,8 +17,6 @@ public class GameStateGame : GameStateBase
 
     public override void Destruct()
     {
-        //_gameUI.SetActive(false);
-
         //GameStats.Instance.OnCollectCoinEvent -= OnCollectCoin;
         //GameStats.Instance.OnScoreChangeEvent -= OnScoreChange;
     }
@@ -37,11 +28,11 @@ public class GameStateGame : GameStateBase
 
     private void OnCollectCoin(int coinAmount)
     {
-        _coinCountText.text = GameStats.Instance.CoinToText();
+        //_coinCountText.text = GameStats.Instance.CoinToText();
     }
 
     private void OnScoreChange(float score)
     {
-        _scoreText.text = GameStats.Instance.ScoreToText();
+        //_scoreText.text = GameStats.Instance.ScoreToText();
     }
 }

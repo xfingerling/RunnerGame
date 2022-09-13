@@ -6,10 +6,6 @@ public class Player : MonoBehaviour
 {
     public event Action OnPlayerDeathEvent;
 
-    [SerializeField] private float _distanceInBetweenLanes = 3f;
-    [SerializeField] private float _baseSidewaySpeed = 10f;
-    [SerializeField] private float _gravity = 14f;
-    [SerializeField] private float _terminalVelocity = 20f;
     [Header("Run")]
     [SerializeField] private float _baseRunSpeed = 5f;
     [Header("Slide")]
@@ -22,9 +18,9 @@ public class Player : MonoBehaviour
     [Header("Death")]
     [SerializeField] private Vector3 _knockbackForce = new Vector3(0, 4, -3);
 
-    public float BaseRunSpeed => _baseRunSpeed;
-    public float Gravity => _gravity;
-    public float SlideDuration => _slideDuration;
+    public float baseRunSpeed => _baseRunSpeed;
+    public float gravity => _gravity;
+    public float slideDuration => _slideDuration;
     public float JumpForce => _jumpForce;
     public float VerticalDistance => _verticalDistance;
     public float ImmunityTime => _immunityTime;
@@ -36,6 +32,10 @@ public class Player : MonoBehaviour
     public CharacterController Controller => _controller;
     public Animator Anim => _anim;
 
+    private float _gravity = 14f;
+    private float _terminalVelocity = 20f;
+    private float _baseSidewaySpeed = 10f;
+    private float _distanceInBetweenLanes = 3f;
     private bool _pause = true;
     private CharacterController _controller;
     private Animator _anim;
@@ -145,7 +145,6 @@ public class Player : MonoBehaviour
 
         //Move the player
         _controller.Move(moveVector * Time.deltaTime);
-        Debug.Log(moveVector);
     }
 
     #region STATE

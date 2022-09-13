@@ -515,8 +515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9ebf429e4d6fa438c7e67cced52340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinCountText: {fileID: 810833008935059575}
-  _highscoreText: {fileID: 4183945183210746871}
+  _coinText: {fileID: 810833008935059575}
+  _scorePerSessionText: {fileID: 4183945183210746871}
 --- !u!1 &8085843387490771236
 GameObject:
   m_ObjectHideFlags: 0

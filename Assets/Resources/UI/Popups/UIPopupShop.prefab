@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 9079657376035129494}
   - component: {fileID: 3167816145485934638}
   m_Layer: 5
-  m_Name: HighscoreCount
+  m_Name: CoinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuButton: {fileID: 8901275946880011933}
-  _totalCoinText: {fileID: 2814087764139874791}
+  _coinText: {fileID: 3167816145485934638}
   _currentHatText: {fileID: 6136556319194494003}
   _completionText: {fileID: 258753485209410060}
   _completionCircle: {fileID: 2729666871930900573}

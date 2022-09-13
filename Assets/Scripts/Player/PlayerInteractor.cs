@@ -6,9 +6,9 @@ public class PlayerInteractor : Interactor
 
     private Player _playerPrefab;
 
-    public override void Initialize()
+    public override void OnCreate()
     {
-        base.Initialize();
+        base.OnCreate();
 
         _playerPrefab = Resources.Load<Player>("BananaCat");
         player = Object.Instantiate(_playerPrefab);

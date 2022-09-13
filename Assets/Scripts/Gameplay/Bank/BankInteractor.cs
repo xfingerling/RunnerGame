@@ -1,8 +1,9 @@
 public class BankInteractor : Interactor
 {
-    private BankRepository _repository;
-
     public int coins => _repository.coins;
+    public int coinsPerSession { get; private set; }
+
+    private BankRepository _repository;
 
     public override void OnCreate()
     {
@@ -20,15 +21,22 @@ public class BankInteractor : Interactor
         return coins >= value;
     }
 
-    public void AddCoins(object sender, int value)
+    public void AddCoins(object sender, int value = 1)
     {
         _repository.coins += value;
+        coinsPerSession += value;
         _repository.Save();
+
     }
 
     public void SpendCoins(object sender, int value)
     {
         _repository.coins -= value;
         _repository.Save();
+    }
+
+    public void ResetCoinPerSession()
+    {
+        coinsPerSession = 0;
     }
 }

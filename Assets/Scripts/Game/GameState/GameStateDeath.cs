@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
@@ -6,29 +5,22 @@ using UnityEngine.UI;
 public class GameStateDeath : GameStateBase, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     [SerializeField] private float _timeToDesition = 2.5f;
-    [SerializeField] private GameObject _deathUI;
-    [SerializeField] private TextMeshProUGUI _highscoreText;
-    [SerializeField] private TextMeshProUGUI _scoreText;
-    [SerializeField] private TextMeshProUGUI _coinCountText;
     [SerializeField] private Image _completionCircle;
     [SerializeField] private Button _reviveAdButton;
 
     private float _deathTime;
-    private GameController _gameManager;
 
     public override void Construct()
     {
+        SaveManager.Instance.Save();
         UIController.Show<UIDeath>();
-
         //_deathTime = Time.time;
-
-        //SaveManager.Instance.save.Coin += GameStats.Instance.coinCollectedThisSession;
-        //SaveManager.Instance.Save();
     }
 
     public override void Destruct()
     {
-
+        Bank.ResetCoinPerSession();
+        Score.ResetScorePerSession();
     }
 
     public override void UpdateState()

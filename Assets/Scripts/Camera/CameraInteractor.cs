@@ -26,6 +26,11 @@ public class CameraInteractor : Interactor
         _cameras.Add(GameCamera.Game, cameraGame);
         _cameras.Add(GameCamera.Init, cameraInit);
         _cameras.Add(GameCamera.Shop, cameraShop);
+    }
+
+    public override void OnStart()
+    {
+        base.OnStart();
 
         ActivateCameras();
     }

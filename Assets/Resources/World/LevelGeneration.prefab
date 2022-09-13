@@ -46,13 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstChunkSpawnPosition: 15
-  _chunkOnScreen: 7
-  _despawnDistance: 5
+  _chunkOnScreen: 3
+  _despawnDistance: 10
   _chunkPrefabs:
   - {fileID: 9208815492185136064, guid: ef5b2b64b7d897d4baa9231bbad6a582, type: 3}
-  - {fileID: 3231705676926778186, guid: 27e5c10a43922404887a560732b59c0b, type: 3}
-  - {fileID: 3231705676926778186, guid: 55acfeeccc45a104297abaf33ef5d25b, type: 3}
-  - {fileID: 9208815492185136064, guid: 32c34eaa435c18b47adc6aa251e0da15, type: 3}
 --- !u!114 &6194899541209400435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstChunkSpawnPosition: 10
-  _chunkOnScreen: 14
+  _chunkOnScreen: 6
   _despawnDistance: 5
   _chunkPrefabs:
   - {fileID: 5589767372034680012, guid: 84c0d2e0dd6563246a7199fffdc7873e, type: 3}

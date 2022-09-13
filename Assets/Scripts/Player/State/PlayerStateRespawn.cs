@@ -30,7 +30,7 @@ public class PlayerStateRespawn : IPlayerState
 
         m.x = motor.SnapToLane();
         m.y = motor.verticalVelocity;
-        m.z = motor.BaseRunSpeed;
+        m.z = motor.baseRunSpeed;
 
         motor.moveVector = m;
     }

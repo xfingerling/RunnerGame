@@ -5,10 +5,14 @@ public class Coin : MonoBehaviour
     private Animator _anim;
     private Chunk _chunk;
 
-    private void Start()
+    private void Awake()
     {
         _anim = GetComponentInParent<Animator>();
         _chunk = GetComponentInParent<Chunk>();
+    }
+
+    private void OnEnable()
+    {
         _chunk.OnShowChunkEvent += OnShowChunk;
     }
 
@@ -26,7 +30,7 @@ public class Coin : MonoBehaviour
     private void PickupCoin()
     {
         _anim?.SetTrigger("Pickup");
-        GameStats.Instance.CollectCoin();
+        Bank.AddCoins(this);
     }
 
     private void OnDisable()

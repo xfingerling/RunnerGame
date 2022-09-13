@@ -27,8 +27,6 @@ public abstract class LevelGeneration : MonoBehaviour
 
         var playerInteractor = Game.GetInteractor<PlayerInteractor>();
         _player = playerInteractor.player.transform;
-
-        ResetWorld();
     }
 
     public void ResetWorld()
@@ -46,8 +44,9 @@ public abstract class LevelGeneration : MonoBehaviour
     {
         float playerZ = _player.position.z;
         Chunk lastChunk = _activeChunks.Peek();
+        float chunkLength = lastChunk.endChunk.localPosition.z - lastChunk.beginChunk.localPosition.z;
 
-        if (playerZ >= lastChunk.transform.position.z + lastChunk.ChunkLength + _despawnDistance)
+        if (playerZ >= lastChunk.transform.position.z + chunkLength + _despawnDistance)
         {
             DeleteLastChunk();
             SpawnNewChunk();
@@ -66,8 +65,8 @@ public abstract class LevelGeneration : MonoBehaviour
             chunk = go.GetComponent<Chunk>();
         }
 
-        chunk.gameObject.transform.position = new Vector3(0, 0, _chunkSpawnZ);
-        _chunkSpawnZ += chunk.ChunkLength;
+        chunk.transform.position = new Vector3(0, 0, _chunkSpawnZ);
+        _chunkSpawnZ += chunk.endChunk.localPosition.z - chunk.beginChunk.localPosition.z;
 
         _activeChunks.Enqueue(chunk);
         chunk.ShowChunk();

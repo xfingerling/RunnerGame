@@ -16,6 +16,8 @@ public class SceneConfigGame : SceneConfig
         CreateInteractor<WorldInteractor>(interactorsMap);
         CreateInteractor<CameraInteractor>(interactorsMap);
         CreateInteractor<UIControllerInteractor>(interactorsMap);
+        CreateInteractor<ScoreInteractor>(interactorsMap);
+        CreateInteractor<BankInteractor>(interactorsMap);
 
         return interactorsMap;
     }
@@ -24,7 +26,8 @@ public class SceneConfigGame : SceneConfig
     {
         var repositoriesMap = new Dictionary<Type, Repository>();
 
-
+        CreateRepository<ScoreRepository>(repositoriesMap);
+        CreateRepository<BankRepository>(repositoriesMap);
 
         return repositoriesMap;
     }

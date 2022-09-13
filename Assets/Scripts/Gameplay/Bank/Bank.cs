@@ -12,6 +12,14 @@ public static class Bank
             return _bankInteractor.coins;
         }
     }
+    public static int coinsPerSession
+    {
+        get
+        {
+            CheckClass();
+            return _bankInteractor.coinsPerSession;
+        }
+    }
     public static bool isInitialized { get; private set; }
 
     private static BankInteractor _bankInteractor;
@@ -29,7 +37,7 @@ public static class Bank
         return _bankInteractor.IsEnoughCoins(value);
     }
 
-    public static void AddCoins(object sender, int value)
+    public static void AddCoins(object sender, int value = 1)
     {
         CheckClass();
         _bankInteractor.AddCoins(sender, value);
@@ -39,6 +47,12 @@ public static class Bank
     {
         CheckClass();
         _bankInteractor.SpendCoins(sender, value);
+    }
+
+    public static void ResetCoinPerSession()
+    {
+        CheckClass();
+        _bankInteractor.ResetCoinPerSession();
     }
 
     private static void CheckClass()

@@ -19,7 +19,7 @@ public class PlayerStateDeath : IPlayerState
     {
         Vector3 m = _currentKnockback;
 
-        _currentKnockback = new Vector3(0, _currentKnockback.y -= motor.Gravity * Time.deltaTime, _currentKnockback.z += 2f * Time.deltaTime);
+        _currentKnockback = new Vector3(0, _currentKnockback.y -= motor.gravity * Time.deltaTime, _currentKnockback.z += 2f * Time.deltaTime);
 
         if (_currentKnockback.z > 0)
         {

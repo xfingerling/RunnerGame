@@ -20,7 +20,7 @@ public class PlayerStateRunning : IPlayerState
 
         m.x = motor.SnapToLane();
         m.y = -1f;
-        m.z = motor.BaseRunSpeed;
+        m.z = motor.baseRunSpeed;
 
         motor.moveVector = m;
     }

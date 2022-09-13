@@ -15,6 +15,12 @@ public class UIMainMenu : View
         _shopButton.onClick.AddListener(OnShopButtonClick);
     }
 
+    private void OnEnable()
+    {
+        _highscoreText.text = $"{Score.higscore}";
+        _coinText.text = $"{Bank.coins}";
+    }
+
     private void OnPlayButtonClick()
     {
         gameController.SetStateGame();

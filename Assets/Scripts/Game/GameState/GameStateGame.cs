@@ -7,23 +7,18 @@ public class GameStateGame : GameStateBase
         cameraInteractor.SetCameraGame();
         UIController.Show<UIGameHUD>();
         player.SetStateRun();
-
-
-        //GameStats.Instance.OnCollectCoinEvent += OnCollectCoin;
-        //GameStats.Instance.OnScoreChangeEvent += OnScoreChange;
     }
 
 
 
     public override void Destruct()
     {
-        //GameStats.Instance.OnCollectCoinEvent -= OnCollectCoin;
-        //GameStats.Instance.OnScoreChangeEvent -= OnScoreChange;
     }
 
     public override void UpdateState()
     {
         worldInteractor?.UpdateLevel();
+        Score.UpdateScore();
     }
 
     private void OnCollectCoin(int coinAmount)

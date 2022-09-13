@@ -1269,12 +1269,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77aac215fd1e77d46a0243f995ceb0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _highscoreText: {fileID: 0}
-  _scoreText: {fileID: 0}
-  _coinCountText: {fileID: 0}
-  _completionCircle: {fileID: 0}
-  _reviveAdButton: {fileID: 0}
+  _highscoreText: {fileID: 5731577086504659161}
+  _scorePerSessionText: {fileID: 3651611910179229320}
+  _coinText: {fileID: 261790007142404337}
   _playButton: {fileID: 1801032368227793409}
+  _completionCircle: {fileID: 7907169951102730855}
+  _reviveAdButton: {fileID: 4296857056324267200}
 --- !u!95 &45265765082967790
 Animator:
   serializedVersion: 4

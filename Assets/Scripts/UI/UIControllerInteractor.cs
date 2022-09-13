@@ -17,6 +17,11 @@ public class UIControllerInteractor : Interactor
 
         var uiInterfacePrefab = Resources.Load<UIInterface>("UI/[INTERFACE]");
         _uiInterface = Object.Instantiate(uiInterfacePrefab);
+    }
+
+    public override void OnStart()
+    {
+        base.OnStart();
 
         InitViews();
     }

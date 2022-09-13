@@ -8,7 +8,7 @@ public class GameControllerInteractor : Interactor
     {
         base.Initialize();
 
-        GameController gameFlowPrefab = Resources.Load<GameController>("GameFlow");
+        GameController gameFlowPrefab = Resources.Load<GameController>("GameController");
         gameController = Object.Instantiate(gameFlowPrefab);
     }
 }

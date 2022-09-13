@@ -33,7 +33,7 @@ public class PlayerStateSliding : IPlayerState
 
         m.x = motor.SnapToLane();
         m.y = -1f;
-        m.z = motor.BaseRunSpeed;
+        m.z = motor.baseRunSpeed;
 
         motor.moveVector = m;
     }
@@ -52,7 +52,7 @@ public class PlayerStateSliding : IPlayerState
         if (InputManager.instance.SwipeUp)
             motor.SetStateJump();
 
-        if (Time.time - _slideStart > motor.SlideDuration)
+        if (Time.time - _slideStart > motor.slideDuration)
             motor.SetStateRun();
     }
 }

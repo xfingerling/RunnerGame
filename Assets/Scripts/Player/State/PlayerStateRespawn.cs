@@ -1,49 +1,53 @@
 using UnityEngine;
 
-public class PlayerStateRespawn : IPlayerState
+public class PlayerStateRespawn : PlayerStateBase
 {
     private float _startTime;
 
-    public void Construct(Player motor)
+    public override void Construct()
     {
+        base.Construct();
+
+        player.ResumePlayer();
+
         _startTime = Time.time;
 
-        motor.Controller.enabled = false;
-        motor.transform.position = new Vector3(0, motor.VerticalDistance, motor.transform.position.z);
-        motor.Controller.enabled = true;
+        player.Controller.enabled = false;
+        player.transform.position = new Vector3(0, player.VerticalDistance, player.transform.position.z);
+        player.Controller.enabled = true;
 
-        motor.verticalVelocity = 0;
-        motor.currentLane = 0;
-        motor.Anim?.SetTrigger("Respawn");
+        player.verticalVelocity = 0;
+        player.currentLane = 0;
+        player.Anim?.SetTrigger("Respawn");
     }
 
-    public void Destruct(Player motor)
+    public override void Destruct()
     {
-        //GameFlow.Instance.ChangeCamera(GameCamera.Game);
+
     }
 
-    public void ProcessMotion(Player motor)
+    public override void ProcessMotion()
     {
-        motor.ApplyGravity();
+        player.ApplyGravity();
 
         Vector3 m = Vector3.zero;
 
-        m.x = motor.SnapToLane();
-        m.y = motor.verticalVelocity;
-        m.z = motor.baseRunSpeed;
+        m.x = player.SnapToLane();
+        m.y = player.verticalVelocity;
+        m.z = player.baseRunSpeed;
 
-        motor.moveVector = m;
+        player.moveVector = m;
     }
 
-    public void Transition(Player motor)
+    public override void Transition()
     {
-        if (motor.isGrounded && (Time.time - _startTime) > motor.ImmunityTime)
-            motor.SetStateRun();
+        if (player.isGrounded && (Time.time - _startTime) > player.ImmunityTime)
+            player.SetStateRun();
 
         if (InputManager.instance.SwipeLeft)
-            motor.ChangeLane(-1);
+            player.ChangeLane(-1);
 
         if (InputManager.instance.SwipeRight)
-            motor.ChangeLane(1);
+            player.ChangeLane(1);
     }
 }

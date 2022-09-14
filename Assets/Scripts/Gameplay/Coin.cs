@@ -19,7 +19,7 @@ public class Coin : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-            PickupCoin();
+            CollectCoin();
     }
 
     private void OnShowChunk()
@@ -27,7 +27,7 @@ public class Coin : MonoBehaviour
         _anim?.SetTrigger("Idle");
     }
 
-    private void PickupCoin()
+    private void CollectCoin()
     {
         _anim?.SetTrigger("Pickup");
         Bank.AddCoins(this);

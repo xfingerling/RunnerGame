@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class WorldInteractor : Interactor
 {
-    private LevelChunkGeneration _levelChunkGeneration;
-    private SceneryChunkGeneration _sceneryChunkGeneration;
+    private LevelChunkPlacer _levelChunkPlacer;
+    private SceneryChunkPlacer _sceneryChunkPlacer;
 
     public override void Initialize()
     {
@@ -21,18 +21,18 @@ public class WorldInteractor : Interactor
         Object.Instantiate(snowFloorPrefab, container);
         GameObject levelGeneration = Object.Instantiate(levelGenerationPrefab, container);
 
-        _levelChunkGeneration = levelGeneration.GetComponent<LevelChunkGeneration>();
-        _sceneryChunkGeneration = levelGeneration.GetComponent<SceneryChunkGeneration>();
+        _levelChunkPlacer = levelGeneration.GetComponent<LevelChunkPlacer>();
+        _sceneryChunkPlacer = levelGeneration.GetComponent<SceneryChunkPlacer>();
     }
 
     public void UpdateLevel()
     {
-        _levelChunkGeneration.UpdateLevel();
-        _sceneryChunkGeneration.UpdateLevel();
+        _levelChunkPlacer.UpdateLevel();
+        _sceneryChunkPlacer.UpdateLevel();
     }
     public void ResetWorld()
     {
-        _levelChunkGeneration.ResetWorld();
-        _sceneryChunkGeneration.ResetWorld();
+        _levelChunkPlacer.ResetWorld();
+        _sceneryChunkPlacer.ResetWorld();
     }
 }

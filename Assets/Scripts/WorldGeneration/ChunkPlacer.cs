@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class LevelGeneration : MonoBehaviour
+public abstract class ChunkPlacer : MonoBehaviour
 {
     [SerializeField] private int _firstChunkSpawnPosition = 20;
     [SerializeField] private int _chunkOnScreen = 5;

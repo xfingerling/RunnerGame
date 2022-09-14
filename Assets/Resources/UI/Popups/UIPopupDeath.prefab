@@ -1273,7 +1273,7 @@ MonoBehaviour:
   _scorePerSessionText: {fileID: 3651611910179229320}
   _coinText: {fileID: 261790007142404337}
   _playButton: {fileID: 1801032368227793409}
-  _completionCircle: {fileID: 7907169951102730855}
+  _completionCircle: {fileID: 6788577949833762734}
   _reviveAdButton: {fileID: 4296857056324267200}
 --- !u!95 &45265765082967790
 Animator:

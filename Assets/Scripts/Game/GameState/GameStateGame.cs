@@ -5,7 +5,7 @@ public class GameStateGame : GameStateBase
         base.Construct();
 
         cameraInteractor.SetCameraGame();
-        UIController.Show<UIGameHUD>();
+        UIController.ShowHUD();
         player.SetStateRun();
     }
 

@@ -39,6 +39,24 @@ public static class UIController
         _uiControllerInteractor.ShowLast();
     }
 
+    public static void ShowHUD()
+    {
+        CheckClass();
+        _uiControllerInteractor.ShowHUD();
+    }
+
+    public static void HideHUD()
+    {
+        CheckClass();
+        _uiControllerInteractor.HideHUD();
+    }
+
+    public static void HideAllPopups()
+    {
+        CheckClass();
+        _uiControllerInteractor.HideAllPopups();
+    }
+
     private static void CheckClass()
     {
         if (!isInitialized)

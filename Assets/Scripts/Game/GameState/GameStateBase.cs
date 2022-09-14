@@ -13,6 +13,8 @@ public abstract class GameStateBase
         worldInteractor = Game.GetInteractor<WorldInteractor>();
         gameController = gameControllerInteractor.gameController;
         player = playerInteractor.player;
+
+        //Debug.Log(this);
     }
 
     public abstract void Destruct();

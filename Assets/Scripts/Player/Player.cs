@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
 {
     public event Action OnPlayerDeathEvent;
 
+    [SerializeField] private Transform _groundCheckerPivot;
+    [SerializeField] private float _checkGroundRadius = 0.4f;
+    [SerializeField] private LayerMask _groundMask;
     [Header("Run")]
     [SerializeField] private float _baseRunSpeed = 5f;
     [Header("Slide")]
@@ -39,8 +42,8 @@ public class Player : MonoBehaviour
     private bool _pause = true;
     private CharacterController _controller;
     private Animator _anim;
-    private IPlayerState _currentState;
-    private Dictionary<Type, IPlayerState> _statesMap;
+    private PlayerStateBase _currentState;
+    private Dictionary<Type, PlayerStateBase> _statesMap;
 
     private void Start()
     {
@@ -134,10 +137,10 @@ public class Player : MonoBehaviour
 
         if (_currentState != null)
         {
-            _currentState.ProcessMotion(this);
+            _currentState.ProcessMotion();
 
             //Trying to change state
-            _currentState.Transition(this);
+            _currentState.Transition();
         }
 
         _anim?.SetBool("IsGrounded", isGrounded);
@@ -187,7 +190,7 @@ public class Player : MonoBehaviour
 
     private void InitPlayerState()
     {
-        _statesMap = new Dictionary<Type, IPlayerState>();
+        _statesMap = new Dictionary<Type, PlayerStateBase>();
 
         CreateState<PlayerStateIdle>();
         CreateState<PlayerStateRunning>();
@@ -198,13 +201,13 @@ public class Player : MonoBehaviour
         CreateState<PlayerStateSliding>();
     }
 
-    private void SetState(IPlayerState newState)
+    private void SetState(PlayerStateBase newState)
     {
         if (_currentState != null)
-            _currentState.Destruct(this);
+            _currentState.Destruct();
 
         _currentState = newState;
-        _currentState.Construct(this);
+        _currentState.Construct();
     }
 
     private void SetStateByDefault()
@@ -212,13 +215,13 @@ public class Player : MonoBehaviour
         SetStateIdle();
     }
 
-    private IPlayerState GetPlayerState<T>() where T : IPlayerState
+    private PlayerStateBase GetPlayerState<T>() where T : PlayerStateBase
     {
         var type = typeof(T);
         return _statesMap[type];
     }
 
-    private void CreateState<T>() where T : IPlayerState, new()
+    private void CreateState<T>() where T : PlayerStateBase, new()
     {
         var state = new T();
         var type = typeof(T);

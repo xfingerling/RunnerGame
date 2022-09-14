@@ -12,7 +12,7 @@ public class GameStateInit : GameStateBase
 
     public override void Destruct()
     {
-
+        UIController.HideAllPopups();
     }
 
     public void OnPlayClick()

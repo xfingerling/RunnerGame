@@ -1,21 +1,23 @@
-public class PlayerStateIdle : IPlayerState
+public class PlayerStateIdle : PlayerStateBase
 {
-    public void Construct(Player motor)
+    public override void Construct()
     {
-        motor.ResetPlayer();
+        base.Construct();
+
+        player.ResetPlayer();
     }
 
-    public void Destruct(Player motor)
-    {
-
-    }
-
-    public void ProcessMotion(Player motor)
+    public override void Destruct()
     {
 
     }
 
-    public void Transition(Player motor)
+    public override void ProcessMotion()
+    {
+
+    }
+
+    public override void Transition()
     {
 
     }

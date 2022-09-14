@@ -4,9 +4,8 @@ using UnityEngine;
 public class UIControllerInteractor : Interactor
 {
     private UIInterface _uiInterface;
-    private View _stratingView;
-    private List<View> _views = new List<View>();
-    private View[] _viewPrefabs;
+    private View _hudView;
+    private List<View> _popupViews = new List<View>();
     private View _currentView;
     private readonly Stack<View> _history = new Stack<View>();
 
@@ -23,25 +22,36 @@ public class UIControllerInteractor : Interactor
     {
         base.OnStart();
 
-        InitViews();
+        InitPopupViews();
+        InitHUDView();
     }
 
     public T GetView<T>() where T : View
     {
-        for (int i = 0; i < _views.Count; i++)
+        for (int i = 0; i < _popupViews.Count; i++)
         {
-            if (_views[i] is T tView)
+            if (_popupViews[i] is T tView)
                 return tView;
         }
 
         return null;
     }
 
+    public void ShowHUD()
+    {
+        _hudView.Show();
+    }
+
+    public void HideHUD()
+    {
+        _hudView.Hide();
+    }
+
     public void Show<T>(bool remember = true) where T : View
     {
-        for (int i = 0; i < _views.Count; i++)
+        for (int i = 0; i < _popupViews.Count; i++)
         {
-            if (_views[i] is T)
+            if (_popupViews[i] is T)
             {
                 if (_currentView != null)
                 {
@@ -51,8 +61,8 @@ public class UIControllerInteractor : Interactor
                     _currentView.Hide();
                 }
 
-                _views[i].Show();
-                _currentView = _views[i];
+                _popupViews[i].Show();
+                _currentView = _popupViews[i];
             }
         }
     }
@@ -80,15 +90,34 @@ public class UIControllerInteractor : Interactor
         }
     }
 
-    private void InitViews()
+    public void HideAllPopups()
     {
-        _viewPrefabs = Resources.LoadAll<View>("UI/Popups");
-        Transform container = _uiInterface.uiLayerPopup.transform;
-
-        foreach (var item in _viewPrefabs)
+        foreach (var view in _popupViews)
         {
-            var go = Object.Instantiate(item, container.transform);
-            _views.Add(go);
+            view.Hide();
+        }
+    }
+
+    private void InitHUDView()
+    {
+        var hudPrefab = Resources.Load<View>("UI/HUD/UIGameHUD");
+        Transform uiLayerHUD = _uiInterface.uiLayerHUD.transform;
+
+        _hudView = Object.Instantiate(hudPrefab, uiLayerHUD);
+
+        _hudView.Initialize();
+        _hudView.Hide();
+    }
+
+    private void InitPopupViews()
+    {
+        var viewPrefabs = Resources.LoadAll<View>("UI/Popups");
+        Transform uiLayerPopup = _uiInterface.uiLayerPopup.transform;
+
+        foreach (var item in viewPrefabs)
+        {
+            var go = Object.Instantiate(item, uiLayerPopup.transform);
+            _popupViews.Add(go);
 
             go.Initialize();
             go.Hide();

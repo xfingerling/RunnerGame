@@ -1,39 +1,41 @@
 using UnityEngine;
 
-public class PlayerStateFalling : IPlayerState
+public class PlayerStateFalling : PlayerStateBase
 {
-    public void Construct(Player motor)
+    public override void Construct()
     {
-        motor.Anim?.SetTrigger("Fall");
+        base.Construct();
+
+        player.Anim?.SetTrigger("Fall");
     }
 
-    public void Destruct(Player motor)
+    public override void Destruct()
     {
 
     }
 
-    public void ProcessMotion(Player motor)
+    public override void ProcessMotion()
     {
-        motor.ApplyGravity();
+        player.ApplyGravity();
 
         Vector3 m = Vector3.zero;
 
-        m.x = motor.SnapToLane();
-        m.y = motor.verticalVelocity;
-        m.z = motor.baseRunSpeed;
+        m.x = player.SnapToLane();
+        m.y = player.verticalVelocity;
+        m.z = player.baseRunSpeed;
 
-        motor.moveVector = m;
+        player.moveVector = m;
     }
 
-    public void Transition(Player motor)
+    public override void Transition()
     {
         if (InputManager.instance.SwipeLeft)
-            motor.ChangeLane(-1);
+            player.ChangeLane(-1);
 
         if (InputManager.instance.SwipeRight)
-            motor.ChangeLane(1);
+            player.ChangeLane(1);
 
-        if (motor.isGrounded)
-            motor.SetStateRun();
+        if (player.isGrounded)
+            player.SetStateRun();
     }
 }

@@ -853,7 +853,6 @@ GameObject:
   - component: {fileID: 1781789372056903673}
   - component: {fileID: 5318956045463462495}
   - component: {fileID: 5318956045463462502}
-  - component: {fileID: 5318956045463462494}
   m_Layer: 0
   m_Name: BananaCat
   m_TagString: Player
@@ -912,11 +911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1a09a086b08d44c880b64bf46e550a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundCheckerPivot: {fileID: 2549006879598198859}
-  _checkGroundRadius: 0.4
-  _groundMask:
-    serializedVersion: 2
-    m_Bits: 256
+  _hatContainer: {fileID: 2029848304}
   _baseRunSpeed: 5
   _slideDuration: 1
   _jumpForce: 7
@@ -941,19 +936,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &5318956045463462494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4976991636870995769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f52b933d23d75d4db9d4a24e1a7cf23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hatContainer: {fileID: 2029848304}
 --- !u!1 &5181659132026206308
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,14 +20,4 @@ public class GameStateGame : GameStateBase
         worldInteractor?.UpdateLevel();
         Score.UpdateScore();
     }
-
-    private void OnCollectCoin(int coinAmount)
-    {
-        //_coinCountText.text = GameStats.Instance.CoinToText();
-    }
-
-    private void OnScoreChange(float score)
-    {
-        //_scoreText.text = GameStats.Instance.ScoreToText();
-    }
 }

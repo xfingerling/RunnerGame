@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 4771876010256888831}
   - component: {fileID: 8854887432512086163}
   m_Layer: 0
-  m_Name: Camera_Game
+  m_Name: Camera_Respawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

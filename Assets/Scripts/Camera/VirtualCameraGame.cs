@@ -1,12 +1,12 @@
 using Cinemachine;
 using UnityEngine;
 
-public class CinemachineVirtualDynamic : MonoBehaviour
+public class VirtualCameraGame : MonoBehaviour
 {
-    private CinemachineVirtualCamera _cam;
+    private CinemachineVirtualCamera _virtualCamera;
     private Transform _target;
 
-    private void Awake()
+    public void Awake()
     {
         Game.OnGameInitializedEvent += OnGameInitialized;
 
@@ -15,9 +15,8 @@ public class CinemachineVirtualDynamic : MonoBehaviour
             brain = Camera.main.gameObject.AddComponent<CinemachineBrain>();
 
         brain.m_DefaultBlend.m_Time = 1;
-        brain.m_ShowDebugText = true;
 
-        _cam = gameObject.GetComponent<CinemachineVirtualCamera>();
+        _virtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
     private void OnGameInitialized()
@@ -27,7 +26,7 @@ public class CinemachineVirtualDynamic : MonoBehaviour
         var playerInteractor = Game.GetInteractor<PlayerInteractor>();
         _target = playerInteractor.player.transform;
 
-        _cam.Follow = _target;
-        _cam.LookAt = _target;
+        _virtualCamera.Follow = _target;
+        _virtualCamera.LookAt = _target;
     }
 }

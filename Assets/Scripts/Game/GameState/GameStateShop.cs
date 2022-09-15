@@ -1,3 +1,4 @@
+using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,8 +29,6 @@ public class GameStateShop : GameStateBase
         //_hats = Resources.LoadAll<Hat>("Hats");
         //_shopUI.SetActive(true);
 
-        //_totalCoinText.text = $"{SaveManager.Instance.save.Coin.ToString("0000")}";
-
         //if (!_isInit)
         //{
         //    _currentHatText.text = _hats[SaveManager.Instance.save.CurrentHatIndex].ItemName;
@@ -43,7 +42,7 @@ public class GameStateShop : GameStateBase
 
     public override void Destruct()
     {
-        //_shopUI.SetActive(false);
+        CinemachineBlendManager.SetNextBlend(new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, 1));
     }
 
     private void PopulateShop()

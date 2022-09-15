@@ -6,9 +6,7 @@ public class Player : MonoBehaviour
 {
     public event Action OnPlayerDeathEvent;
 
-    [SerializeField] private Transform _groundCheckerPivot;
-    [SerializeField] private float _checkGroundRadius = 0.4f;
-    [SerializeField] private LayerMask _groundMask;
+    [SerializeField] private Transform _hatContainer;
     [Header("Run")]
     [SerializeField] private float _baseRunSpeed = 5f;
     [Header("Slide")]
@@ -21,6 +19,7 @@ public class Player : MonoBehaviour
     [Header("Death")]
     [SerializeField] private Vector3 _knockbackForce = new Vector3(0, 4, -3);
 
+    public Transform hatCointainer => _hatContainer;
     public float baseRunSpeed => _baseRunSpeed;
     public float gravity => _gravity;
     public float slideDuration => _slideDuration;

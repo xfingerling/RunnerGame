@@ -603,10 +603,10 @@ RectTransform:
   m_Father: {fileID: 6589042459130362274}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 70, y: 1220}
-  m_SizeDelta: {x: 590, y: 2470}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 620, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &661367599305100678
 CanvasRenderer:
@@ -1265,6 +1265,9 @@ MonoBehaviour:
   _currentHatText: {fileID: 6136556319194494003}
   _completionText: {fileID: 258753485209410060}
   _completionCircle: {fileID: 2729666871930900573}
+  _hatButtonUIPrefab: {fileID: 7467841297420462805, guid: 1d52e1e6a618a6548905e7d04f273880,
+    type: 3}
+  _hatUIContainer: {fileID: 4803589047362435910}
 --- !u!1 &7849955409367253622
 GameObject:
   m_ObjectHideFlags: 0

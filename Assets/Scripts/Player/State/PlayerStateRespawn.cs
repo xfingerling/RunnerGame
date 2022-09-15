@@ -8,8 +8,6 @@ public class PlayerStateRespawn : PlayerStateBase
     {
         base.Construct();
 
-        player.ResumePlayer();
-
         _startTime = Time.time;
 
         player.Controller.enabled = false;
@@ -19,6 +17,7 @@ public class PlayerStateRespawn : PlayerStateBase
         player.verticalVelocity = 0;
         player.currentLane = 0;
         player.Anim?.SetTrigger("Respawn");
+        player.ResumePlayer();
     }
 
     public override void Destruct()
@@ -42,7 +41,7 @@ public class PlayerStateRespawn : PlayerStateBase
     public override void Transition()
     {
         if (player.isGrounded && (Time.time - _startTime) > player.ImmunityTime)
-            player.SetStateRun();
+            gameController.SetStateGame();
 
         if (InputManager.instance.SwipeLeft)
             player.ChangeLane(-1);

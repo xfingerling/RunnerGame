@@ -18,6 +18,7 @@ public class SceneConfigGame : SceneConfig
         CreateInteractor<UIControllerInteractor>(interactorsMap);
         CreateInteractor<ScoreInteractor>(interactorsMap);
         CreateInteractor<BankInteractor>(interactorsMap);
+        CreateInteractor<HatInteractor>(interactorsMap);
 
         return interactorsMap;
     }
@@ -28,6 +29,7 @@ public class SceneConfigGame : SceneConfig
 
         CreateRepository<ScoreRepository>(repositoriesMap);
         CreateRepository<BankRepository>(repositoriesMap);
+        CreateRepository<HatRepository>(repositoriesMap);
 
         return repositoriesMap;
     }

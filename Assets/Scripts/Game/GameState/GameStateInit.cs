@@ -1,3 +1,5 @@
+using Cinemachine;
+
 public class GameStateInit : GameStateBase
 {
     public override void Construct()
@@ -13,12 +15,7 @@ public class GameStateInit : GameStateBase
     public override void Destruct()
     {
         UIController.HideAllPopups();
-    }
-
-    public void OnPlayClick()
-    {
-        //GameStats.Instance.ResetSession();
-        //GetComponent<GameStateDeath>().EnableRevive();
+        CinemachineBlendManager.SetNextBlend(new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, 1));
     }
 
     public override void UpdateState()

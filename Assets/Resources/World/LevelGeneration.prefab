@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstChunkSpawnPosition: 15
-  _chunkOnScreen: 3
+  _chunkOnScreen: 7
   _despawnDistance: 10
   _chunkPrefabs:
   - {fileID: 9208815492185136064, guid: ef5b2b64b7d897d4baa9231bbad6a582, type: 3}
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstChunkSpawnPosition: 10
-  _chunkOnScreen: 6
+  _chunkOnScreen: 14
   _despawnDistance: 5
   _chunkPrefabs:
   - {fileID: 5589767372034680012, guid: 84c0d2e0dd6563246a7199fffdc7873e, type: 3}

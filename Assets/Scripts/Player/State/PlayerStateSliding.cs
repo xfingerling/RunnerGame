@@ -1,58 +1,60 @@
 using UnityEngine;
 
-public class PlayerStateSliding : IPlayerState
+public class PlayerStateSliding : PlayerStateBase
 {
     private Vector3 _initialCenter;
     private float _initialSize;
     private float _slideStart;
 
-    public void Construct(PlayerMotor motor)
+    public override void Construct()
     {
-        motor.Anim?.ResetTrigger("Running");
-        motor.Anim?.SetTrigger("Slide");
+        base.Construct();
+
+        player.Anim?.ResetTrigger("Running");
+        player.Anim?.SetTrigger("Slide");
         _slideStart = Time.time;
 
-        _initialSize = motor.Controller.height;
-        _initialCenter = motor.Controller.center;
+        _initialSize = player.Controller.height;
+        _initialCenter = player.Controller.center;
 
-        motor.Controller.height = _initialSize * 0.5f;
-        motor.Controller.center = _initialCenter * 0.5f;
+        player.Controller.height = _initialSize * 0.5f;
+        player.Controller.center = _initialCenter * 0.5f;
     }
 
-    public void Destruct(PlayerMotor motor)
+    public override void Destruct()
     {
-        motor.Controller.height = _initialSize;
-        motor.Controller.center = _initialCenter;
+        player.Controller.height = _initialSize;
+        player.Controller.center = _initialCenter;
 
-        motor.Anim?.SetTrigger("Running");
+        player.Anim?.SetTrigger("Running");
     }
 
-    public void ProcessMotion(PlayerMotor motor)
+    public override void ProcessMotion()
     {
         Vector3 m = Vector3.zero;
 
-        m.x = motor.SnapToLane();
+        m.x = player.SnapToLane();
         m.y = -1f;
-        m.z = motor.BaseRunSpeed;
+        m.z = player.baseRunSpeed;
 
-        motor.moveVector = m;
+        player.moveVector = m;
     }
 
-    public void Transition(PlayerMotor motor)
+    public override void Transition()
     {
-        if (InputManager.Instance.SwipeLeft)
-            motor.ChangeLane(-1);
+        if (InputManager.instance.SwipeLeft)
+            player.ChangeLane(-1);
 
-        if (InputManager.Instance.SwipeRight)
-            motor.ChangeLane(1);
+        if (InputManager.instance.SwipeRight)
+            player.ChangeLane(1);
 
-        if (!motor.isGrounded)
-            motor.SetStateFall();
+        if (!player.isGrounded)
+            player.SetStateFall();
 
-        if (InputManager.Instance.SwipeUp)
-            motor.SetStateJump();
+        if (InputManager.instance.SwipeUp)
+            player.SetStateJump();
 
-        if (Time.time - _slideStart > motor.SlideDuration)
-            motor.SetStateRun();
+        if (Time.time - _slideStart > player.slideDuration)
+            player.SetStateRun();
     }
 }

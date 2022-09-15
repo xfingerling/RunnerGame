@@ -5,14 +5,19 @@ public class Chunk : MonoBehaviour
 {
     public event Action OnShowChunkEvent;
 
-    [SerializeField] private float _chunkLength;
+    public Transform beginChunk { get; private set; }
+    public Transform endChunk { get; private set; }
 
-    public float ChunkLength => _chunkLength;
+    private void Awake()
+    {
+        beginChunk = transform.Find("Begin");
+        endChunk = transform.Find("End");
+    }
 
     public Chunk ShowChunk()
     {
-        OnShowChunkEvent?.Invoke();
         gameObject.SetActive(true);
+        OnShowChunkEvent?.Invoke();
         return this;
     }
 

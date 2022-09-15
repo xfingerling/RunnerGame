@@ -1,44 +1,47 @@
 using UnityEngine;
 
-public class PlayerStateRunning : IPlayerState
+public class PlayerStateRunning : PlayerStateBase
 {
-    public void Construct(PlayerMotor motor)
+    public override void Construct()
     {
-        motor.transform.rotation = Quaternion.identity;
-        motor.verticalVelocity = 0;
+        base.Construct();
+
+        player.ResumePlayer();
+        player.transform.rotation = Quaternion.identity;
+        player.verticalVelocity = 0;
     }
 
-    public void Destruct(PlayerMotor motor)
+    public override void Destruct()
     {
 
     }
 
-    public void ProcessMotion(PlayerMotor motor)
+    public override void ProcessMotion()
     {
         Vector3 m = Vector3.zero;
 
-        m.x = motor.SnapToLane();
+        m.x = player.SnapToLane();
         m.y = -1f;
-        m.z = motor.BaseRunSpeed;
+        m.z = player.baseRunSpeed;
 
-        motor.moveVector = m;
+        player.moveVector = m;
     }
 
-    public void Transition(PlayerMotor motor)
+    public override void Transition()
     {
-        if (InputManager.Instance.SwipeLeft)
-            motor.ChangeLane(-1);
+        if (InputManager.instance.SwipeLeft)
+            player.ChangeLane(-1);
 
-        if (InputManager.Instance.SwipeRight)
-            motor.ChangeLane(1);
+        if (InputManager.instance.SwipeRight)
+            player.ChangeLane(1);
 
-        if (InputManager.Instance.SwipeUp && motor.isGrounded)
-            motor.SetStateJump();
+        if (InputManager.instance.SwipeUp && player.isGrounded)
+            player.SetStateJump();
 
-        if (InputManager.Instance.SwipeDown && motor.isGrounded)
-            motor.SetStateSlide();
+        if (InputManager.instance.SwipeDown && player.isGrounded)
+            player.SetStateSlide();
 
-        if (!motor.isGrounded)
-            motor.SetStateFall();
+        if (!player.isGrounded)
+            player.SetStateFall();
     }
 }

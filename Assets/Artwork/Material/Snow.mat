@@ -154,7 +154,7 @@ Material:
     - _normalOffset: 0
     - _normalStrength: 0
     - _offset: 1
-    - _tiling: 30
+    - _tiling: 15
     m_Colors:
     - Vector2_F5E3D7D7: {r: 0, g: -90.02279, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

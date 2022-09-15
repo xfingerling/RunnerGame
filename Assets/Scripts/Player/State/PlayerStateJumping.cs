@@ -1,40 +1,42 @@
 using UnityEngine;
 
-public class PlayerStateJumping : IPlayerState
+public class PlayerStateJumping : PlayerStateBase
 {
-    public void Construct(PlayerMotor motor)
+    public override void Construct()
     {
-        motor.Anim?.SetTrigger("Jump");
-        motor.verticalVelocity = motor.JumpForce;
+        base.Construct();
+
+        player.Anim?.SetTrigger("Jump");
+        player.verticalVelocity = player.JumpForce;
     }
 
-    public void Destruct(PlayerMotor motor)
+    public override void Destruct()
     {
 
     }
 
-    public void ProcessMotion(PlayerMotor motor)
+    public override void ProcessMotion()
     {
-        motor.ApplyGravity();
+        player.ApplyGravity();
 
         Vector3 m = Vector3.zero;
 
-        m.x = motor.SnapToLane();
-        m.y = motor.verticalVelocity;
-        m.z = motor.BaseRunSpeed;
+        m.x = player.SnapToLane();
+        m.y = player.verticalVelocity;
+        m.z = player.baseRunSpeed;
 
-        motor.moveVector = m;
+        player.moveVector = m;
     }
 
-    public void Transition(PlayerMotor motor)
+    public override void Transition()
     {
-        if (InputManager.Instance.SwipeLeft)
-            motor.ChangeLane(-1);
+        if (InputManager.instance.SwipeLeft)
+            player.ChangeLane(-1);
 
-        if (InputManager.Instance.SwipeRight)
-            motor.ChangeLane(1);
+        if (InputManager.instance.SwipeRight)
+            player.ChangeLane(1);
 
-        if (motor.verticalVelocity < 0)
-            motor.SetStateFall();
+        if (player.verticalVelocity < 0)
+            player.SetStateFall();
     }
 }

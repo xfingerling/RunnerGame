@@ -1,36 +1,38 @@
 using UnityEngine;
 
-public class PlayerStateDeath : IPlayerState
+public class PlayerStateDeath : PlayerStateBase
 {
     private Vector3 _currentKnockback;
 
-    public void Construct(PlayerMotor motor)
+    public override void Construct()
     {
-        motor.Anim?.SetTrigger("Death");
-        _currentKnockback = motor.KnockbackForce;
+        base.Construct();
+
+        player.Anim?.SetTrigger("Death");
+        _currentKnockback = player.KnockbackForce;
     }
 
-    public void Destruct(PlayerMotor motor)
+    public override void Destruct()
     {
-
+        UIController.HideHUD();
     }
 
-    public void ProcessMotion(PlayerMotor motor)
+    public override void ProcessMotion()
     {
         Vector3 m = _currentKnockback;
 
-        _currentKnockback = new Vector3(0, _currentKnockback.y -= motor.Gravity * Time.deltaTime, _currentKnockback.z += 2f * Time.deltaTime);
+        _currentKnockback = new Vector3(0, _currentKnockback.y -= player.gravity * Time.deltaTime, _currentKnockback.z += 2f * Time.deltaTime);
 
         if (_currentKnockback.z > 0)
         {
             _currentKnockback.z = 0;
-            GameManager.Instance.ChangeState(GameManager.Instance.GetComponent<GameStateDeath>());
+            player.PausePlayer();
         }
 
-        motor.moveVector = m;
+        player.moveVector = m;
     }
 
-    public void Transition(PlayerMotor motor)
+    public override void Transition()
     {
 
     }

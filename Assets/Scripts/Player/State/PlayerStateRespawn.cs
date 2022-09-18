@@ -43,10 +43,10 @@ public class PlayerStateRespawn : PlayerStateBase
         if (player.isGrounded && (Time.time - _startTime) > player.ImmunityTime)
             gameController.SetStateGame();
 
-        if (InputManager.instance.SwipeLeft)
+        if (InputManager.instance.swipeLeft)
             player.ChangeLane(-1);
 
-        if (InputManager.instance.SwipeRight)
+        if (InputManager.instance.swipeRight)
             player.ChangeLane(1);
     }
 }

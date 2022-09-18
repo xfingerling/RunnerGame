@@ -29,10 +29,10 @@ public class PlayerStateFalling : PlayerStateBase
 
     public override void Transition()
     {
-        if (InputManager.instance.SwipeLeft)
+        if (InputManager.instance.swipeLeft)
             player.ChangeLane(-1);
 
-        if (InputManager.instance.SwipeRight)
+        if (InputManager.instance.swipeRight)
             player.ChangeLane(1);
 
         if (player.isGrounded)

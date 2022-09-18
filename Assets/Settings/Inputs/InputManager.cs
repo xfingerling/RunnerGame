@@ -14,38 +14,26 @@ public class InputManager
     }
     private static InputManager _instance;
 
-    [SerializeField] private float sqrSwipeDeadzone = 50f;
+    public bool tap { get; private set; }
+    public Vector2 touchPosition { get; private set; }
+    public bool swipeLeft { get; private set; }
+    public bool swipeRight { get; private set; }
+    public bool swipeUp { get; private set; }
+    public bool swipeDown { get; private set; }
 
-    //Action scheme
+
+    private float sqrSwipeDeadzone = 50f;
     private RunnerInputAction _actionScheme;
-
-    #region public properties
-    public bool Tap { get { return _tap; } }
-    public Vector2 TouchPosition { get { return _touchPosition; } }
-    public bool SwipeLeft { get { return _swipeLeft; } }
-    public bool SwipeRight { get { return _swipeRight; } }
-    public bool SwipeUp { get { return _swipeUp; } }
-    public bool SwipeDown { get { return _swipeDown; } }
-    #endregion
-
-    #region private properties
-    private bool _tap;
-    private Vector2 _touchPosition;
     private Vector2 _startDrag;
-    private bool _swipeLeft;
-    private bool _swipeRight;
-    private bool _swipeUp;
-    private bool _swipeDown;
-    #endregion
 
     public InputManager()
     {
         SetupControl();
     }
 
-    public void ResetInputs()
+    public static void ResetInputs()
     {
-        _tap = _swipeDown = _swipeUp = _swipeLeft = _swipeRight = false;
+        instance.tap = instance.swipeDown = instance.swipeUp = instance.swipeLeft = instance.swipeRight = false;
     }
 
     private void SetupControl()
@@ -62,7 +50,7 @@ public class InputManager
 
     private void OnEndDrag(InputAction.CallbackContext context)
     {
-        Vector2 delta = _touchPosition - _startDrag;
+        Vector2 delta = touchPosition - _startDrag;
         float sqrDistance = delta.sqrMagnitude;
 
         if (sqrDistance > sqrSwipeDeadzone)
@@ -73,16 +61,16 @@ public class InputManager
             if (x > y) //Left of right
             {
                 if (delta.x > 0)
-                    _swipeRight = true;
+                    swipeRight = true;
                 else
-                    _swipeLeft = true;
+                    swipeLeft = true;
             }
             else //Up or Down
             {
                 if (delta.y > 0)
-                    _swipeUp = true;
+                    swipeUp = true;
                 else
-                    _swipeDown = true;
+                    swipeDown = true;
             }
         }
 
@@ -91,16 +79,16 @@ public class InputManager
 
     private void OnStartDrag(InputAction.CallbackContext context)
     {
-        _startDrag = _touchPosition;
+        _startDrag = touchPosition;
     }
 
     private void OnPosition(InputAction.CallbackContext context)
     {
-        _touchPosition = context.ReadValue<Vector2>();
+        touchPosition = context.ReadValue<Vector2>();
     }
 
     private void OnTap(InputAction.CallbackContext context)
     {
-        _tap = true;
+        tap = true;
     }
 }

@@ -5,7 +5,7 @@ public class PlayerStateJumping : PlayerStateBase
     public override void Construct()
     {
         base.Construct();
-
+        player.jumpSound.Play();
         player.Anim?.SetTrigger("Jump");
         player.verticalVelocity = player.JumpForce;
     }

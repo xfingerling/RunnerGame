@@ -4,7 +4,6 @@ using System.Collections;
 public static class Game
 {
     public static event Action OnGameInitializedEvent;
-
     public static SceneManagerBase sceneManager { get; private set; }
 
     public static void Run()

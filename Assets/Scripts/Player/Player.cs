@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     public int currentLane { get; set; }
     public CharacterController Controller => _controller;
     public Animator Anim => _anim;
+    public AudioSource jumpSound => _jumpSound;
 
     private float _gravity = 14f;
     private float _terminalVelocity = 20f;
@@ -157,11 +158,6 @@ public class Player : MonoBehaviour
     {
         _stepSound.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
         _stepSound.Play();
-    }
-
-    public void PlayJumpSound()
-    {
-        _jumpSound.Play();
     }
 
     #region STATE

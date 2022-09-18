@@ -662,7 +662,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 60650e19286cdf34b85c7206a2346e3c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1081,7 +1081,7 @@ GameObject:
   - component: {fileID: 7375547501086041482}
   - component: {fileID: 2059202794215746596}
   m_Layer: 0
-  m_Name: Snow
+  m_Name: SnowParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5922,7 +5922,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4976991636870995769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.237, y: 0, z: 1.305}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5969,6 +5969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stepSound: {fileID: 5199780065172117457}
+  _jumpSound: {fileID: 1842833911031412375}
   _dustParticle: {fileID: 1813764671582983565}
   _hatContainer: {fileID: 2029848304}
   _baseRunSpeed: 5
@@ -5988,7 +5989,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1
+  m_Height: 2
   m_Radius: 0.27
   m_SlopeLimit: 50
   m_StepOffset: 0.3
@@ -6039,7 +6040,7 @@ GameObject:
   - component: {fileID: 1813764671582983565}
   - component: {fileID: 8342880392975830628}
   m_Layer: 0
-  m_Name: Dust
+  m_Name: DustParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

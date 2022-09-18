@@ -9,6 +9,7 @@ public class UIControllerInteractor : Interactor
     private View _currentView;
     private readonly Stack<View> _history = new Stack<View>();
 
+
     public override void Initialize()
     {
         base.Initialize();

@@ -53,7 +53,7 @@ public class UIDeath : View, IUnityAdsLoadListener, IUnityAdsShowListener
     public void EnableReviveButton()
     {
         _completionCircle.gameObject.SetActive(true);
-        Advertisement.Load(AdManager.instance.AdUnityId, this);
+        Advertisement.Load(AdManager.instance.adUnityId, this);
     }
 
     private void ResumeGame()
@@ -100,7 +100,7 @@ public class UIDeath : View, IUnityAdsLoadListener, IUnityAdsShowListener
                 ResumeGame();
 
                 // Load another ad:
-                Advertisement.Load(AdManager.instance.AdUnityId, this);
+                Advertisement.Load(AdManager.instance.adUnityId, this);
                 break;
             case UnityAdsShowCompletionState.UNKNOWN:
                 break;

@@ -31,7 +31,7 @@ public class InputManager
         SetupControl();
     }
 
-    public static void ResetInputs()
+    public void ResetInputs()
     {
         instance.tap = instance.swipeDown = instance.swipeUp = instance.swipeLeft = instance.swipeRight = false;
     }

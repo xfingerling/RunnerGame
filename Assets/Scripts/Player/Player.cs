@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
 {
     public event Action OnPlayerDeathEvent;
 
+    [SerializeField] private AudioSource _stepSound;
+    [SerializeField] private AudioSource _jumpSound;
+    [SerializeField] private ParticleSystem _dustParticle;
     [SerializeField] private Transform _hatContainer;
     [Header("Run")]
     [SerializeField] private float _baseRunSpeed = 5f;
@@ -19,6 +22,7 @@ public class Player : MonoBehaviour
     [Header("Death")]
     [SerializeField] private Vector3 _knockbackForce = new Vector3(0, 4, -3);
 
+    public ParticleSystem dustParticle => _dustParticle;
     public Transform hatCointainer => _hatContainer;
     public float baseRunSpeed => _baseRunSpeed;
     public float gravity => _gravity;
@@ -147,6 +151,17 @@ public class Player : MonoBehaviour
 
         //Move the player
         _controller.Move(moveVector * Time.deltaTime);
+    }
+
+    public void PlayStepSound()
+    {
+        _stepSound.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+        _stepSound.Play();
+    }
+
+    public void PlayJumpSound()
+    {
+        _jumpSound.Play();
     }
 
     #region STATE

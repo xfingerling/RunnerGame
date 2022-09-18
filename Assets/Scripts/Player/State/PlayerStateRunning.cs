@@ -9,11 +9,13 @@ public class PlayerStateRunning : PlayerStateBase
         player.ResumePlayer();
         player.transform.rotation = Quaternion.identity;
         player.verticalVelocity = 0;
+
+        player.dustParticle.Play();
     }
 
     public override void Destruct()
     {
-
+        player.dustParticle.Stop();
     }
 
     public override void ProcessMotion()

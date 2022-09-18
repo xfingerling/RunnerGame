@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public class SaveState
+public class SaveData
 {
     [NonSerialized] private const int HAT_COUNT = 16;
 
@@ -11,7 +11,7 @@ public class SaveState
     public int CurrentHatIndex { set; get; }
     public byte[] UnlockedHatFlag { set; get; }
 
-    public SaveState()
+    public SaveData()
     {
         Highscore = 0;
         Coin = 0;

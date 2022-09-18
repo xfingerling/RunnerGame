@@ -4,7 +4,7 @@ public class GameStateDeath : GameStateBase
     {
         base.Construct();
 
-        SaveManager.Instance.Save();
+        SaveManager.instance.Save();
         UIController.Show<UIDeath>();
     }
 

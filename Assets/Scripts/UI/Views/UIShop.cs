@@ -80,7 +80,7 @@ public class UIShop : View
             _hatInteractor.SelectHat(index);
             _currentHatText.text = _hats[index].ItemName;
 
-            SaveManager.Instance.Save();
+            SaveManager.instance.Save();
         }
         //If we dont have it, can buy it?
         else if (_hats[index].ItemPrice <= Bank.coins)
@@ -92,7 +92,7 @@ public class UIShop : View
             _hatUIContainer.GetChild(index).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "";
             _currentHatText.text = _hats[index].ItemName;
 
-            SaveManager.Instance.Save();
+            SaveManager.instance.Save();
             _unlockedHatCount++;
             ResetCompletionCircle();
         }

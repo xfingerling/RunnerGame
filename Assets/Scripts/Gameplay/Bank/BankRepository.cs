@@ -4,7 +4,7 @@ public class BankRepository : Repository
 
     public override void Initialize()
     {
-        coins = SaveManager.Instance.save.Coin;
+        coins = SaveManager.instance.save.Coin;
     }
 
     public override void OnCreate()
@@ -19,6 +19,6 @@ public class BankRepository : Repository
 
     public override void Save()
     {
-        SaveManager.Instance.save.Coin = coins;
+        SaveManager.instance.save.Coin = coins;
     }
 }

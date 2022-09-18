@@ -9,6 +9,6 @@ public class MainApp : MonoBehaviour
 
     private void LateUpdate()
     {
-        InputManager.ResetInputs();
+        InputManager.instance.ResetInputs();
     }
 }

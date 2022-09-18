@@ -63,7 +63,7 @@ public class GameStateShop : GameStateBase
             go.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = _hats[index].ItemName;
 
             //Price
-            if (SaveManager.Instance.save.UnlockedHatFlag[i] == 0)
+            if (SaveManager.instance.save.UnlockedHatFlag[i] == 0)
                 go.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = _hats[index].ItemPrice.ToString();
             else
             {
@@ -75,26 +75,26 @@ public class GameStateShop : GameStateBase
 
     private void OnHatClick(int i)
     {
-        if (SaveManager.Instance.save.UnlockedHatFlag[i] == 1)
+        if (SaveManager.instance.save.UnlockedHatFlag[i] == 1)
         {
-            SaveManager.Instance.save.CurrentHatIndex = i;
+            SaveManager.instance.save.CurrentHatIndex = i;
             _currentHatText.text = _hats[i].ItemName;
             _hatLogic.SelectHat(i);
 
-            SaveManager.Instance.Save();
+            SaveManager.instance.Save();
         }
         //If we dont have it, can buy it?
-        else if (_hats[i].ItemPrice <= SaveManager.Instance.save.Coin)
+        else if (_hats[i].ItemPrice <= SaveManager.instance.save.Coin)
         {
-            SaveManager.Instance.save.Coin -= _hats[i].ItemPrice;
-            SaveManager.Instance.save.UnlockedHatFlag[i] = 1;
-            SaveManager.Instance.save.CurrentHatIndex = i;
-            _totalCoinText.text = $"{SaveManager.Instance.save.Coin.ToString("0000")}";
+            SaveManager.instance.save.Coin -= _hats[i].ItemPrice;
+            SaveManager.instance.save.UnlockedHatFlag[i] = 1;
+            SaveManager.instance.save.CurrentHatIndex = i;
+            _totalCoinText.text = $"{SaveManager.instance.save.Coin.ToString("0000")}";
             _hatContainer.GetChild(i).transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "";
             _currentHatText.text = _hats[i].ItemName;
             _hatLogic.SelectHat(i);
 
-            SaveManager.Instance.Save();
+            SaveManager.instance.Save();
             _unlockedHatCount++;
             ResetCompletionCircle();
         }

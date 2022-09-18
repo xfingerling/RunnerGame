@@ -3,23 +3,27 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class SaveManager : MonoBehaviour
+public class SaveManager
 {
-    public static SaveManager Instance { get { return _instance; } }
+    public static SaveManager instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = new SaveManager();
+            return _instance;
+        }
+    }
     private static SaveManager _instance;
 
-    public event Action<SaveState> OnLoadEvent;
-    public event Action<SaveState> OnSaveEvent;
+    private const string SAVE_FILE_NAME = "/saves/SaveData.ss";
 
-    public SaveState save;
-
-    private const string SAVE_FILE_NAME = "SaveData.ss";
+    public SaveData save;
 
     private BinaryFormatter _formatter;
 
-    private void Awake()
+    public SaveManager()
     {
-        _instance = this;
         _formatter = new BinaryFormatter();
 
         Load();
@@ -30,9 +34,8 @@ public class SaveManager : MonoBehaviour
         try
         {
             FileStream file = new FileStream(Application.persistentDataPath + SAVE_FILE_NAME, FileMode.Open, FileAccess.Read);
-            save = _formatter.Deserialize(file) as SaveState;
+            save = _formatter.Deserialize(file) as SaveData;
             file.Close();
-            OnLoadEvent?.Invoke(save);
         }
         catch
         {
@@ -45,14 +48,12 @@ public class SaveManager : MonoBehaviour
     public void Save()
     {
         if (save == null)
-            save = new SaveState();
+            save = new SaveData();
 
         save.LastSaveTime = DateTime.Now;
 
         FileStream file = new FileStream(Application.persistentDataPath + SAVE_FILE_NAME, FileMode.OpenOrCreate, FileAccess.Write);
         _formatter.Serialize(file, save);
         file.Close();
-
-        OnSaveEvent?.Invoke(save);
     }
 }

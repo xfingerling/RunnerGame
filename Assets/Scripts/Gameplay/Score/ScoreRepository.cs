@@ -4,7 +4,7 @@ public class ScoreRepository : Repository
 
     public override void Initialize()
     {
-        highscore = SaveManager.Instance.save.Highscore;
+        highscore = SaveManager.instance.save.Highscore;
     }
 
     public override void OnCreate()
@@ -19,6 +19,6 @@ public class ScoreRepository : Repository
 
     public override void Save()
     {
-        SaveManager.Instance.save.Highscore = highscore;
+        SaveManager.instance.save.Highscore = highscore;
     }
 }

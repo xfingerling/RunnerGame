@@ -5,8 +5,8 @@ public class HatRepository : Repository
 
     public override void Initialize()
     {
-        currentHatIndex = SaveManager.Instance.save.CurrentHatIndex;
-        unlockedHatFlag = SaveManager.Instance.save.UnlockedHatFlag;
+        currentHatIndex = SaveManager.instance.save.CurrentHatIndex;
+        unlockedHatFlag = SaveManager.instance.save.UnlockedHatFlag;
     }
 
     public override void OnCreate()
@@ -21,7 +21,7 @@ public class HatRepository : Repository
 
     public override void Save()
     {
-        SaveManager.Instance.save.CurrentHatIndex = currentHatIndex;
-        SaveManager.Instance.save.UnlockedHatFlag = unlockedHatFlag;
+        SaveManager.instance.save.CurrentHatIndex = currentHatIndex;
+        SaveManager.instance.save.UnlockedHatFlag = unlockedHatFlag;
     }
 }

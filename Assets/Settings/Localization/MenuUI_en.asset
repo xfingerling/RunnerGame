@@ -38,6 +38,22 @@ MonoBehaviour:
     m_Localized: Home
     m_Metadata:
       m_Items: []
+  - m_Id: 6162376799285248
+    m_Localized: Loading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6168372401664000
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6174606529916928
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6193885165907968
+    m_Localized: Volume
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class SceneConfigGame : SceneConfig
 {
-    public const string SCENE_NAME = "GameTest";
+    public const string SCENE_NAME = "Game";
 
     public override string sceneName => SCENE_NAME;
 
@@ -30,6 +30,7 @@ public class SceneConfigGame : SceneConfig
         CreateRepository<ScoreRepository>(repositoriesMap);
         CreateRepository<BankRepository>(repositoriesMap);
         CreateRepository<HatRepository>(repositoriesMap);
+        CreateRepository<UIControllerRepository>(repositoriesMap);
 
         return repositoriesMap;
     }

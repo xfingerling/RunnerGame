@@ -1,19 +1,27 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class UIControllerInteractor : Interactor
 {
+    public int localID => _repository.localeID;
+    public float masterVolume => _repository.masterVolume;
+
+    private UIControllerRepository _repository;
     private UIInterface _uiInterface;
     private View _hudView;
     private List<View> _popupViews = new List<View>();
     private View _currentView;
     private readonly Stack<View> _history = new Stack<View>();
-
+    private bool _isActive = false;
 
     public override void Initialize()
     {
         base.Initialize();
         UIController.Initialize(this);
+
+        _repository = Game.GetRepository<UIControllerRepository>();
 
         var uiInterfacePrefab = Resources.Load<UIInterface>("UI/[INTERFACE]");
         _uiInterface = Object.Instantiate(uiInterfacePrefab);
@@ -23,6 +31,7 @@ public class UIControllerInteractor : Interactor
     {
         base.OnStart();
 
+        ChangeLocale(localID);
         InitPopupViews();
         InitHUDView();
     }
@@ -46,6 +55,18 @@ public class UIControllerInteractor : Interactor
     public void HideHUD()
     {
         _hudView.Hide();
+    }
+
+    public void ShowPopup<T>() where T : View
+    {
+        for (int i = 0; i < _popupViews.Count; i++)
+        {
+            if (_popupViews[i] is T)
+            {
+                _popupViews[i].transform.SetAsLastSibling();
+                _popupViews[i].Show();
+            }
+        }
     }
 
     public void Show<T>(bool remember = true) where T : View
@@ -97,6 +118,31 @@ public class UIControllerInteractor : Interactor
         {
             view.Hide();
         }
+    }
+
+    public void SaveVolumeValue(float value)
+    {
+        _repository.masterVolume = value;
+        _repository.Save();
+    }
+
+    public void ChangeLocale(int localeID)
+    {
+        if (_isActive)
+            return;
+
+        Coroutines.StartRoutine(SetLocale(localeID));
+
+        _repository.localeID = localeID;
+        _repository.Save();
+    }
+
+    IEnumerator SetLocale(int localeID)
+    {
+        _isActive = true;
+        yield return LocalizationSettings.InitializationOperation;
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeID];
+        _isActive = false;
     }
 
     private void InitHUDView()

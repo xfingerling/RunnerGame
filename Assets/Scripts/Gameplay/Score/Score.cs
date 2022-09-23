@@ -45,6 +45,6 @@ public static class Score
     private static void CheckClass()
     {
         if (!isInitialized)
-            throw new Exception("Bank is not init yet");
+            throw new Exception("Score is not init yet");
     }
 }

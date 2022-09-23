@@ -6,6 +6,7 @@ public class PlayerStateRunning : PlayerStateBase
     {
         base.Construct();
 
+        player.Anim.SetTrigger("Running");
         player.ResumePlayer();
         player.transform.rotation = Quaternion.identity;
         player.verticalVelocity = 0;
@@ -23,7 +24,7 @@ public class PlayerStateRunning : PlayerStateBase
         Vector3 m = Vector3.zero;
 
         m.x = player.SnapToLane();
-        m.y = -1f;
+        m.y = -2f;
         m.z = player.baseRunSpeed;
 
         player.moveVector = m;

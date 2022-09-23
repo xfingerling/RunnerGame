@@ -18,7 +18,7 @@ public class AdManager : IUnityAdsInitializationListener
     private const string IOS_GAME_ID = "4888386";
     private const string ANDROID_AD_UNITY_ID = "Rewarded_Android";
     private const string IOS_AD_UNITY_ID = "Rewarded_iOS";
-    private bool _testMode = true;
+    private bool _testMode = false;
 
     public string adUnityId { get; private set; }
     public string adGameId { get; private set; }
@@ -26,13 +26,13 @@ public class AdManager : IUnityAdsInitializationListener
     public void AdInit()
     {
 
-#if UNITY_IOS
-        adUnityId = IOS_AD_UNITY_ID;
-        adGameId = IOS_GAME_ID
-#elif UNITY_ANDROID
+        //#if UNITY_IOS
+        //        adUnityId = IOS_AD_UNITY_ID;
+        //        adGameId = IOS_GAME_ID
+        //#elif UNITY_ANDROID
         adUnityId = ANDROID_AD_UNITY_ID;
         adGameId = ANDROIN_GAME_ID;
-#endif
+        //#endif
 
         Advertisement.Initialize(adGameId, _testMode, this);
     }

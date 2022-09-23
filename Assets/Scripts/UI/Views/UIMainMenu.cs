@@ -6,6 +6,7 @@ public class UIMainMenu : View
 {
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _shopButton;
+    [SerializeField] private Button _settingsButton;
     [SerializeField] private TextMeshProUGUI _highscoreText;
     [SerializeField] private TextMeshProUGUI _coinText;
 
@@ -13,6 +14,7 @@ public class UIMainMenu : View
     {
         _playButton.onClick.AddListener(OnPlayButtonClick);
         _shopButton.onClick.AddListener(OnShopButtonClick);
+        _settingsButton.onClick.AddListener(OnSettingsClick);
     }
 
     private void OnEnable()
@@ -29,5 +31,10 @@ public class UIMainMenu : View
     private void OnShopButtonClick()
     {
         gameController.SetStateShop();
+    }
+
+    private void OnSettingsClick()
+    {
+        UIController.ShowPopup<UISettingsPopup>();
     }
 }

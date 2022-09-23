@@ -10,6 +10,8 @@ public class SaveData
     public DateTime LastSaveTime { set; get; }
     public int CurrentHatIndex { set; get; }
     public byte[] UnlockedHatFlag { set; get; }
+    public int localeID { set; get; }
+    public float masterVolume { set; get; }
 
     public SaveData()
     {
@@ -19,5 +21,6 @@ public class SaveData
         CurrentHatIndex = 0;
         UnlockedHatFlag = new byte[HAT_COUNT];
         UnlockedHatFlag[0] = 1;
+        localeID = 0;
     }
 }

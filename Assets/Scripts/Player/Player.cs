@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [Header("Run")]
     [SerializeField] private float _baseRunSpeed = 5f;
     [Header("Slide")]
-    [SerializeField] private float _slideDuration = 1f;
+    [SerializeField] private float _slideDuration = 5f;
     [Header("Jump")]
     [SerializeField] private float _jumpForce = 7f;
     [Header("Respawn")]
@@ -147,8 +147,8 @@ public class Player : MonoBehaviour
             _currentState.Transition();
         }
 
-        _anim?.SetBool("IsGrounded", isGrounded);
-        _anim?.SetFloat("Speed", Mathf.Abs(moveVector.z));
+        //_anim?.SetBool("IsGrounded", isGrounded);
+        //_anim?.SetFloat("Speed", Mathf.Abs(moveVector.z));
 
         //Move the player
         _controller.Move(moveVector * Time.deltaTime);

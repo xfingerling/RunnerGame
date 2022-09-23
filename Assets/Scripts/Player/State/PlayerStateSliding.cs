@@ -10,23 +10,20 @@ public class PlayerStateSliding : PlayerStateBase
     {
         base.Construct();
 
-        player.Anim?.ResetTrigger("Running");
         player.Anim?.SetTrigger("Slide");
         _slideStart = Time.time;
 
         _initialSize = player.Controller.height;
         _initialCenter = player.Controller.center;
 
-        player.Controller.height = _initialSize * 0.5f;
-        player.Controller.center = _initialCenter * 0.5f;
+        player.Controller.height = _initialSize * 0.3f;
+        player.Controller.center = _initialCenter * 0.3f;
     }
 
     public override void Destruct()
     {
         player.Controller.height = _initialSize;
         player.Controller.center = _initialCenter;
-
-        player.Anim?.SetTrigger("Running");
     }
 
     public override void ProcessMotion()

@@ -20,6 +20,15 @@ public static class Score
             return _scoreInteractor.scorePerSession;
         }
     }
+
+    public static float ratioScore
+    {
+        get
+        {
+            CheckClass();
+            return _scoreInteractor.ratioScore;
+        }
+    }
     public static bool isInitialized { get; private set; }
 
     private static ScoreInteractor _scoreInteractor;

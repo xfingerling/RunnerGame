@@ -2,6 +2,7 @@ public class ScoreInteractor : Interactor
 {
     public int higscore => _repository.highscore;
     public int scorePerSession { get; private set; }
+    public float ratioScore { get; private set; }
 
     private ScoreRepository _repository;
     private Player _player;
@@ -31,6 +32,7 @@ public class ScoreInteractor : Interactor
         if (score > scorePerSession)
             scorePerSession = (int)score;
 
+        ratioScore = score / 1000;
         SaveHighscore();
     }
 

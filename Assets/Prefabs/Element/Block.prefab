@@ -96,8 +96,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6353694, y: 0.42815888, z: 6.01186}
-  m_Center: {x: -0.0384925, y: 1.7605999, z: -3.2610073}
+  m_Size: {x: 1.6353694, y: 0.688931, z: 5.8554516}
+  m_Center: {x: -0.0384925, y: 1.6282926, z: -3.0645218}
 --- !u!1 &5821100945616788171
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 3375788759415867759}
   - component: {fileID: 8860502546439931511}
   - component: {fileID: 2048770766572582651}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,5 +193,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.77842504, y: 0.8345411, z: 0.9844378}
+  m_Center: {x: -0.031950522, y: -0.064573266, z: 0.007780904}

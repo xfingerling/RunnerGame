@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class GameStateDeath : GameStateBase
 {
     public override void Construct()
@@ -12,7 +10,6 @@ public class GameStateDeath : GameStateBase
 
     public override void Destruct()
     {
-        Debug.Log("death destruct");
         Bank.ResetCoinPerSession();
         Score.ResetScorePerSession();
     }

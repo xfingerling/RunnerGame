@@ -31,8 +31,8 @@ public class PlayerStateSliding : PlayerStateBase
         Vector3 m = Vector3.zero;
 
         m.x = player.SnapToLane();
-        m.y = -1f;
-        m.z = player.baseRunSpeed;
+        m.y = -10f;
+        m.z = player.baseRunSpeed * player.speedFactor;
 
         player.moveVector = m;
     }
@@ -44,9 +44,6 @@ public class PlayerStateSliding : PlayerStateBase
 
         if (InputManager.instance.swipeRight)
             player.ChangeLane(1);
-
-        if (!player.isGrounded)
-            player.SetStateFall();
 
         if (InputManager.instance.swipeUp)
             player.SetStateJump();

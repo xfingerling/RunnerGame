@@ -23,7 +23,7 @@ public class PlayerStateJumping : PlayerStateBase
 
         m.x = player.SnapToLane();
         m.y = player.verticalVelocity;
-        m.z = player.baseRunSpeed;
+        m.z = player.baseRunSpeed * player.speedFactor;
 
         player.moveVector = m;
     }
@@ -38,5 +38,8 @@ public class PlayerStateJumping : PlayerStateBase
 
         if (player.verticalVelocity < 0)
             player.SetStateFall();
+
+        if (InputManager.instance.swipeDown)
+            player.SetStateSlide();
     }
 }

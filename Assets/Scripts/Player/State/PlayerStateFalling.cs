@@ -22,7 +22,7 @@ public class PlayerStateFalling : PlayerStateBase
 
         m.x = player.SnapToLane();
         m.y = player.verticalVelocity;
-        m.z = player.baseRunSpeed;
+        m.z = player.baseRunSpeed * player.speedFactor;
 
         player.moveVector = m;
     }
@@ -37,5 +37,8 @@ public class PlayerStateFalling : PlayerStateBase
 
         if (player.isGrounded)
             player.SetStateRun();
+
+        if (InputManager.instance.swipeDown)
+            player.SetStateSlide();
     }
 }

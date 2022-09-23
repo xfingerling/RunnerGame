@@ -33,7 +33,7 @@ public class PlayerStateRespawn : PlayerStateBase
 
         m.x = player.SnapToLane();
         m.y = player.verticalVelocity;
-        m.z = player.baseRunSpeed;
+        m.z = player.baseRunSpeed * player.speedFactor;
 
         player.moveVector = m;
     }

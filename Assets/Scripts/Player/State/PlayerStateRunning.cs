@@ -25,7 +25,7 @@ public class PlayerStateRunning : PlayerStateBase
 
         m.x = player.SnapToLane();
         m.y = -2f;
-        m.z = player.baseRunSpeed;
+        m.z = player.baseRunSpeed * player.speedFactor;
 
         player.moveVector = m;
     }

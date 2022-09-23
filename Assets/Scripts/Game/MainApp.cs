@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MainApp : MonoBehaviour
 {
-    void Start()
+    void Awake()
     {
         Game.Run();
 

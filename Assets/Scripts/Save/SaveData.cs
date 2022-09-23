@@ -11,7 +11,7 @@ public class SaveData
     public int CurrentHatIndex { set; get; }
     public byte[] UnlockedHatFlag { set; get; }
     public int localeID { set; get; }
-    public float masterVolume { set; get; }
+    public bool masterVolume { set; get; }
 
     public SaveData()
     {

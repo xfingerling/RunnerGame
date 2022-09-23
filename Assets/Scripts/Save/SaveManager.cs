@@ -36,7 +36,6 @@ public class SaveManager
             FileStream file = new FileStream(Application.persistentDataPath + SAVE_FILE_NAME, FileMode.Open, FileAccess.Read);
             save = _formatter.Deserialize(file) as SaveData;
             file.Close();
-            Debug.Log("Load");
         }
         catch
         {
@@ -50,7 +49,7 @@ public class SaveManager
     {
         if (save == null)
             save = new SaveData();
-        Debug.Log("Save");
+
         save.LastSaveTime = DateTime.Now;
 
         FileStream file = new FileStream(Application.persistentDataPath + SAVE_FILE_NAME, FileMode.OpenOrCreate, FileAccess.Write);

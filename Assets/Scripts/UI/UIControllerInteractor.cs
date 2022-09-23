@@ -6,7 +6,7 @@ using UnityEngine.Localization.Settings;
 public class UIControllerInteractor : Interactor
 {
     public int localID => _repository.localeID;
-    public float masterVolume => _repository.masterVolume;
+    public bool masterVolume => _repository.masterVolume;
 
     private UIControllerRepository _repository;
     private UIInterface _uiInterface;
@@ -120,9 +120,9 @@ public class UIControllerInteractor : Interactor
         }
     }
 
-    public void SaveVolumeValue(float value)
+    public void SaveToggleMusic(bool enabled)
     {
-        _repository.masterVolume = value;
+        _repository.masterVolume = enabled;
         _repository.Save();
     }
 

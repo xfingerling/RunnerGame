@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -5,24 +6,21 @@ using UnityEngine.UI;
 
 public class UISettingsPopup : View
 {
+    public event Action<bool> OnMusicToggleEvent;
+
     [SerializeField] private Button _closeButton;
     [SerializeField] private TMP_Dropdown _dropdownLanguege;
     [SerializeField] private AudioMixerGroup _mixer;
-    [SerializeField] private Slider _masterAudioSlider;
-
-    private float _sliderMasterVolumeValue;
+    [SerializeField] private Toggle _masterAudioToggle;
 
     public override void Initialize()
     {
         _closeButton.onClick.AddListener(OnCloseClick);
         _dropdownLanguege.onValueChanged.AddListener(ChangeLocale);
-        _masterAudioSlider.onValueChanged.AddListener(ChangeVolume);
+        _masterAudioToggle.onValueChanged.AddListener(ToggleMusic);
 
         _dropdownLanguege.value = UIController.localeID;
-
-        Debug.Log(UIController.masterVolume);
-        ChangeVolume(UIController.masterVolume);
-        _masterAudioSlider.value = UIController.masterVolume;
+        _masterAudioToggle.isOn = UIController.masterVolume;
     }
 
     private void ChangeLocale(int id)
@@ -30,16 +28,19 @@ public class UISettingsPopup : View
         UIController.ChangeLocale(id);
     }
 
-    private void ChangeVolume(float volume)
+    private void ToggleMusic(bool enabled)
     {
-        _mixer.audioMixer.SetFloat("MasterVolume", Mathf.Lerp(-80, 0, volume));
-        _sliderMasterVolumeValue = volume;
+        if (enabled)
+            _mixer.audioMixer.SetFloat("MusicVolume", 0);
+        else
+            _mixer.audioMixer.SetFloat("MusicVolume", -80);
+
+        OnMusicToggleEvent?.Invoke(enabled);
+        UIController.SaveToggleMusic(enabled);
     }
 
     private void OnCloseClick()
     {
-        UIController.SaveVolumeValue(_sliderMasterVolumeValue);
-
         SaveManager.instance.Save();
         Hide();
     }

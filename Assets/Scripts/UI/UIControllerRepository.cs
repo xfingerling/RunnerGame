@@ -1,7 +1,7 @@
 public class UIControllerRepository : Repository
 {
     public int localeID { get; set; }
-    public float masterVolume { get; set; }
+    public bool masterVolume { get; set; }
 
     public override void Initialize()
     {

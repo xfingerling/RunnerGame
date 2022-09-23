@@ -21,7 +21,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float _immunityTime = 1f;
     [Header("Death")]
     [SerializeField] private Vector3 _knockbackForce = new Vector3(0, 4, -3);
+    [SerializeField] private AnimationCurve _speedFactor;
 
+    public float speedFactor => _speedFactor.Evaluate(Score.ratioScore);
     public ParticleSystem dustParticle => _dustParticle;
     public Transform hatCointainer => _hatContainer;
     public float baseRunSpeed => _baseRunSpeed;
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
     public float verticalVelocity { get; set; }
     public bool isGrounded { get; set; }
     public int currentLane { get; set; }
+    public int prevLane { get; set; }
     public CharacterController Controller => _controller;
     public Animator Anim => _anim;
     public AudioSource jumpSound => _jumpSound;
@@ -73,6 +76,11 @@ public class Player : MonoBehaviour
             OnPlayerDeathEvent?.Invoke();
         }
 
+        if (hitLayerMask == "NotDeath")
+        {
+            currentLane = prevLane;
+            ChangeLane(prevLane);
+        }
     }
 
     public void RespawnPlayer()
@@ -90,6 +98,7 @@ public class Player : MonoBehaviour
 
     public void ChangeLane(int direction)
     {
+        prevLane = currentLane;
         currentLane = Mathf.Clamp(currentLane + direction, -1, 1);
     }
 
@@ -146,9 +155,6 @@ public class Player : MonoBehaviour
             //Trying to change state
             _currentState.Transition();
         }
-
-        //_anim?.SetBool("IsGrounded", isGrounded);
-        //_anim?.SetFloat("Speed", Mathf.Abs(moveVector.z));
 
         //Move the player
         _controller.Move(moveVector * Time.deltaTime);
@@ -218,11 +224,6 @@ public class Player : MonoBehaviour
 
         _currentState = newState;
         _currentState.Construct();
-    }
-
-    private void SetStateByDefault()
-    {
-        SetStateIdle();
     }
 
     private PlayerStateBase GetPlayerState<T>() where T : PlayerStateBase

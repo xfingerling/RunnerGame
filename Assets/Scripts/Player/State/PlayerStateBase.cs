@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public abstract class PlayerStateBase
 {
     protected GameController gameController;
@@ -11,7 +13,7 @@ public abstract class PlayerStateBase
         cameraInteractor = Game.GetInteractor<CameraInteractor>();
         gameController = gameControllerInteractor.gameController;
         player = playerInteractor.player;
-        //Debug.Log(this);
+        Debug.Log(this);
     }
     public abstract void Destruct();
     public abstract void Transition();

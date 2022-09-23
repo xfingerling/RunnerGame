@@ -5,7 +5,7 @@ public static class UIController
     public static event Action OnUIInitializedEvent;
 
     public static int localeID => _uiControllerInteractor.localID;
-    public static float masterVolume => _uiControllerInteractor.masterVolume;
+    public static bool masterVolume => _uiControllerInteractor.masterVolume;
     public static bool isInitialized { get; private set; }
 
     private static UIControllerInteractor _uiControllerInteractor;
@@ -17,10 +17,10 @@ public static class UIController
         OnUIInitializedEvent?.Invoke();
     }
 
-    public static void SaveVolumeValue(float value)
+    public static void SaveToggleMusic(bool enabled)
     {
         CheckClass();
-        _uiControllerInteractor.SaveVolumeValue(value);
+        _uiControllerInteractor.SaveToggleMusic(enabled);
     }
 
     public static T GetView<T>() where T : View
